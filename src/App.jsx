@@ -10,6 +10,7 @@ import Perfil from './pages/Perfil.jsx';
 import Regalo from './pages/Regalo.jsx';
 import VerificarIPs from './components/VerificarIP'; 
 import Curses from './pages/Curses.jsx';
+import EjemploLanding from './landinpage/landingejemplo.jsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Perfil" element={<><VerificarIPs /><Perfil /></>} />
         <Route path="/Regalo" element={<><VerificarIPs /><Regalo /></>} />
         <Route path="/Curses" element={<><Curses /></>} />
+        <Route path="/landing" element={<><EjemploLanding /></>} />
       </Routes>
     </Router>
   );
