@@ -1,72 +1,114 @@
+import React, { useState, useEffect } from 'react';
+
 export default function WorkshopLanding() {
+
+  
+  const [timeLeft, setTimeLeft] = useState(3600000); // 1 hora en milisegundos
+
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 0) {
+          return 3600000; // Reinicia el cronómetro a 1 hora
+        }
+        return prevTime - 1000;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval); // Limpia el intervalo al desmontar
+  }, []);
+
+  const formatTime = (time) => {
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    return {
+      hours: hours.toString().padStart(2, '0'),
+      minutes: minutes.toString().padStart(2, '0'),
+      seconds: seconds.toString().padStart(2, '0'),
+    };
+  };
+
+  const { hours, minutes, seconds } = formatTime(timeLeft);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      {/* Header */}
-      <div className="bg-white rounded-2xl max-w-4xl w-full p-8 mx-auto shadow-lg mt-8">
-        <header className="text-center mb-16">
-          <h2 className="text-2xl text-gray-800 mb-8 font-medium">
-            Mi Nuevo Workshop Revela...
+<div
+  className="min-h-screen flex flex-col items-center"
+  style={{
+    background: "linear-gradient(to right, black, #013557 50%, black 100%)",
+    fontFamily: "Lato, sans-serif",
+  }}
+>
+
+      {/* Header */}<img src="https://gopitchering.com/wp-content/uploads/2024/07/704851e0a88209f5f3717dd586768749_1200_80.webp" className="my-5" alt="" />
+      <div className="bg-white rounded-2xl max-w-4xl w-full p-6 mx-5 shadow-lg mt-8">
+        <header className="text-center">
+          <h2 className="text-2xl text-gray-800 mb-2 font-medium">
+          Conoce el NUEVO Trabajo que va a revolucionar el Mercado Digital en 2025…
           </h2>
 
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-8">
-            Cómo estoy utilizando un Video Simple de 7 minutos y una página minimalista{" "}
-            <span className="text-[#43A047]">
-              para vender mis cursos online en Piloto{" "}
-              <span className="italic">Automático</span>...
-            </span>
+          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-2">
+          Conviértete en Pitcher Partner y ayuda a creadores a lanzar cursos online exitosos.
           </h1>
 
-          <p className="text-xl text-gray-700">
-            (Esta estrategia me permite vender de 30 a 50 talleres por día...FUNCIONA!)
+          <p className="text-xl text-gray-700 mb-3">
+          <span className="text-[#f9bc66] font-bold">
+            y llevarte GRANDES comisiones en dólares en menos de {" "}
+              <span className="italic">7 días</span>...
+            </span>
           </p>
         </header>
 
         {/* Main Content */}
-        <div className="my-16">
-          <div className="text-center space-y-8">
-           
-
-            {/* Sound Button */}
-            <button
-              className="bg-[#43A047] hover:bg-[#2E7D32] text-white px-16 py-8 rounded-lg shadow-lg mx-auto block transition-colors"
-            >
-              <div className="text-2xl mb-4">Toca aquí</div>
-              <div className="flex justify-center mb-4">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="w-12 h-12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M11 5L6 9H2V15H6L11 19V5Z" />
-                  <line x1="23" y1="9" x2="17" y2="15" />
-                  <line x1="17" y1="9" x2="23" y2="15" />
-                </svg>
-              </div>
-              <div className="text-xl">para activar el sonido</div>
-            </button>
+        <div>
+          <div className="text-center flex justify-center space-y-8">
+          <iframe
+  id="panda-a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
+  src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
+  style={{ border: "none" }}  
+  allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+  width="920"
+  height="460"
+  fetchpriority="high"
+/>
           </div>
         </div>
 
         {/* New Product Section */}
-        <section className="w-full max-w-4xl mx-auto px-4 py-16 bg-white">
+        <section className="w-full max-w-4xl  px-4 mt-2 bg-white">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            Desbloquea mis Sistema de Ventas y{" "}
-            <span className="block">Empieza a Vender tus Cursos 24/7...</span>
+          APRENDE A SER UN PITCHER PARTNER
           </h1>
 
           <div className="relative mb-12">
             <img
-              src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/5f165017-3990-44ec-b1c9-10f9fc513283"
+              src="https://gopitchering.com/wp-content/uploads/2024/08/thgrtdfx.png"
               alt="VSL Method Products"
               className="w-full h-auto"
             />
           </div>
 
-          <button className="bg-[#43A047] hover:bg-[#2E7D32] text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-colors">
-            Quiero Empezar a vender en 7 minutos!
-          </button>
+          <button
+  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
+  style={{
+    backgroundSize: "200%",
+    backgroundPosition: "center",
+  }}
+>
+  Quiero Empezar a vender en 7 minutos!
+</button>
 
           <img
               src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/a77d3c0f-5951-4f3b-8a85-a23a5e702176"
@@ -102,9 +144,15 @@ export default function WorkshopLanding() {
             </div>
           </div>
 
-          <button className="bg-[#43A047] hover:bg-[#2E7D32] text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-colors">
-            Quiero Empezar a vender en 7 minutos!
-          </button>
+          <button
+  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
+  style={{
+    backgroundSize: "200%",
+    backgroundPosition: "center",
+  }}
+>
+  Quiero Empezar a vender en 7 minutos!
+</button>
 
           {/* Testimonials Section */}
           <div className="bg-gray-100 p-8 rounded-lg">
@@ -124,38 +172,61 @@ export default function WorkshopLanding() {
           </div>
 
           {/* Perfect For You Section */}
-          <div className="mt-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-              Este Workshop es perfecto para ti si...
-            </h2>
-            <div className="flex items-center gap-4 text-xl">
-              <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-              </svg>
-              <span>
-Si te gustaría que transformar a tu curso / grabaciones de tu workshop en una fuente de ingresos pasivos.
-</span>
-   </div>
-   <div className="flex items-center gap-4 text-xl">
-              <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-              </svg>
-              <span>
-              Sabes que tienes un producto ganador, pero te ha costado hacer que las personas entiendan el verdadero valor de lo que estás ofreciendo....
-</span>
-   </div>
-   <div className="flex items-center gap-4 text-xl">
-              <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-              </svg>
-              <span>
-              Estás cansado de depender solo de la estrategia de ciclos de lanzamientos y quieres que tus cursos se vendan todos los días...
-</span>
-   </div>
+          <div >
+  <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#f9bc66]">
+    Este Workshop es perfecto para ti si...
+  </h2>
+  <div className="bg-gradient-to-r from-black/50 to-[#013557] p-6 rounded-lg shadow-lg max-w-4xl mx-auto mb-5 text-white">
+    <ul className="space-y-4 text-xl">
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si quieres empezar a hacer +1000 dólares a partir de los próximos 30 días.</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si estás cansado de la gente negativa que te tira para atrás y no te permite avanzar.</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si estás buscando aprender una habilidad digital rentable en 2024.</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si NO tienes miles de seguidores en redes sociales o NO te gusta mostrarte en cámara.</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si sos de mente positiva y buscas un cambio en tu vida.</span>
+      </li>
+      <li className="flex items-start gap-3">
+        <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        <span>Si prefieres trabajar los fines de semana en lugar de salir a un boliche.</span>
+      </li>
+    </ul>
+  </div>
 
-   <button className="mt-2 bg-[#43A047] hover:bg-[#2E7D32] text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-colors">
-            Quiero Empezar a vender en 7 minutos!
-          </button>
+
+   <button
+  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
+  style={{
+    backgroundSize: "200%",
+    backgroundPosition: "center",
+  }}
+>
+  Quiero Empezar a vender en 7 minutos!
+</button>
 
  
          
@@ -166,15 +237,10 @@ Si te gustaría que transformar a tu curso / grabaciones de tu workshop en una f
           {/* Product Details */}
           <div className="grid gap-8 mb-16">
 
-          <img 
-                src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/02c90523-c81a-4fb5-b3cf-271749d7aae4
-                "
-                alt="7 Minute Closing"
 
-              />
             <div className="flex gap-8 items-center">
               <img 
-                src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/02c90523-c81a-4fb5-b3cf-271749d7aae4"
+                src="https://gopitchering.com/wp-content/uploads/2024/08/Crea-el-Curso-Perfecto.png"
                 alt="7 Minute Closing"
                 className="w-48 h-auto"
               />
@@ -190,7 +256,24 @@ Si te gustaría que transformar a tu curso / grabaciones de tu workshop en una f
 
             <div className="flex gap-8 items-center">
               <img 
-                src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/02c90523-c81a-4fb5-b3cf-271749d7aae4"
+                src="https://gopitchering.com/wp-content/uploads/2024/08/Guia-de-Lanzamiento-Predecible-en-7-Dias.png"
+                alt="One Page Formula"
+                className="w-48 h-auto"
+              />
+              <div className="text-left">
+                <h4 className="text-2xl font-bold mb-2">One Page Formula - Valorado en $197</h4>
+                <p className="text-gray-600">
+                  Deja de complicarte con páginas de ventas 
+                  interminables o funnels complicados!... Te daré la 
+                  misma estructura de la única página de ventas 
+                  minimalista que utilizo todos los días
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-8 items-center">
+              <img 
+                src="https://gopitchering.com/wp-content/uploads/2024/08/Prospecta-tu-Primer-Influencer-Asegurado.png"
                 alt="One Page Formula"
                 className="w-48 h-auto"
               />
@@ -205,12 +288,67 @@ Si te gustaría que transformar a tu curso / grabaciones de tu workshop en una f
               </div>
             </div>
           </div>
-
+          <div className="flex gap-8 items-center">
+              <img 
+                src="https://gopitchering.com/wp-content/uploads/2024/08/regalo-point.png"
+                alt="One Page Formula"
+                className="w-48 h-auto"
+              />
+              <div className="text-left">
+                <h4 className="text-2xl font-bold mb-2">One Page Formula - Valorado en $197</h4>
+                <p className="text-gray-600">
+                  Deja de complicarte con páginas de ventas 
+                  interminables o funnels complicados!... Te daré la 
+                  misma estructura de la única página de ventas 
+                  minimalista que utilizo todos los días
+                </p>
+              </div>
+            </div>
+          
           {/* Pricing Summary */}
           <div className="mb-16">
+          <div className="border-dashed border-4 border-white p-6 rounded-xl  shadow-inner mb-6">
+      <div className="flex flex-col items-center justify-center text-center">
+        <h1 className="text-4xl font-bold text-[#f9bc66] mb-4">BONUS TEMPORALES:</h1>
+
+        <div className="flex justify-center gap-4 flex-wrap mb-4">
+          <img
+            className="w-1/2 max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
+            src="https://gopitchering.com/wp-content/uploads/2024/08/FDSSDDS-1024x521.png"
+            alt="Imagen 1"
+          />
+          <img
+            className="w-1/2 max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
+            src="https://gopitchering.com/wp-content/uploads/2024/08/BONUS-2-1024x521.png"
+            alt="Imagen 2"
+          />
+        </div>
+
+        <div className="flex justify-center items-center gap-4 flex-wrap">
+          <div className="bg-[#f9bc66] text-white p-4 rounded-lg text-center min-w-[80px] max-w-[100px] shadow-md">
+            <span className="block text-2xl font-bold">{hours}</span>
+            <p className="text-sm">Horas</p>
+          </div>
+          <div className="bg-[#f9bc66] text-white p-4 rounded-lg text-center min-w-[80px] max-w-[100px] shadow-md">
+            <span className="block text-2xl font-bold">{minutes}</span>
+            <p className="text-sm">Minutos</p>
+          </div>
+          <div className="bg-[#f9bc66] text-white p-4 rounded-lg text-center min-w-[80px] max-w-[100px] shadow-md">
+            <span className="block text-2xl font-bold">{seconds}</span>
+            <p className="text-sm">Segundos</p>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-center text-white font-bold text-sm mt-4 bg-[#f9bc66] p-3 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
+        Acelera tus resultados comprando dentro de la primera hora con estos bonus GRATIS
+      </p>
+    </div>
+
+
             <h2 className="text-4xl font-bold mb-8 text-center">Entonces, esto es lo que obtendrás!</h2>
             
-            <div className="border-4 border-dashed border-[#43A047] rounded-xl p-8 max-w-2xl mx-auto">
+            <div className="border-4 border-dashed border-[#f9bc66] rounded-xl p-8 max-w-2xl mx-auto">
               <div className="space-y-4 text-xl mb-8">
                 <div className="flex justify-between">
                   <span>7 Minute Closing.............</span>
@@ -230,25 +368,39 @@ Si te gustaría que transformar a tu curso / grabaciones de tu workshop en una f
                 </div>
               </div>
 
-              <div className="text-2xl mb-4">
-                Todo esto valorado por: <span className="line-through">$1238</span>
-              </div>
-              
-              <div className="text-3xl font-bold text-[#43A047]">
-                SOLO POR HOY: $67 usd
-              </div>
+              <div className="flex flex-col items-center">
+        <h3 className="text-sm py-1 rounded-lg text-center leading-none m-0">
+          <span className="text-black block leading-none m-0">PRECIO REGULAR: <span className="line-through">$1497 USD</span></span>
+        </h3>
+        <h3 className="text-sm py-1 rounded-lg text-center leading-none m-0">
+          <strong>
+            <span className="text-[#f9bc66] text-3xl leading-none m-0">SOLO POR HOY: $97 USD</span>
+          </strong>
+        </h3>
+      </div>
+
+
             </div>
           </div>
+  
 
-          {/* CTA Button */}
-          <button className="bg-[#43A047] hover:bg-[#2E7D32] text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block transition-colors">
-            ¡Sí! Quiero Acceso Inmediato
-          </button>
+          {/* CTA Button */}         <button
+  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
+  style={{
+    backgroundSize: "200%",
+    backgroundPosition: "center",
+  }}
+>
+¡Sí! Quiero Acceso Inmediato
+</button>
         </section>
+
+
+
 
         {/* Footer */}
         <footer className="mt-16 text-center text-sm text-gray-500">
-          <p className="mb-2">© 2025 Santi Padilla. All Rights Reserved.</p>
+          <p className="mb-2">© 2025 Go Pitchering. All Rights Reserved.</p>
           <p className="max-w-2xl mx-auto">
             Descargo de Responsabilidad: Este producto no garantiza la obtención de resultados. Las referencias al desarrollo de una determinada estrategia no debe ser interpretada como una garantía de resultados. Esta página no es parte de la página de Meta o de Meta, Inc.
           </p>
