@@ -81,7 +81,7 @@ export default function WorkshopLanding() {
       <h2 className="text-lg md:text-2xl text-white text-center font-medium">
           Conoce el NUEVO Trabajo que va a revolucionar el Mercado Digital en 2025…
           </h2>
-      <div className="bg-white rounded-2xl max-w-4xl w-[95%] p-2 md:p-6 md:w-full mx-5 shadow-lg mt-7">
+      <div className="bg-white rounded-2xl max-w-4xl w-[96%] p-2 md:p-6 md:w-full mx-5 shadow-lg mt-7">
         <header className="text-center">
          
 
@@ -144,7 +144,7 @@ Quiero Acceder a Go Pitchering
 
 
 
-          {/* Testimonials Section */}
+          
 
 
           {/* Perfect For You Section */}
@@ -214,7 +214,25 @@ Quiero ser un Pitcher Partner
          
           </div>
         </section>
-
+{/* Testimonials Section */}
+<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 mt-18 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing max-w-full ">
+    Nuestros testimonios!
+</h2>
+    <img
+    className="w-full mb-5"
+    src="https://i.ibb.co/QQgGk3Y/Captura-de-pantalla-2025-01-20-19-06-28.png"
+    alt="Imagen 2"
+  />
+    <img
+    className="w-full mb-5"
+    src="https://i.ibb.co/tPdyTZf/Captura-de-pantalla-2025-01-20-19-06-40.png"
+    alt="Imagen 2"
+  />
+    <img
+    className="w-full mb-5"
+    src="https://i.ibb.co/42jHNqk/Captura-de-pantalla-2025-01-20-19-06-52.png"
+    alt="Imagen 2"
+  />
         <section>        
           {/* Product Details */}
           <div className="grid gap-8 mb-16">
@@ -337,11 +355,6 @@ Quiero ser un Pitcher Partner
 
     </div>
 
-    <img
-    className="w-full mb-5"
-    src="https://i.ibb.co/QQgGk3Y/Captura-de-pantalla-2025-01-20-19-06-28.png"
-    alt="Imagen 2"
-  />
 
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 mt-18 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing max-w-full ">
     Entonces, esto es lo que obtendrás!
