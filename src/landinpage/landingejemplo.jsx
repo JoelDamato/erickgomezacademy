@@ -1,9 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function WorkshopLanding() {
 
   
   const [timeLeft, setTimeLeft] = useState(3600000); // 1 hora en milisegundos
+  const [showExtraContent, setShowExtraContent] = useState(false);
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    // Escuchar mensajes del iframe
+    const handleMessage = (event) => {
+      const { data } = event;
+
+      // Verificar si el mensaje es del evento panda_timeupdate
+      if (data.message === "panda_timeupdate") {
+        console.log(`Tiempo actual del video: ${data.currentTime}s`);
+
+        // Mostrar contenido adicional si el tiempo alcanza 180 segundos
+        if (data.currentTime >= 180) {
+          setShowExtraContent(true);
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -71,25 +96,38 @@ export default function WorkshopLanding() {
           </p>
         </header>
 
-        {/* Main Content */}
-        <div>
-          <div className="text-center flex justify-center space-y-8">
-          <iframe
-  id="panda-a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
-  src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
-  style={{ border: "none" }}  
-  allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-  width="920"
-  height="460"
-  fetchpriority="high"
-/>
+        {/* VSL Content */}
+       <div>
+          <div className="text-center flex justify-center space-y-8 mb-5">
+            <iframe
+              ref={videoRef}
+              src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
+              style={{ border: "none" }}
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+              width="920"
+              height="460"
+              fetchpriority="high"
+            />
           </div>
         </div>
 
         {/* New Product Section */}
+        {showExtraContent == false? 
+        <button
+  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
+  style={{
+    backgroundSize: "200%",
+    backgroundPosition: "center",
+  }}
+>
+Quiero Acceder a Go Pitchering
+</button> : ""}
+
+{showExtraContent && (
+      <div>
         <section className="w-full max-w-4xl  px-4 mt-2 bg-white">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-12">
-          APRENDE A SER UN PITCHER PARTNER
+          <h1 className="bg-[#013557] text-white text-4xl md:text-5xl font-bold text-center mb-12 p-2 rounded-lg">
+          Aprende a ser un PITCHER PARTNER
           </h1>
 
           <div className="relative mb-12">
@@ -100,21 +138,8 @@ export default function WorkshopLanding() {
             />
           </div>
 
-          <button
-  className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
-  style={{
-    backgroundSize: "200%",
-    backgroundPosition: "center",
-  }}
->
-  Quiero Empezar a vender en 7 minutos!
-</button>
 
-          <img
-              src="https://samcart-foundation-prod.s3.amazonaws.com/marketplace-130441/assets/a77d3c0f-5951-4f3b-8a85-a23a5e702176"
-              alt="VSL Method Products"
-              className="w-full h-auto"
-            />
+
 
 
           {/* Passive Income Section */}
@@ -151,7 +176,7 @@ export default function WorkshopLanding() {
     backgroundPosition: "center",
   }}
 >
-  Quiero Empezar a vender en 7 minutos!
+Quiero ser un Pitcher Partner
 </button>
 
           {/* Testimonials Section */}
@@ -173,11 +198,14 @@ export default function WorkshopLanding() {
 
           {/* Perfect For You Section */}
           <div >
-  <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#f9bc66]">
-    Este Workshop es perfecto para ti si...
-  </h2>
-  <div className="bg-gradient-to-r from-black/50 to-[#013557] p-6 rounded-lg shadow-lg max-w-4xl mx-auto mb-5 text-white">
-    <ul className="space-y-4 text-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing">
+  Este Workshop es perfecto para ti si...
+</h2>
+
+
+
+  <div className="p-6 rounded-lg shadow-2xl max-w-4xl mx-auto mb-5 text-black">
+    <ul className="space-y-4 text-2xl">
       <li className="flex items-start gap-3">
         <svg className="w-6 h-6 text-[#43A047]" viewBox="0 0 24 24">
           <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
@@ -225,7 +253,7 @@ export default function WorkshopLanding() {
     backgroundPosition: "center",
   }}
 >
-  Quiero Empezar a vender en 7 minutos!
+Quiero ser un Pitcher Partner
 </button>
 
  
@@ -242,14 +270,12 @@ export default function WorkshopLanding() {
               <img 
                 src="https://gopitchering.com/wp-content/uploads/2024/08/Crea-el-Curso-Perfecto.png"
                 alt="7 Minute Closing"
-                className="w-48 h-auto"
+                className="w-32 sm:w-48 h-auto"
               />
               <div className="text-left">
-                <h4 className="text-2xl font-bold mb-2">7 Minute Closing - Valorado en $497 usd</h4>
+                <h4 className="text-2xl font-bold mb-2">CREA CURSOS RENTABLES SIN EXPERIENCIA – Valorada en $197 USD</h4>
                 <p className="text-gray-600">
-                  Te revelaré como convertir a tus visitantes en clientes 
-                  en solo 7 minutos con un video en el cual ni siquiera 
-                  tienes que aparecer en cámara..... Nunca!
+                No es necesario adivinar ni pensar qué curso necesita la audiencia de tu profesional. Con un estudio de mercado que te enseñaré a hacer, podrás descubrir todos los problemas y necesidades que tiene su audiencia y Crear El Curso Perfecto que resuelva exactamente sus problemas para vender cientos súper fácil y rápido. 
                 </p>
               </div>
             </div>
@@ -258,15 +284,13 @@ export default function WorkshopLanding() {
               <img 
                 src="https://gopitchering.com/wp-content/uploads/2024/08/Guia-de-Lanzamiento-Predecible-en-7-Dias.png"
                 alt="One Page Formula"
-                className="w-48 h-auto"
+                className="w-32 sm:w-48 h-auto"
               />
               <div className="text-left">
-                <h4 className="text-2xl font-bold mb-2">One Page Formula - Valorado en $197</h4>
+                <h4 className="text-2xl font-bold mb-2">GUÍA DE LANZAMIENTO PREDECIBLE EN 7 DÍAS – Valorada en $970 USD</h4>
                 <p className="text-gray-600">
-                  Deja de complicarte con páginas de ventas 
-                  interminables o funnels complicados!... Te daré la 
-                  misma estructura de la única página de ventas 
-                  minimalista que utilizo todos los días
+                Aprende a crear lanzamientos predecibles en menos de 7 días con el método Go Pitchering. Podrás replicar el método hasta convertirte en un lanzador experto sin margen de error.
+              
                 </p>
               </div>
             </div>
@@ -275,15 +299,12 @@ export default function WorkshopLanding() {
               <img 
                 src="https://gopitchering.com/wp-content/uploads/2024/08/Prospecta-tu-Primer-Influencer-Asegurado.png"
                 alt="One Page Formula"
-                className="w-48 h-auto"
+                className="w-32 sm:w-48 h-auto"
               />
               <div className="text-left">
-                <h4 className="text-2xl font-bold mb-2">One Page Formula - Valorado en $197</h4>
+                <h4 className="text-2xl font-bold mb-2">PROSPECTA TU PRIMER INFLUENCER ASEGURADO – VALOR INVALUABLE</h4>
                 <p className="text-gray-600">
-                  Deja de complicarte con páginas de ventas 
-                  interminables o funnels complicados!... Te daré la 
-                  misma estructura de la única página de ventas 
-                  minimalista que utilizo todos los días
+                ¿No conoces ni tienes algún amigo con al menos 20k en Instagram? Te enseñaré como encontrar influencers profesionales dispuesto a trabajar contigo aunque no tengas experiencia. El método elimina la incertidumbre de conseguir profesionales y te pone en el camino hacia el éxito enseñandote .
                 </p>
               </div>
             </div>
@@ -292,15 +313,12 @@ export default function WorkshopLanding() {
               <img 
                 src="https://gopitchering.com/wp-content/uploads/2024/08/regalo-point.png"
                 alt="One Page Formula"
-                className="w-48 h-auto"
+                className="w-32 sm:w-48 h-auto"
               />
               <div className="text-left">
-                <h4 className="text-2xl font-bold mb-2">One Page Formula - Valorado en $197</h4>
+                <h4 className="text-2xl font-bold mb-2">CONTRATO ASEGURADOR DE LANZAMIENTO – Valorado en $1500 USD</h4>
                 <p className="text-gray-600">
-                  Deja de complicarte con páginas de ventas 
-                  interminables o funnels complicados!... Te daré la 
-                  misma estructura de la única página de ventas 
-                  minimalista que utilizo todos los días
+                ¿Y si te dijera que hay una forma de asegurar tu lanzamiento haciendo que tu profesional cumpla con TODO lo necesario para que tengan un lanzamiento 100% exitoso? Ahórrate dolores de cabeza y lanzamientos fallidos con este valioso recurso Legal.
                 </p>
               </div>
             </div>
@@ -313,12 +331,12 @@ export default function WorkshopLanding() {
 
         <div className="flex justify-center gap-4 flex-wrap mb-4">
           <img
-            className="w-1/2 max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
+            className="w-full max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
             src="https://gopitchering.com/wp-content/uploads/2024/08/FDSSDDS-1024x521.png"
             alt="Imagen 1"
           />
           <img
-            className="w-1/2 max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
+            className="w-full max-w-full rounded-lg  hover:scale-105 transform transition duration-300"
             src="https://gopitchering.com/wp-content/uploads/2024/08/BONUS-2-1024x521.png"
             alt="Imagen 2"
           />
@@ -349,22 +367,22 @@ export default function WorkshopLanding() {
             <h2 className="text-4xl font-bold mb-8 text-center">Entonces, esto es lo que obtendrás!</h2>
             
             <div className="border-4 border-dashed border-[#f9bc66] rounded-xl p-8 max-w-2xl mx-auto">
-              <div className="space-y-4 text-xl mb-8">
+              <div className="space-y-4 text-lg mb-8">
                 <div className="flex justify-between">
-                  <span>7 Minute Closing.............</span>
-                  <span>(Valorado en $497 usd)</span>
+                  <span>GUÍA DE LANZAMIENTO PREDECIBLE EN 7 DÍAS</span>
+                  <span>(Valorado en $970 usd)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>One Page Formula............</span>
+                  <span>CREA CURSOS RENTABLES SIN EXPERIENCIA</span>
                   <span>(Valorado en $197 usd)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Oferta Ganadoras Evergreen..</span>
-                  <span>(Valorado en $297 usd)</span>
+                  <span>PROSPECTA TU PRIMER INFLUENCER ASEGURADO</span>
+                  <span>(Valor INVALUABLE)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Templates Hechos para ti....</span>
-                  <span>(Valorado en $247 usd)</span>
+                  <span>CONTRATO ASEGURADOR DE LANZAMIENTO</span>
+                  <span>(Valorado en $1500 usd)</span>
                 </div>
               </div>
 
@@ -394,8 +412,8 @@ export default function WorkshopLanding() {
 ¡Sí! Quiero Acceso Inmediato
 </button>
         </section>
-
-
+        </div>
+)}
 
 
         {/* Footer */}
