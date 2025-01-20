@@ -78,11 +78,12 @@ export default function WorkshopLanding() {
 >
 
       {/* Header */}<img src="https://gopitchering.com/wp-content/uploads/2024/07/704851e0a88209f5f3717dd586768749_1200_80.webp" className="my-5" alt="" />
-      <div className="bg-white rounded-2xl max-w-4xl w-full p-2 md:p-6 mx-5 shadow-lg mt-8">
-        <header className="text-center">
-          <h2 className="text-lg md:text-2xl text-gray-800 mb-2 font-medium">
+      <h2 className="text-lg md:text-2xl text-white text-center mb-1 font-medium">
           Conoce el NUEVO Trabajo que va a revolucionar el Mercado Digital en 2025…
           </h2>
+      <div className="bg-white rounded-2xl max-w-4xl w-full p-2 md:p-6 mx-5 shadow-lg mt-8">
+        <header className="text-center">
+         
 
           <h1 className="text-2xl md:text-3xl md:text-5xl font-bold leading-tight mb-2">
           Conviértete en Pitcher Partner y ayuda a creadores a lanzar cursos online exitosos.
@@ -114,6 +115,7 @@ export default function WorkshopLanding() {
         {/* New Product Section */}
         {showExtraContent == false? 
         <button
+        onClick={() => window.open("https://pay.hotmart.com/O94296249S?checkoutMode=10&bid=1725551295569", "_blank")}
   className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
   style={{
     backgroundSize: "200%",
@@ -198,6 +200,7 @@ Quiero Acceder a Go Pitchering
 
 
    <button
+    onClick={() => window.open("https://pay.hotmart.com/O94296249S?checkoutMode=10&bid=1725551295569", "_blank")}
   className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
   style={{
     backgroundSize: "200%",
@@ -314,11 +317,13 @@ Quiero ser un Pitcher Partner
         </div>
       </div>
 
-      <p className="animate-pulse text-center text-white font-bold text-sm mt-4 bg-[#013557] p-3 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
+      <p className="text-center text-white font-bold text-sm mt-4 bg-[#013557] p-3 rounded-lg shadow-md hover:scale-105 transform transition duration-300">
         Acelera tus resultados comprando dentro de la primera hora con estos bonus GRATIS
       </p>
+  
       <button
-  className="mt-3 bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-1 transition-all duration-300 hover:scale-105 animate-wiggle"
+        onClick={() => window.open("https://pay.hotmart.com/O94296249S?checkoutMode=10&bid=1725551295569", "_blank")}
+  className="mt-5 bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-1 animate-bounce"
   style={{
     backgroundSize: "200%",
     backgroundPosition: "center",
@@ -326,6 +331,7 @@ Quiero ser un Pitcher Partner
 >
   ¡Quiero también el bonus!
 </button>
+
 
 
     </div>
@@ -375,6 +381,7 @@ Quiero ser un Pitcher Partner
   
 
           {/* CTA Button */}         <button
+            onClick={() => window.open("https://pay.hotmart.com/O94296249S?checkoutMode=10&bid=1725551295569", "_blank")}
   className="bg-gradient-to-r from-black via-[#013557] to-black text-white text-xl md:text-2xl font-medium py-4 px-8 rounded-lg w-full max-w-2xl mx-auto block mb-16 transition-all duration-300 hover:translate-x-1 hover:translate-x-[-5px]"
   style={{
     backgroundSize: "200%",
