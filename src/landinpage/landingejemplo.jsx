@@ -281,23 +281,24 @@ Quiero ser un Pitcher Partner
           
           {/* Pricing Summary */}
           <div className="mb-16">
-          <div className="border-4 border-white p-6 rounded-xl shadow-xl shadow-[#00000099] shadow-2xl  transition-all duration-300 transform  mb-6 mt-5">
+          <div className="border-4 border-white p-6 rounded-xl shadow-xl shadow-[#00000099] shadow-2xl  transition-all duration-300 transform  mb-14 mt-5">
         <div className=" flex flex-col items-center justify-center text-center">
         <h1 className="animate-pulse bg-gradient-to-b from-black/20 via-[#013557] to-black/2 rounded-2xl text-4xl font-bold text-white p-2 mb-4">BONUS TEMPORALES:</h1>
 
         <div className="relative -mx-6 md:-mx-8 lg:-mx-12">
-  <div className="flex flex-col md:flex-row gap-6 mb-4">
-  <img
-    className="w-full rounded-lg hover:scale-105 transform transition duration-300 -translate-x-3 md:-translate-x-6"
+        <div className="flex flex-col gap-6 mb-4">
+        <img
+    className="w-full rounded-lg hover:scale-105 transform transition duration-300 -translate-x-4"
     src="https://gopitchering.com/wp-content/uploads/2024/08/FDSSDDS-1024x521.png"
     alt="Imagen 1"
   />
   <img
-    className="w-full rounded-lg hover:scale-105 transform transition duration-300 -translate-x-3 md:-translate-x-6"
+    className="w-full rounded-lg hover:scale-105 transform transition duration-300 -translate-x-4"
     src="https://gopitchering.com/wp-content/uploads/2024/08/BONUS-2-1024x521.png"
     alt="Imagen 2"
   />
-  </div>
+</div>
+
 </div>
 
 
@@ -336,7 +337,7 @@ Quiero ser un Pitcher Partner
 
     </div>
 
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing max-w-full mx-auto">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 mt-18 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing max-w-full ">
     Entonces, esto es lo que obtendrás!
 </h2>
 
