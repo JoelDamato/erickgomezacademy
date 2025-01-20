@@ -78,10 +78,10 @@ export default function WorkshopLanding() {
 >
 
       {/* Header */}<img src="https://gopitchering.com/wp-content/uploads/2024/07/704851e0a88209f5f3717dd586768749_1200_80.webp" className="my-5" alt="" />
-      <h2 className="text-lg md:text-2xl text-white text-center mb-1 font-medium">
+      <h2 className="text-lg md:text-2xl text-white text-center font-medium">
           Conoce el NUEVO Trabajo que va a revolucionar el Mercado Digital en 2025…
           </h2>
-      <div className="bg-white rounded-2xl max-w-4xl w-full p-2 md:p-6 mx-5 shadow-lg mt-8">
+      <div className="bg-white rounded-2xl max-w-4xl w-[95%] p-2 md:p-6 md:w-full mx-5 shadow-lg mt-7">
         <header className="text-center">
          
 
@@ -97,20 +97,20 @@ export default function WorkshopLanding() {
           </p>
         </header>
 
-        {/* VSL Content */}
-       <div>
-          <div className="text-center flex justify-center space-y-8 mb-5">
-            <iframe
-              ref={videoRef}
-              src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
-              style={{ border: "none" }}
-              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-              width="920"
-              height="460"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
+        <div className="text-center flex justify-center items-center w-full mb-5 overflow-hidden bg-black">
+  <iframe
+    ref={videoRef}
+    src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=a77aa388-c94a-4f56-aad1-c3c67de4a6a1"
+    style={{
+      border: "none",
+      width: "100%",
+      height: "100%",
+    }}
+    allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+    className="aspect-video max-w-full"
+  />
+</div>
+
 
         {/* New Product Section */}
         {showExtraContent == false? 
@@ -337,6 +337,12 @@ Quiero ser un Pitcher Partner
 
     </div>
 
+    <img
+    className="w-full mb-5"
+    src="https://i.ibb.co/QQgGk3Y/Captura-de-pantalla-2025-01-20-19-06-28.png"
+    alt="Imagen 2"
+  />
+
     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 mt-18 text-[#f9bc66] overflow-hidden border-b-4 border-[#f9bc66] whitespace-nowrap animate-typing max-w-full ">
     Entonces, esto es lo que obtendrás!
 </h2>
@@ -362,7 +368,7 @@ Quiero ser un Pitcher Partner
     </div>
   </div>
 
-
+  
 
 
               <div className="flex flex-col items-center ">
