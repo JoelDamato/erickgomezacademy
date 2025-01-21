@@ -9,7 +9,7 @@ function Curses() {
   const phoneNumber = "+59891640623"; // Número de WhatsApp
 
   const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
+    process.env.NODE_ENV != 'production'
       ? 'https://back-cursos.onrender.com'
       : 'http://localhost:5000';
 
@@ -104,15 +104,16 @@ function Curses() {
         <h3 className="text-white text-2xl font-bold mb-4 text-center">
           {course.courseTitle}
         </h3>
-        <p className="text-white font-bold mb-4 text-center">{course.courseDescription}</p>
-        <a
-          href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-          "Hola, me interesa más información sobre el curso: " + course.courseTitle
-        )}?el${course.courseTitle}&category=LinkWpp&htrafficsource=PaginaWeb`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition flex items-center gap-2 mt-auto"
-        >
+        <p className="text-white font-bold mb-4 text-center">{course.courseDescription}</p> 
+<a
+  href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    "Hola, me interesa más información sobre el curso: " + course.courseTitle
+  )}&el=${encodeURIComponent(course.courseTitle)}&category=LinkWpp&htrafficsource=PaginaWeb`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition flex items-center gap-2 mt-auto"
+>
+  
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
