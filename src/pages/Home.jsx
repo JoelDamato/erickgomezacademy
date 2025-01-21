@@ -111,7 +111,12 @@ function Home() {
           zIndex: 1000,
         }}
       >
-     
+     <img
+  src="/soporte.png"
+  alt="Logo"
+  className="w-8 sm:w-13"
+/>
+
         Soporte
       </a>
 

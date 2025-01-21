@@ -141,7 +141,7 @@ function Dashboard() {
         }}
       >
         <img
-          src="https://i.postimg.cc/7hnwLYTy/customer-service-support-svgrepo-com.png"
+          src="/soporte.png"
           alt="WhatsApp"
           style={{ width: "28px", height: "28px" }}
         />
