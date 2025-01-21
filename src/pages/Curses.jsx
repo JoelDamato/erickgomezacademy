@@ -9,7 +9,7 @@ function Curses() {
   const phoneNumber = "+59891640623"; // Número de WhatsApp
 
   const API_BASE_URL =
-    process.env.NODE_ENV != 'production'
+    process.env.NODE_ENV === 'production'
       ? 'https://back-cursos.onrender.com'
       : 'http://localhost:5000';
 
