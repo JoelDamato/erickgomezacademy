@@ -107,8 +107,8 @@ function Curses() {
         <p className="text-white font-bold mb-4 text-center">{course.courseDescription}</p>
         <a
           href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-            "Hola, me interesa más información sobre el curso: " + course.courseTitle
-          )}`}
+          "Hola, me interesa más información sobre el curso: " + course.courseTitle
+        )}?el${course.courseTitle}&category=LinkWpp&htrafficsource=PaginaWeb`}
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition flex items-center gap-2 mt-auto"
