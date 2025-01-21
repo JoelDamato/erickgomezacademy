@@ -8,6 +8,21 @@ function Curses() {
   const navigate = useNavigate();
   const phoneNumber = "+59891640623"; // Número de WhatsApp
 
+  useEffect(() => {
+    const head = document.head;
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src =
+      "https://t.erickgomezacademy.com/v1/lst/universal-script?ph=fb1590df5598c8770c1c7fbfb13870b527b36e3e2b2ee95bbf0bd268b93a649c&tag=!clicked&ref_url=" +
+      encodeURIComponent(window.location.href);
+    head.appendChild(script);
+
+    // Cleanup function to remove the script when the component unmounts
+    return () => {
+      head.removeChild(script);
+    };
+  }, []);
+
   const API_BASE_URL =
     process.env.NODE_ENV === 'production'
       ? 'https://back-cursos.onrender.com'
