@@ -48,7 +48,7 @@ const LandingPage = () => {
     {/* MAIN */}
 <section
   id="home"
-  className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-screen mt-10 px-6"
+  className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-screen mt-10 px-4"
   style={{
     background: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1)), 
                  url('https://i.ibb.co/3QXPSkk/DALL-E-2025-01-28-17-03-12-A-New-York-style-barbershop-interior-designed-for-a-wallpaper-with-a-blue.webp')`,
@@ -58,7 +58,7 @@ const LandingPage = () => {
   }}
 >
   {/* Text Section */}
-  <div className="backdrop-blur-sm bg-gradient-to-r from-black/50 to-black/10 p-5 w-full md:w-1/2 text-center flex flex-col justify-center items-center">
+<div className="backdrop-blur-sm bg-gradient-to-r from-black/50 to-black/10 p-5 w-full md:w-1/2 text-center flex flex-col justify-center items-center transform -translate-y-[100px]">
     <h2
       className="text-5xl md:text-7xl font-bold text-yellow-500 inline-block px-4 py-2 
                 shadow-lg tracking-wide uppercase"
@@ -113,7 +113,7 @@ const LandingPage = () => {
   </div>
 
   {/* Image Section */}
-  <div className="w-full md:w-1/2 flex justify-center items-center mt-5 mb-2 md:mb-0 md:mt-0">
+  <div className="w-full md:w-1/2 flex justify-center items-center mt-5 md:mb-0 md:mt-0">
     <img
       src="https://i.ibb.co/Fk5Tvj98/depositphotos-114546748-stock-illustration-barber-shop-retro-vintage-label-removebg-preview.png"
       alt="Barber"
