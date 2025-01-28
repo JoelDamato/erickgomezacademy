@@ -113,7 +113,7 @@ const LandingPage = () => {
   </div>
 
   {/* Image Section */}
-  <div className="w-full md:w-1/2 flex justify-center items-center mb-8 md:mb-0">
+  <div className="w-full md:w-1/2 flex justify-center items-center mt-5 mb-2 md:mb-0 md:mt-0">
     <img
       src="https://i.ibb.co/Fk5Tvj98/depositphotos-114546748-stock-illustration-barber-shop-retro-vintage-label-removebg-preview.png"
       alt="Barber"
@@ -127,7 +127,7 @@ const LandingPage = () => {
 
 
     {/* Products Section */}
-<section id="servicios" className=" w-full max-w-6xl mx-auto py-16 px-4">
+<section id="servicios" className=" w-full max-w-6xl  py-16 px-4">
 <div className="relative mb-12">
   <h2
     className="bg-yellow-500 text-5xl font-bold text-center text-white rounded-sm inline-block px-4 py-2"
