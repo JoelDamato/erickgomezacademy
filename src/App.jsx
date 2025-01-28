@@ -11,6 +11,8 @@ import Regalo from './pages/Regalo.jsx';
 import VerificarIPs from './components/VerificarIP'; 
 import Curses from './pages/Curses.jsx';
 import EjemploLanding from './landinpage/landingejemplo.jsx';
+import Landingbarberos from './landinpage/landingbarberos.jsx';
+import HM from './landinpage/homeejemplo.jsx';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/Regalo" element={<><VerificarIPs /><Regalo /></>} />
         <Route path="/Curses" element={<><Curses /></>} />
         <Route path="/landing" element={<><EjemploLanding /></>} />
+        <Route path="/homee" element={<><HM /></>} />
+        <Route path="/landingbarberos" element={<><Landingbarberos /></>} />
       </Routes>
     </Router>
   );
