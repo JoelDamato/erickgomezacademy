@@ -48,7 +48,7 @@ const LandingPage = () => {
     {/* MAIN */}
 <section
   id="home"
-  className="flex flex-col-reverse md:flex-row items-center justify-center md:justify-between w-full h-screen mt-2 px-4"
+  className="flex flex-col-reverse md:flex-row items-center justify-center md:justify-between w-full h-screen mt-2 md:mt-10 px-4"
   style={{
     background: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 1)), 
                  url('https://i.ibb.co/3QXPSkk/DALL-E-2025-01-28-17-03-12-A-New-York-style-barbershop-interior-designed-for-a-wallpaper-with-a-blue.webp')`,
