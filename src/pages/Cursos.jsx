@@ -117,16 +117,14 @@ function Cursos() {
       {chapter.title}
     </h3>
 
-    <ReactPlayer
-      url={chapter.video}
+    <iframe
+      src={chapter.video}
       width="100%"
-      height="150px"
-      muted={true}
-      controls={false}
-      playing={false}
-      className="mb-2 rounded-lg"
-    />
-
+      height="100%"
+      frameBorder="0"
+      allowFullScreen
+    ></iframe>
+  
     <div
       className="flex-grow flex items-center justify-center"
       style={{

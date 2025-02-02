@@ -182,11 +182,40 @@ function Capitulos() {
 ) : (
   <p className="text-white">No hay video disponible para este capítulo.</p>
 )}
+<div className="w-full flex items-center justify-center">
+  {currentChapter && currentChapter.link ? (
+    <a
+      href={currentChapter.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2 transition duration-300"
+    >
+      {/* Ícono SVG de carrito de compras */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0h2v2H17v-2z"
+        />
+      </svg>
+      <span>Adquirir weibook</span>
+    </a>
+  ) : (
+    <p className="text-white">No hay link</p>
+  )}
+</div>
 
 
         <button
           onClick={() => setShowComments(!showComments)}
-          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-2 px-4 rounded-lg mt-4"
+          className="bg-gradient-to-r from-black to-black border-b-4  text-white font-bold py-2 px-4 rounded-lg mt-4"
         >
           {showComments ? "Ocultar Comentarios" : "Mostrar Comentarios"}
         </button>
