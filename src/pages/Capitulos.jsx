@@ -169,22 +169,20 @@ function Capitulos() {
       <p className="text-white mb-4 text-center">{currentChapter.description}</p>
 
       <div className="bg-gradient-to-b from-black/80 to-black w-full sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
-        {currentChapter.video ? (
-          <div className="w-full h-[180px] md:h-[580px]">
+      {currentChapter.video ? (
+  <div className="w-full h-[180px] md:h-[580px]">
+    <iframe
+      src={currentChapter.video}
+      width="100%"
+      height="100%"
+      frameBorder="0"
+      allowFullScreen
+    ></iframe>
+  </div>
+) : (
+  <p className="text-white">No hay video disponible para este capítulo.</p>
+)}
 
-
-  <ReactPlayer
-    url={currentChapter.video}
-    width="100%"
-    height="100%"
-    controls
-  />
-
-
-          </div>
-        ) : (
-          <p className="text-white">No hay video disponible para este capítulo.</p>
-        )}
 
         <button
           onClick={() => setShowComments(!showComments)}
