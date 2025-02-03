@@ -6,7 +6,7 @@ const ComponentName = () => {
     <div className="container mx-auto flex flex-col items-center gap-4">
       {/* Logo */}
       <img
-        src="https://i.ibb.co/xjqLSQ3/cold-smooth-tasty-removebg-preview.png"
+        src="/erickgomez.png"
         alt="Erick Gómez Logo"
         className="w-16 h-16"
       />

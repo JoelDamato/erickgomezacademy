@@ -85,9 +85,9 @@ function Home() {
     >
       {/* Logo */}
       <img
-        src="https://i.ibb.co/xjqLSQ3/cold-smooth-tasty-removebg-preview.png"
+        src="/erickgomez.png"
         alt="Logo"
-        className="w-48 sm:w-64 mb-6"
+        className="w-48 sm:w-1/4 mb-6"
       />
       <a
         href={whatsappLink}
