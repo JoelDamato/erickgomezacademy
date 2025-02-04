@@ -87,7 +87,7 @@ function Home() {
       <img
         src="/erickgomez.png"
         alt="Logo"
-        className="w-48 sm:w-1/4 mb-6"
+        className="w-full sm:w-1/4 "
       />
       <a
         href={whatsappLink}

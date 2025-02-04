@@ -41,13 +41,15 @@ function Curses() {
 
   return (
     <div className="bg-black/90 h-full w-screen flex flex-col items-center" style={{ backgroundImage: "url('https://i.ibb.co/fGZCrFh/FONDO-BARBER.jpg')" }}>
-      <div className="relative flex flex-col items-center">
+      <div className="relative flex flex-col items-center mt-[-15px] sm:mt-[-30px]">
         <img
           src="https://i.ibb.co/hy7tRTP/ERICK.webp"
           alt="Fondo"
+          loading="lazy"
           className="w-full max-w-md sm:max-w-lg rounded-lg"
         />
         <img src="/erickgomez.png" alt=""
+        loading="lazy"
           className="absolute top-20 text-shadow text-white font-bold text-center text-2xl sm:text-4xl px-4"/>
       </div>
 
@@ -55,7 +57,7 @@ function Curses() {
         <p 
           style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
           className="mt-20 text-shadow text-white font-bold text-center text-1xl sm:text-2xl px-4 mb-4">
-          Bienvenidos a la academia online de barberos más grande de habla hispana
+          Si estás buscando perfeccionar tus técnicas de cortes y fade o escalar tu tus redes con Erick, este año tienes la oportunidad de hacerlo 100% online sin importar de donde seas
         </p>
         <p className="bg-white rounded-lg text-black font-bold text-center text-2xl sm:text-lg px-4 mb-2">
           Conoce todos mis cursos
@@ -74,11 +76,13 @@ function Curses() {
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   viewport={{ once: true, amount: 0.2 }} // Se activa cuando el 20% de la tarjeta entra en la vista
                 >
-                  <img
+                 <img
                     src={course.image}
                     alt={course.courseTitle}
+                    loading="lazy"
                     className="w-full h-full max-w-[320px] max-h-[320px] rounded-lg shadow-md mb-4"
                   />
+
                   <h3 className="text-white text-2xl font-bold mb-4 text-center">
                     {course.courseTitle}
                   </h3>
@@ -89,8 +93,7 @@ function Curses() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition flex items-center gap-2 mt-auto"
-                  >
+                    className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition flex items-center gap-2 mt-auto text-2xl sm:text-2xl sm:py-4 sm:px-8"             >
                      <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
