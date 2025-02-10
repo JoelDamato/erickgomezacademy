@@ -87,7 +87,7 @@ const LandingPage = () => {
         fontFamily: "'Impact', sans-serif",
       }}
     >
-      Bienvenido a la web oficial de THE BARBER'S SHOP. Guardate un turno para tener el mejor look.
+      Bienvenido a la web oficial de Stam Barber. Guardate un turno para tener el mejor look.
     </p>
 
     <div className="flex items-center justify-center mt-8">
