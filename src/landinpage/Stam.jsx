@@ -115,8 +115,8 @@ const LandingPage = () => {
 
   </div>
 
-  {/* Image Section */}
-  <div className="w-full md:w-1/2 flex justify-center items-center mt-[70px] md:mb-0 md:mt-0">
+  {/* LOGO Section */}
+  <div className="w-full md:w-1/2 flex justify-center items-center  md:mb-0 md:mt-0">
     <img
       src="https://i.ibb.co/qYsZJ6G1/77-D39-D3-B-FDA8-4-AD5-B53-D-DE6-CAB95-C649-removebg-preview.png"
       alt="Barber"
@@ -305,7 +305,6 @@ Harcut and Beard
       />
       <h3 className="text-3xl font-semibold text-yellow-300 mb-4">Horarios</h3>
       <ul className="text-gray-300 text-lg space-y-2">
-      Días y horas que trabajo:
         <li>Lunes: 8:00 AM - 6:30 PM</li>
         <li className="text-red-600">Martes cerrado</li>
         <li className="text-red-600">Miercoles cerrado</li>
