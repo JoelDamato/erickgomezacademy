@@ -116,11 +116,11 @@ const LandingPage = () => {
   </div>
 
   {/* Image Section */}
-  <div className="w-full md:w-1/2 flex justify-center items-center mt-[150px] md:mb-0 md:mt-0">
+  <div className="w-full md:w-1/2 flex justify-center items-center mt-[70px] md:mb-0 md:mt-0">
     <img
       src="https://i.ibb.co/qYsZJ6G1/77-D39-D3-B-FDA8-4-AD5-B53-D-DE6-CAB95-C649-removebg-preview.png"
       alt="Barber"
-      className="w-[15rem] mt-10 md:w-[20rem] h-auto"
+      className="w-[15rem] md:w-[20rem] h-auto"
     />
   </div>
 </section>
