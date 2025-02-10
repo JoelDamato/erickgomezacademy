@@ -13,6 +13,8 @@ import Curses from './pages/Curses.jsx';
 import EjemploLanding from './landinpage/landingejemplo.jsx';
 import Landingbarberos from './landinpage/landingbarberos.jsx';
 import HM from './landinpage/homeejemplo.jsx';
+import Luisfer from './landinpage/Luisfer.jsx';
+import Stam from './landinpage/Stam.jsx';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/landing" element={<><EjemploLanding /></>} />
         <Route path="/homee" element={<><HM /></>} />
         <Route path="/landingbarberos" element={<><Landingbarberos /></>} />
+        <Route path="/luisferbarbershop" element={<><Luisfer /></>} />
+        <Route path="/Stambarber" element={<><Stam /></>} />
       </Routes>
     </Router>
   );
