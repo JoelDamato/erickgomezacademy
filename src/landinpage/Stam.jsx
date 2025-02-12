@@ -77,7 +77,7 @@ const LandingPage = () => {
         fontFamily: "'Impact', sans-serif",
       }}
     >
-      Descubrí tu mejor versión.
+      Descubre tu mejor versión.
     </p>
 
     <p
@@ -194,7 +194,7 @@ Harcut and Beard
           className="transition-transform duration-300 transform hover:scale-105 rounded-lg"
         />
         <p className="absolute bottom-2 right-2 bg-yellow-300 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-          $20
+          $60
         </p>
       </div>
       <p className="text-gray-400 mt-4">Recorte y estilizado profesional de barba.</p>
