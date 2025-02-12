@@ -15,6 +15,7 @@ import Landingbarberos from './landinpage/landingbarberos.jsx';
 import HM from './landinpage/homeejemplo.jsx';
 import Luisfer from './landinpage/Luisfer.jsx';
 import Stam from './landinpage/Stam.jsx';
+import Sdstudio from './landinpage/Sdstudio.jsx';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         <Route path="/landingbarberos" element={<><Landingbarberos /></>} />
         <Route path="/luisferbarbershop" element={<><Luisfer /></>} />
         <Route path="/Stambarber" element={<><Stam /></>} />
+        <Route path="/Sdstudio" element={<><Sdstudio /></>} />
+
       </Routes>
     </Router>
   );

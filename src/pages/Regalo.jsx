@@ -10,24 +10,14 @@ function Regalo() {
 
       <div className="bg-gradient-to-b from-blue-900 to-black h-auto w-full sm:w-11/12 rounded-xl sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
         
-          <ReactPlayer
-          url="https://youtu.be/mO8gIqe-efE"
-          width="100%"
-          height="480px"
-          controls
-          config={{
-            file: {
-              attributes: {
-                crossOrigin: "anonymous"  // Necesario para cargar subtítulos externos
-              },
-              tracks: [
-                { kind: "subtitles", src: "/subtitles/english.vtt", srcLang: "en", label: "English" },
-                { kind: "subtitles", src: "/subtitles/spanish.vtt", srcLang: "es", label: "Español" },
-                { kind: "subtitles", src: "/subtitles/french.vtt", srcLang: "fr", label: "Français" }
-              ]
-            }
-          }}
-        />
+      <iframe 
+    src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=fe3cdca0-f7ba-43b8-bbf4-9baab0a01454" 
+    width="640" 
+    height="360" 
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
+
           <p className="text-white mb-4 mt-5 p-5 text-center">
           <b>
           Después de más de 10 años de trabajo, aprendizaje, viajes y muchas amistades cultivadas en el mundo a lo largo de estos años, finalmente hemos llegado a este momento que soñé desde el primer día: mi propia plataforma educativa.</b>

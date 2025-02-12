@@ -183,9 +183,9 @@ function Capitulos() {
   <p className="text-white">No hay video disponible para este capítulo.</p>
 )}
 <div className="w-full flex items-center justify-center">
-  {currentChapter && currentChapter.link ? (
+  {currentChapter && currentChapter.weib? (
     <a
-      href={currentChapter.link}
+      href={currentChapter.weib}
       target="_blank"
       rel="noopener noreferrer"
       className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2 transition duration-300"
@@ -207,9 +207,26 @@ function Capitulos() {
       </svg>
       <span>Adquirir weibook</span>
     </a>
-  ) : (
-    <p className="text-white">No hay link</p>
+  ) : (""
   )}
+{currentChapter.link ? (
+  <a
+  href={currentChapter.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 flex items-center space-x-2 transition duration-300"
+>
+  {/* Ícono SVG de carrito de compras */}
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round"         className="h-6 w-6" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+</svg>
+
+  <span>Material adicional</span>
+</a>
+
+) : ""}
+
+
 </div>
 
 
