@@ -10,7 +10,7 @@ const LandingPage = () => {
 <nav className="w-full fixed top-0 bg-black bg-opacity-80 backdrop-blur-md z-50">
   <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12">
     {/* Logo */}
-    <h1 className="text-xl font-bold text-yellow-300">STAM Barber </h1>
+    <h1 className="text-xl font-bold text-yellow-300">Stam Barber </h1>
 
     {/* Desktop Menu */}
     <ul className="hidden md:flex space-x-6">
@@ -193,14 +193,19 @@ Harcut and Beard
           alt="Beard Grooming"
           className="transition-transform duration-300 transform hover:scale-105 rounded-lg"
         />
-        <p className="absolute bottom-2 right-2 bg-yellow-300 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-          $60
-        </p>
+       
       </div>
       <p className="text-gray-400 mt-4">Recorte y estilizado profesional de barba.</p>
       <ul className="mt-4 space-y-2 text-white">
-        <li>- Recorte de Barba</li>
-        <li>- Afeitado con Toalla Caliente</li>
+        <li>- Recorte de Barba  <span className="bg-yellow-300 text-black py-1 px-2 font-bold text-lg rounded-md shadow-md ml-2">
+    $20
+  </span></li>
+        <li>
+  - Afeitado con Toalla Caliente 
+  <span className="bg-yellow-300 text-black py-1 px-2 font-bold text-lg rounded-md shadow-md ml-2">
+    $60
+  </span>
+</li>
       </ul>
     </div>
   </div>
@@ -211,7 +216,7 @@ Harcut and Beard
 <section id="resultados" className="w-full max-w-6xl mx-auto py-16 px-4">
 <div className="relative mb-12">
   <h2
-    className="bg-yellow-300 text-5xl font-bold text-center text-white rounded-sm inline-block px-4 py-2"
+    className="bg-yellow-300 text-5xl font-bold text-center text-white rounded-sm inline-block mt-2 px-4 py-2"
     style={{
       textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7), 4px 4px 6px rgba(0, 0, 0, 0.5)",
       fontFamily: "'Impact', sans-serif",

@@ -4,6 +4,7 @@ const LandingPage = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
 const name = "Legends Barber Shop"
+const logo = "https://i.ibb.co/dsRHTfrR/A0500686-E90-B-46-C9-91-E9-17-B274-D1-DADC.jpg"
 
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center  text-white">
