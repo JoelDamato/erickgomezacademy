@@ -47,6 +47,22 @@ function PanelControl() {
       return password;
     };
     
+    useEffect(() => {
+      if (email) {
+        axios
+          .get(`${API_BASE_URL}/api/users/${email}`)
+          .then((response) => {
+            if (response.data) {
+              setNombre(response.data.nombre || '');
+              setCursos(response.data.cursos || []); // Se mantiene la lista de cursos actual
+            }
+          })
+          .catch(() => {
+            setCursos([]);
+          });
+      }
+    }, [email]);
+
   // CREAR USUARIOS
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -237,6 +253,14 @@ const deleteUser = async () => {
         </button>
         <button
           className={` px-4 py-2 rounded ${
+            activeSection === 'cupones' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+          }`}
+          onClick={() => setActiveSection('cupones')}
+        >
+          Cupones
+        </button>
+        <button
+          className={` px-4 py-2 rounded ${
             activeSection === 'editar' ? 'bg-gray-400 text-black' : 'bg-gray-200'
           }`}
           onClick={() => setActiveSection('editar')}
@@ -295,6 +319,16 @@ const deleteUser = async () => {
   <label className="block text-black font-semibold tracking-wide mb-2">
     Cursos:
     <div className="flex flex-col mt-2 space-y-2">
+    <label className="flex items-center justify-between">
+        <span>Sacar Cupon</span>
+        <input
+          type="checkbox"
+          value="Cupon"
+          checked={cursos.includes('Cupon')}
+          onChange={handleCursoChange}
+          className="relative w-10 h-5 rounded-full appearance-none bg-gray-300 checked:bg-green-500 transition-colors duration-200 cursor-pointer"
+        />
+      </label>
       <label className="flex items-center justify-between">
         <span>Focus</span>
         <input
@@ -393,6 +427,108 @@ const deleteUser = async () => {
         </div>
       )}
 
+  {/* Sección para editar usuario */}
+  {activeSection === 'cupones' && (
+  <>
+    <div className="w-4/5">
+      <label className="block text-black font-semibold tracking-wide mb-2">
+        Email del Usuario:
+        <input
+          className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="email"
+          value={email}
+          placeholder="ejemplo@correo.com"
+          onChange={(e) => setEmail(e.target.value.toLowerCase())}
+          required
+        />
+      </label>
+    </div>
+
+    <div className="bg-gray-800 w-full m-5 p-6 rounded-lg shadow-lg text-white">
+      <h2 className="text-xl font-bold mb-4 text-center">Gestionar Cupones</h2>
+     
+
+      <div className="flex justify-center gap-4 mt-4">
+      <button
+  onClick={async () => {
+    if (!email) {
+      setModalMessage('Por favor, introduce un email.');
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (cursos.includes('Cupon')) {
+      setModalMessage('Este usuario ya tiene un cupón.');
+      setIsModalOpen(true);
+      return;
+    }
+
+    try {
+      const response = await axios.put(`${API_BASE_URL}/api/update/users/${email}`, {
+        cursos: [...cursos, 'Cupon'], // Se mantiene el resto de cursos y se agrega "Cupon"
+      });
+
+      if (response.status === 200) {
+        setModalMessage('Cupón removido correctamente.');
+        setIsModalOpen(true);
+        setCursos([...cursos, 'Cupon']); // Se actualiza el estado manteniendo todos los cursos anteriores
+      }
+    } catch (error) {
+      setModalMessage('Error al agregar el cupón.');
+      setIsModalOpen(true);
+    }
+  }}
+  className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition"
+>
+  Sacar Cupón
+</button>
+
+
+<button
+  onClick={async () => {
+    if (!email) {
+      setModalMessage('Por favor, introduce un email.');
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (!cursos.includes('Cupon')) {
+      setModalMessage('Este usuario no tiene un cupón.');
+      setIsModalOpen(true);
+      return;
+    }
+
+    try {
+      const updatedCursos = cursos.filter(curso => curso !== 'Cupon'); // Elimina solo el cupón
+
+      const response = await axios.put(`${API_BASE_URL}/api/update/users/${email}`, {
+        cursos: updatedCursos, // Mantiene el resto de cursos
+      });
+
+      if (response.status === 200) {
+        setModalMessage('Cupón agregado correctamente.');
+        setIsModalOpen(true);
+        setCursos(updatedCursos);
+      }
+    } catch (error) {
+      setModalMessage('Error al eliminar el cupón.');
+      setIsModalOpen(true);
+    }
+  }}
+  className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition"
+>
+  Dar Cupón
+</button>
+
+      </div>
+    </div>
+  </>
+)}
+
+
+
+
+
       {/* Sección para editar usuario */}
       {activeSection === 'editar' && (
       <div className="flex  justify-center  bg-gray-100 w-screen">
@@ -422,6 +558,9 @@ const deleteUser = async () => {
                   />
                 </label>
               </div>
+              
+
+
               <div className="w-4/5">
   <label className="block text-black font-semibold tracking-wide mb-2">
     Cursos:

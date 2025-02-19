@@ -170,10 +170,47 @@ function Dashboard() {
 
       {/* Contenedor de los cursos */}
         {/* Tarjetas de los cursos */}
-        
+        {!hasCourse('Cupon') && (
+  courses.map((course, index) => (
+    course.courseTitle === 'Cupon' && (
+      <div 
+        key={index} 
+        className="bg-red-900 w-full m-5 rounded-lg shadow-lg p-6 flex items-center justify-between"
+      >
+        <img
+          src={course.image}
+          alt={course.courseTitle}
+          className="w-20 h-20 rounded-lg"
+        />
+
+        <div className='flex flex-col items-center p-2 w-3/4'>
+          <h3 className="text-white text-2xl font-bold mb-4">Felicidades, ¡tienes un cupón disponible!</h3>
+
+          <a
+            href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+              `Hola, quiero usar mi cupón de descuento. Soy ${user.nombre}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-md py-2 px-4 rounded-lg border-2 border-white hover:bg-white/50 transition"
+          >
+            RECLAMA TU DESCUENTO DEL 40% EN EL PRODUCTO QUE QUIERAS!
+          </a>
+        </div>
+      </div>
+    )
+  ))
+)}
+
+
 
       <div className=" h-auto w-full sm:w-11/12 rounded-xl sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
         {/* Tarjetas de los cursos */}
+
+     
+
+
+        
      
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full shadow-1xl">
         <div className="bg-gradient-to-r from-black/40 via-white/20 to-black/40 rounded-lg shadow-lg p-6 flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-xl">
