@@ -347,16 +347,7 @@ const deleteUser = async () => {
   <label className="block text-black font-semibold tracking-wide mb-2">
     Cursos:
     <div className="flex flex-col mt-2 space-y-2">
-    <label className="flex items-center justify-between">
-        <span>Sacar Cupon</span>
-        <input
-          type="checkbox"
-          value="Cupon"
-          checked={cursos.includes('Cupon')}
-          onChange={handleCursoChange}
-          className="relative w-10 h-5 rounded-full appearance-none bg-gray-300 checked:bg-green-500 transition-colors duration-200 cursor-pointer"
-        />
-      </label>
+ 
       <label className="flex items-center justify-between">
         <span>Focus</span>
         <input
