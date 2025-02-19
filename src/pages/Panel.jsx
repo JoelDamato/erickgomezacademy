@@ -458,7 +458,7 @@ const deleteUser = async () => {
     }
 
     if (cursos.includes('Cupon')) {
-      setModalMessage('Este usuario ya tiene un cupón.');
+      setModalMessage('Este usuario no tiene un cupón.');
       setIsModalOpen(true);
       return;
     }
@@ -493,7 +493,7 @@ const deleteUser = async () => {
     }
 
     if (!cursos.includes('Cupon')) {
-      setModalMessage('Este usuario no tiene un cupón.');
+      setModalMessage('Este usuario ya tiene un cupón.');
       setIsModalOpen(true);
       return;
     }
