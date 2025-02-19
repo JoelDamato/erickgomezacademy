@@ -258,6 +258,61 @@ const deleteUser = async () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleCouponChange = async (action) => {
+    if (!email) {
+      setModalMessage('Por favor, introduce un email.');
+      setIsModalOpen(true);
+      return;
+    }
+  
+    try {
+      // 1️⃣ Buscar los datos actuales del usuario
+      const responseGet = await axios.post(`${API_BASE_URL}/api/search/users`, { email });
+  
+      if (!responseGet.data) {
+        setModalMessage('El usuario no existe en la base de datos.');
+        setIsModalOpen(true);
+        return;
+      }
+  
+      const userCursos = responseGet.data.cursos || []; // Cursos actuales del usuario
+  
+      // 2️⃣ Agregar o eliminar el cupón según la acción
+      let updatedCursos = [...userCursos];
+  
+      if (action === 'add') {
+        if (updatedCursos.includes('Cupon')) {
+          setModalMessage('El usuario no tiene un cupón para eliminar.');
+          setIsModalOpen(true);
+          return;
+        }
+        updatedCursos.push('Cupon');
+      } else if (action === 'remove') {
+        if (!updatedCursos.includes('Cupon')) {
+          setModalMessage('El usuario ya tiene un cupón.');
+          setIsModalOpen(true);
+          return;
+        }
+        updatedCursos = updatedCursos.filter(curso => curso !== 'Cupon');
+      }
+  
+      // 3️⃣ Enviar la actualización
+      const responseUpdate = await axios.put(`${API_BASE_URL}/api/update/users/${encodeURIComponent(email)}`, {
+        cursos: updatedCursos,
+      });
+  
+      if (responseUpdate.status === 200) {
+        setModalMessage(`Cupón ${action === 'add' ? 'eliminado'  : 'agregado' } correctamente.`);
+        setIsModalOpen(true);
+        setCursos(updatedCursos); // Actualizar el estado de los cursos
+      }
+    } catch (error) {
+      setModalMessage(`Error al ${action === 'add' ? 'agregar' : 'eliminar'} el cupón.`);
+      setIsModalOpen(true);
+    }
+  };
+  
+
   return (
     <div className="h-full w-screen bg-gray-100 flex flex-col items-center">
           <Navbar
@@ -468,76 +523,21 @@ const deleteUser = async () => {
      
 
       <div className="flex justify-center gap-4 mt-4">
+
       <button
-  onClick={async () => {
-    if (!email) {
-      setModalMessage('Por favor, introduce un email.');
-      setIsModalOpen(true);
-      return;
-    }
-
-    if (cursos.includes('Cupon')) {
-      setModalMessage('Este usuario no tiene un cupón.');
-      setIsModalOpen(true);
-      return;
-    }
-
-    try {
-      const response = await axios.put(`${API_BASE_URL}/api/update/users/${email}`, {
-        cursos: [...cursos, 'Cupon'], // Se mantiene el resto de cursos y se agrega "Cupon"
-      });
-
-      if (response.status === 200) {
-        setModalMessage('Cupón removido correctamente.');
-        setIsModalOpen(true);
-        setCursos([...cursos, 'Cupon']); // Se actualiza el estado manteniendo todos los cursos anteriores
-      }
-    } catch (error) {
-      setModalMessage('Error al agregar el cupón.');
-      setIsModalOpen(true);
-    }
-  }}
+  onClick={() => handleCouponChange('add')}
   className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition"
 >
   Sacar Cupón
 </button>
 
-
 <button
-  onClick={async () => {
-    if (!email) {
-      setModalMessage('Por favor, introduce un email.');
-      setIsModalOpen(true);
-      return;
-    }
-
-    if (!cursos.includes('Cupon')) {
-      setModalMessage('Este usuario ya tiene un cupón.');
-      setIsModalOpen(true);
-      return;
-    }
-
-    try {
-      const updatedCursos = cursos.filter(curso => curso !== 'Cupon'); // Elimina solo el cupón
-
-      const response = await axios.put(`${API_BASE_URL}/api/update/users/${email}`, {
-        cursos: updatedCursos, // Mantiene el resto de cursos
-      });
-
-      if (response.status === 200) {
-        setModalMessage('Cupón agregado correctamente.');
-        setIsModalOpen(true);
-        setCursos(updatedCursos);
-      }
-    } catch (error) {
-      setModalMessage('Error al eliminar el cupón.');
-      setIsModalOpen(true);
-    }
-  }}
+  onClick={() => handleCouponChange('remove')}
   className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition"
 >
   Dar Cupón
 </button>
+
 
       </div>
     </div>
