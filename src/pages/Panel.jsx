@@ -518,8 +518,8 @@ const deleteUser = async () => {
       </label>
     </div>
 
-    <div className="bg-gray-800 w-full m-5 p-6 rounded-lg shadow-lg text-white">
-      <h2 className="text-xl font-bold mb-4 text-center">Gestionar Cupones</h2>
+    <div className="bg-gray-200 w-full m-5 p-6 rounded-lg shadow-lg text-white">
+      <h2 className="text-xl text-black font-bold mb-4 text-center">Gestionar Cupones</h2>
      
 
       <div className="flex justify-center gap-4 mt-4">
