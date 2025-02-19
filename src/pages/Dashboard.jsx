@@ -194,10 +194,13 @@ function Dashboard() {
            
             </div>
             {courses.map((course, index) => (
-  // Solo muestra el curso si no es "Bonus" o si es "Bonus" pero el usuario tiene acceso
-  (course.courseTitle !== 'REGALO DE LANZAMIENTO' || hasCourse(course.courseTitle))    && (
-    <div key={index} className="bg-black/90 rounded-lg shadow-lg p-6 flex flex-col items-center justify-between items-center"
-    style={{ minHeight: "40rem", maxHeight: "50rem" }}
+  // Filtrar cursos que no sean "REGALO DE LANZAMIENTO" sin acceso y que no sean "CUPON"
+  (course.courseTitle !== 'Cupon' &&
+   (course.courseTitle !== 'REGALO DE LANZAMIENTO' || hasCourse(course.courseTitle))) && (
+    <div 
+      key={index} 
+      className="bg-black/90 rounded-lg shadow-lg p-6 flex flex-col items-center justify-between"
+      style={{ minHeight: "40rem", maxHeight: "50rem" }}
     >
       <img
         src={course.image}
@@ -210,30 +213,28 @@ function Dashboard() {
       <p className="text-white font-bold mb-4">{course.courseDescription}</p>
 
       {hasCourse(course.courseTitle) ? (
-  <button
-    onClick={() => navigate(`/${sanitizeCourseTitle(course.courseTitle)}`)}
-    className="bg-black text-white py-2 px-4 rounded-lg hover:bg-black/90 transition"
-  >
-    Ver Curso
-  </button>
-) : (
-  <a
-    href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      `Hola, me interesa más información sobre el curso: ${course.courseTitle}`
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
-  >
-    Obtener ahora
-  </a>
-)}
-
-
-
+        <button
+          onClick={() => navigate(`/${sanitizeCourseTitle(course.courseTitle)}`)}
+          className="bg-black text-white py-2 px-4 rounded-lg hover:bg-black/90 transition"
+        >
+          Ver Curso
+        </button>
+      ) : (
+        <a
+          href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+            `Hola, me interesa más información sobre el curso: ${course.courseTitle}`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
+        >
+          Obtener ahora
+        </a>
+      )}
     </div>
   )
 ))}
+
 
 
         </div>
