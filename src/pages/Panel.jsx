@@ -109,25 +109,51 @@ function PanelControl() {
   // Función para editar un usuario-------------------
   const handleEditUser = async (e) => {
     e.preventDefault();
+  
+    if (!email) {
+      setModalMessage('Por favor, introduce un email.');
+      setIsModalOpen(true);
+      return;
+    }
+  
     try {
-      const dataToSend = { cursos };
-      if (nombre) dataToSend.nombre = nombre;
-      const response = await axios.put(`${API_BASE_URL}/api/update/users/${email}`, dataToSend);
-
-      if (response.status === 200) {
+      // 1️⃣ Buscar el usuario con POST en `/api/search/users`
+      const responseGet = await axios.post(`${API_BASE_URL}/api/search/users`, { email });
+  
+      if (!responseGet.data) {
+        setModalMessage('El usuario no existe en la base de datos.');
+        setIsModalOpen(true);
+        return;
+      }
+  
+      const userCursos = responseGet.data.cursos || []; // Cursos actuales del usuario
+  
+      // 2️⃣ Mantener los cursos previos + los nuevos sin duplicados
+      const updatedCursos = [...new Set([...userCursos, ...cursos])];
+  
+      // 3️⃣ Enviar la actualización usando `api/update/users/:email`
+      const responseUpdate = await axios.put(`${API_BASE_URL}/api/update/users/${encodeURIComponent(email)}`, {
+        nombre, // Si el nombre se editó, se envía también
+        cursos: updatedCursos,
+      });
+  
+      if (responseUpdate.status === 200) {
         setModalMessage('Usuario actualizado exitosamente.');
-        setNombre('');
-        setCursos([]);
-        setIsModalOpen(true); // Abrir el modal
+        setIsModalOpen(true);
+        setCursos(updatedCursos); // Mantiene los cursos actualizados en el estado
       }
     } catch (error) {
-      setModalMessage(
-        error.response?.data?.message || 'Error al actualizar usuario: ' + error.message
-      );
+      if (error.response?.status === 404) {
+        setModalMessage('El usuario no fue encontrado en la base de datos.');
+      } else {
+        setModalMessage('Error al actualizar usuario: ' + error.message);
+      }
       setIsModalOpen(true);
     }
   };
-
+  
+  
+  
 
 
 // NUEVA CONTRASEÑA ---------------------
@@ -242,48 +268,50 @@ const deleteUser = async () => {
       />
 
       {/* Navegación entre secciones */}
-      <div className="bg-gray-200 w-screen rounded-xl sm:rounded-2xl flex justify-center p-4 shadow-lg mb-5">
-        <button
-          className={` px-4 py-2 rounded ${
-            activeSection === 'crear' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveSection('crear')}
-        >
-          Registro
-        </button>
-        <button
-          className={` px-4 py-2 rounded ${
-            activeSection === 'cupones' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveSection('cupones')}
-        >
-          Cupones
-        </button>
-        <button
-          className={` px-4 py-2 rounded ${
-            activeSection === 'editar' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveSection('editar')}
-        >
-          Accesos
-        </button>
-        <button
-          className={` px-4 py-2 rounded ${
-            activeSection === 'cambiarContraseña' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveSection('cambiarContraseña')}
-        >
-          Claves
-        </button>
-        <button
-          className={` px-4 py-2 rounded ${
-            activeSection === 'eliminar' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveSection('eliminar')}
-        >
-          Eliminar
-        </button>
-      </div>
+<div className="bg-gray-200 w-screen rounded-xl sm:rounded-2xl flex justify-center p-4 shadow-lg mb-5 overflow-x-auto sm:overflow-hidden whitespace-nowrap">
+  <div className="flex gap-2 sm:gap-4">
+    <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'crear' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('crear')}
+    >
+      Registro
+    </button>
+    <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'cupones' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('cupones')}
+    >
+      Cupones
+    </button>
+    <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'editar' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('editar')}
+    >
+      Accesos
+    </button>
+    <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'cambiarContraseña' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('cambiarContraseña')}
+    >
+      Claves
+    </button>
+    <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'eliminar' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('eliminar')}
+    >
+      Eliminar
+    </button>
+  </div>
+</div>
 
       {/* Sección para crear usuario */}
       {activeSection === 'crear' && (
