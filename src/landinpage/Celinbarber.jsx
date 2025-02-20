@@ -155,21 +155,21 @@ const LandingPage = () => {
           className="transition-transform duration-300 transform hover:scale-105 rounded-lg"
         />
         <p className="absolute bottom-2 right-2 bg-yellow-300 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-          $45
+          $5500
         </p>
       </div>
       <p className="text-gray-400 mt-4">Cortes clásicos y modernos para cada estilo.</p>
       <ul className="mt-4 space-y-2 text-white">
-        <li>- Corte Clásico</li>
-        <li>- Corte Fade</li>
-        <li>- Corte con tijera </li>
+        <li>- Corte Escolar</li>
+        <li>- Corte Clasico</li>
+        
       </ul>
     </div>
 
      {/* Haircuts and Beard */}
      <div className="backdrop-blur-sm bg-black/30 p-6 rounded-lg shadow-lg">
       <h3 className="text-4xl text-center font-semibold text-yellow-300 mb-4">
-Harcut and Beard
+Harcut and fade
 </h3>
       <div className="relative overflow-hidden rounded-lg">
         <img
@@ -178,10 +178,10 @@ Harcut and Beard
           className="transition-transform duration-300 transform hover:scale-105 rounded-lg"
         />
         <p className="absolute bottom-2 right-2 bg-yellow-300 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-          $65
+          $6000
         </p>
       </div>
-      <p className="text-gray-400 mt-4">Cortes de pelo combinados con un arreglo profesional de barba.</p>
+      <p className="text-gray-400 mt-4">Cortes de pelo combinados con un arreglo de cejas</p>
     </div> 
 
     {/* Beard Grooming */}
@@ -193,22 +193,19 @@ Harcut and Beard
           alt="Beard Grooming"
           className="transition-transform duration-300 transform hover:scale-105 rounded-lg"
         />
-       
+          <p className="absolute bottom-2 right-2 bg-yellow-300 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
+          $7000
+        </p>
       </div>
-      <p className="text-gray-400 mt-4">Recorte y estilizado profesional de barba.</p>
+      <p className="text-gray-400 mt-4">Recorte de pelo, perfilado de cejas y estilizado profesional de barba.</p>
       <ul className="mt-4 space-y-2 text-white">
-        <li>- Recorte de Barba  <span className="bg-yellow-300 text-black py-1 px-2 font-bold text-lg rounded-md shadow-md ml-2">
-    $20
-  </span></li>
-        <li>
-  - Afeitado con Toalla Caliente 
-  <span className="bg-yellow-300 text-black py-1 px-2 font-bold text-lg rounded-md shadow-md ml-2">
-    $60
-  </span>
-</li>
+  
       </ul>
     </div>
   </div>
+
+<img src="/10of.webp" alt="" />
+
 </section>
 
 
@@ -310,17 +307,12 @@ Harcut and Beard
       />
       <h3 className="text-3xl font-semibold text-yellow-300 mb-4">Horarios</h3>
       <ul className="text-gray-300 text-lg space-y-2">
-        <li>Lunes: 8:00 AM - 6:30 PM</li>
-        <li className="text-red-600">Martes cerrado</li>
-        <li className="text-red-600">Miercoles cerrado</li>
-        <li>Jueves: 8:00 AM - 6:30 PM</li>
-        <li>Viernes: 8:00 AM - 6:30 PM</li>
-        <li>Sábado: 7:00 AM - 3:00 PM</li>
-        <li>Domingo: 9:00 AM - 2:00 PM </li>
+        <li>Lunes a Sabados: </li>
+        <li>10:00hs - 13:00hs </li>
+        <li>16:00hs - 22:00hs </li>
+
       </ul>
-      <p className="text-gray-400 mt-6">
-      Solo trabajo con cita previa
-      </p>
+     
       <div className="flex items-center justify-center mt-8">
       <a href="https://wa.me/5493821454880?text=Hola,%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener noreferrer">
   <button className="flex items-center gap-2 bg-yellow-300 text-black px-6 py-3 font-semibold rounded-lg hover:bg-yellow-600 transition shadow-lg">
@@ -350,7 +342,7 @@ Harcut and Beard
     <div className="w-full md:w-1/3 h-96 rounded-lg overflow-hidden shadow-lg">
       <iframe
         className="w-full h-full"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.542901423852!2d-118.37037582445494!3d33.9528828731946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6e05c89bb11%3A0xc80ea66fcf30b3d3!2s681%20W%20Arbor%20Vitae%20St%2C%20Inglewood%2C%20CA%2090301%2C%20EE.%20UU.!5e0!3m2!1ses-419!2sar!4v1739223695362!5m2!1ses-419!2sar"        allowFullScreen=""
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3416.4607103391245!2d-66.59622572439554!3d-31.34278297429576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDIwJzM0LjAiUyA2NsKwMzUnMzcuMSJX!5e1!3m2!1ses!2sar!4v1740084385320!5m2!1ses!2sar"  allowFullScreen=""
         loading="lazy"
       ></iframe>
     </div>
