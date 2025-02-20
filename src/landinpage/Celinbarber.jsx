@@ -10,7 +10,7 @@ const LandingPage = () => {
 <nav className="w-full fixed top-0 bg-black bg-opacity-80 backdrop-blur-md z-50">
   <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 md:px-12">
     {/* Logo */}
-    <h1 className="text-xl font-bold text-yellow-300">CELINBARBER </h1>
+    <h1 className="text-xl font-bold text-yellow-300">CELINBARBER STUDIO </h1>
 
     {/* Desktop Menu */}
     <ul className="hidden md:flex space-x-6">
@@ -67,7 +67,7 @@ const LandingPage = () => {
         fontFamily: "'Impact', sans-serif",
       }}
     >
-     CELINBARBER
+     CELINBARBER STUDIO
     </h2>
 
     <p
