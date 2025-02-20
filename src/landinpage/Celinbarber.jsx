@@ -91,7 +91,7 @@ const LandingPage = () => {
     </p>
 
     <div className="flex items-center justify-center mt-8">
-    <a href="https://wa.me/5493821454880?text=Hola,%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/543821454880?text=Hola%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener noreferrer">
   <button className="flex items-center gap-2 bg-yellow-300 text-black px-6 py-3 font-semibold rounded-lg hover:bg-yellow-600 transition shadow-lg">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -314,7 +314,8 @@ Harcut and fade
       </ul>
      
       <div className="flex items-center justify-center mt-8">
-      <a href="https://wa.me/5493821454880?text=Hola,%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/543821454880?text=Hola%2C%20quiero%20agendar%20un%20turno" target="_blank" rel="noopener noreferrer">
+
   <button className="flex items-center gap-2 bg-yellow-300 text-black px-6 py-3 font-semibold rounded-lg hover:bg-yellow-600 transition shadow-lg">
     <svg
       xmlns="http://www.w3.org/2000/svg"
