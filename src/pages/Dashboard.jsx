@@ -1,6 +1,6 @@
 import '../App.css';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users'; // Importar el store de Zustand
@@ -23,36 +23,26 @@ function Dashboard() {
     ? 'https://back-cursos.onrender.com'
     : 'http://localhost:5000';
 
-  useEffect(() => {
-    // Verificar si hay un token almacenado
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
-
-    if (!token) {
-     
-    } else if (email) {
-      // Fetch user data from API enviando el email en la solicitud POST
-      axios.post(`${API_BASE_URL}/api/search/users`, { email: email }, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Enviar el token si es necesario
-        }
-      })
-      .then(response => {
-        // Guardar los datos del usuario en el estado global con Zustand
-        setUserData(response.data);
-
-        // Guardar el nombre del usuario en localStorage
-        if (response.data.nombre) {
-          localStorage.setItem('nombre', response.data.nombre);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
-    } else {
-      console.error('No email found in localStorage');
-    }
-  }, [navigate, API_BASE_URL, setUserData]);
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      const email = localStorage.getItem('email');
+    
+      if (!token) {
+        setTimeout(() => navigate('/login'), 0);
+      } else if (email) {
+        axios.post(`${API_BASE_URL}/api/search/users`, { email: email }, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+          setUserData(response.data);
+          if (response.data.nombre) {
+            localStorage.setItem('nombre', response.data.nombre);
+          }
+        })
+        .catch(error => console.error('Error fetching user data:', error));
+      }
+    }, [navigate, API_BASE_URL, setUserData]);
+    
 
   // Restablecer el estado del perfil al montar el componente
   useEffect(() => {
