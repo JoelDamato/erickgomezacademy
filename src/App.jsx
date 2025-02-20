@@ -16,7 +16,7 @@ import Luisfer from './landinpage/Luisfer.jsx';
 import Stam from './landinpage/Stam.jsx';
 import Sdstudio from './landinpage/Sdstudio.jsx';
 import Celin from './landinpage/Celinbarber.jsx';
-import Metricas from './pages/Metricas.jsx'
+import Metricas  from './pages/Metricas.jsx';
 
 function App() {
   return (
