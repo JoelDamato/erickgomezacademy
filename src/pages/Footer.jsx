@@ -8,7 +8,7 @@ const ComponentName = () => {
       <img
         src="/erickgomez.png"
         alt="Erick Gómez Logo"
-        className="w-16 h-16"
+        className="w-[200px] "
       />
       
       {/* Texto principal */}
