@@ -5,6 +5,8 @@ const LandingPage = () => {
 
   const name = "Legends Barber Shop";
   const logo = "https://i.ibb.co/SXbs5bQL/PNG.png";
+  const fileId = "1S5PKdH2lAdgEWF_y0h8RrQ1_hqhE9by4";
+  const fileUrl = `https://drive.google.com/file/d/${fileId}/preview`;
 
   return (
     <div className="bg-black min-h-screen flex flex-col text-white">
@@ -165,6 +167,14 @@ const LandingPage = () => {
         </div>
       </section>
 
+      <div className="w-full aspect-video">
+          <iframe
+            src={fileUrl}
+            className="w-full h-full border rounded-lg"
+            allow="autoplay"
+          ></iframe>
+        </div>
+
       {/* Products Section */}
       <section id="servicios" className="w-full max-w-6xl mx-auto py-20 px-4">
         <div className="relative mb-16 text-center">
@@ -185,7 +195,7 @@ const LandingPage = () => {
           {/* Haircuts */}
           <div className="backdrop-blur-sm bg-black/40 p-8 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-yellow-500/20">
             <h3 className="text-4xl text-center font-semibold text-yellow-500 mb-6">
-              Haircuts
+              Corte de Pelo
             </h3>
             <div className="relative overflow-hidden rounded-lg">
               <img
@@ -194,29 +204,33 @@ const LandingPage = () => {
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-64 object-cover"
               />
               <p className="absolute bottom-3 right-3 bg-yellow-500 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-                $30
+                $20
               </p>
             </div>
             <p className="text-gray-300 mt-6 text-lg">
-              Classic and modern haircuts for every style.
+              
             </p>
             <ul className="mt-4 space-y-2 text-white">
               <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Classic Cut
+                <span className="text-yellow-500">•</span> Corte Clasico
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Fade Cut
+                <span className="text-yellow-500">•</span> Cortes con Fade
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Scissor Cut
+                <span className="text-yellow-500">•</span>+ Barba $15
               </li>
+              <li className="flex items-center gap-2">
+                <span className="text-yellow-500">•</span>+ Cejas $5
+              </li>
+        
             </ul>
           </div>
 
           {/* Beard Grooming */}
           <div className="backdrop-blur-sm bg-black/40 p-8 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-yellow-500/20">
             <h3 className="text-4xl text-center font-semibold text-yellow-500 mb-6">
-              Beard Grooming
+              Barba
             </h3>
             <div className="relative overflow-hidden rounded-lg">
               <img
@@ -225,23 +239,19 @@ const LandingPage = () => {
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-64 object-cover"
               />
               <p className="absolute bottom-3 right-3 bg-yellow-500 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
-                $20
+                $15
               </p>
             </div>
             <p className="text-gray-300 mt-6 text-lg">
-              Professional beard trimming and styling.
+             Corte de Barba profesional
             </p>
-            <ul className="mt-4 space-y-2 text-white">
-              <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Beard Trim
+            <li className="flex items-center gap-2">
+                <span className="text-yellow-500">•</span>Barba con toalla caliente $20
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Hot Towel Shave
+            <li className="flex items-center gap-2">
+                <span className="text-yellow-500">•</span>Corte y barba con toalla caliente $40
               </li>
-              <li className="flex items-center gap-2">
-                <span className="text-yellow-500">•</span> Beard Styling
-              </li>
-            </ul>
+           
           </div>
         </div>
       </section>
