@@ -2,17 +2,17 @@ import React from 'react';
 
 const ComponentName = () => {
   return (
-    <footer className="bg-black text-white py-6">
+    <footer className="bg-black text-white py-4">
     <div className="container mx-auto flex flex-col items-center gap-4">
       {/* Logo */}
       <img
         src="/erickgomez.png"
         alt="Erick Gómez Logo"
-        className="w-[200px] "
+        className="w-[200px] mt-[-20px] "
       />
       
       {/* Texto principal */}
-      <p className="text-center text-lg font-bold">
+      <p className="text-center text-md font-bold mt-[-50px]">
         Erick Gómez Academy 2019®️ | Todos los derechos reservados ©️
       </p>
       

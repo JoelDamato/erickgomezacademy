@@ -20,6 +20,15 @@ export default function BarberAcademy() {
 
   const courseNames = ["Master Fade", "Cutting Mastery", "Colorimetría", "Barber Cash", "Agendas Ilimitadas", "Focus"]
 
+  const courseRatings = [
+    { score: 4.9, count: 3782 },
+    { score: 4.8, count: 3560 },
+    { score: 4.7, count: 2945 },
+    { score: 4.9, count: 4120 },
+    { score: 4.8, count: 3215 },
+    { score: 4.7, count: 2890 },
+  ]
+
   const phoneNumber = "+59891640623" // Reemplaza con tu número de WhatsApp
 
   const getWhatsAppLink = (index) => {
@@ -113,10 +122,11 @@ export default function BarberAcademy() {
               </div>
 
               <img
-                src="https://i.ibb.co/4g1JHSQ3/14b2d988-8d6c-43f4-8568-e8e9634c316b.png"
-                className="absolute top-[80px] left-[98px] w-3/4 z-0 md:left-[800px]"
-                alt=""
-              />
+  src="https://i.ibb.co/4g1JHSQ3/14b2d988-8d6c-43f4-8568-e8e9634c316b.png"
+  className="absolute top-[80px] right-0 w-3/4 z-0 md:w-1/2"
+  alt=""
+/>
+
               <div className="md:w-1/3 flex justify-center md:justify-end"></div>
             </div>
 
@@ -148,14 +158,14 @@ export default function BarberAcademy() {
             </div>
 
             {/* Featured Course Card (Mobile Only) */}
-            <div className="rounded-xl flex flex-col items-center justify-center mt-2 mb-6">
+            <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
               {/* Featured Course Card */}
               <div className="rounded-xl flex flex-col items-center md:justify-center ">
                 <div className="relative w-full">
                   {/* Contenedor del fondo - Aumentamos la altura en móvil */}
                   <div className="w-full h-[300px] sm:h-[350px] md:h-[450px] flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
                     {/* Contenedor de las tarjetas - Ajustamos el espacio y padding */}
-                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px] mb-4 transition-all duration-700 ease-in-out">
+                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px] transition-all duration-700 ease-in-out">
                       {visibleCards.map((card, idx) => (
                         <div
                           key={idx}
@@ -212,6 +222,8 @@ export default function BarberAcademy() {
                   </button>
                 </div>
 
+                <p className="p-2 text-center mt-[-70px]">Toca las flechas para ver todos los cursos disponibles</p>
+
                 {/* WhatsApp button - hidden on mobile since it's in the featured card */}
                 <button className="hidden md:block mb-5 w-full max-w-md">
                   <a
@@ -257,18 +269,20 @@ export default function BarberAcademy() {
               </div>
 
               <div className="flex items-center justify-center relative z-100 mt-5 mb-4">
-                <span className="mr-2 font-bold">4.8</span>
+                <span className="mr-2 font-bold">{courseRatings[featuredCourseIndex].score}</span>
                 <div className="flex text-[#D4AF37]">
                   <span>★★★★★</span>
                 </div>
-                <span className="ml-2 text-md font-bold">3,560 calificaciones</span>
+                <span className="ml-2 text-md font-bold">
+                  {courseRatings[featuredCourseIndex].count.toLocaleString()} calificaciones
+                </span>
               </div>
 
               <a
                 href={getWhatsAppLink(featuredCourseIndex)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-md font-bold flex items-center justify-center transition-colors"
+                className="mt-1 w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-md font-bold flex items-center justify-center transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -284,8 +298,13 @@ export default function BarberAcademy() {
                     d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
                   />
                 </svg>
-                Obtener vía WhatsApp
+                Obtener entrenamiento vía WhatsApp
               </a>
+              <p className="text-white text-sm p-2 text-center">
+                {" "}
+                Vas a ser redirigido a mi WhatsApp Oficial para hablar conmigo o alguien de mi equipo y culminar la
+                inscripción
+              </p>
             </div>
 
             {/* Course Cards Carousel - Separado de la imagen principal */}
@@ -314,18 +333,20 @@ export default function BarberAcademy() {
               />
 
               <div className="flex items-center justify-center mb-4">
-                <span className="mr-2 font-bold text-white">4.8</span>
+                <span className="mr-2 font-bold text-white">{courseRatings[selectedCourseIndex].score}</span>
                 <div className="flex text-[#D4AF37]">
                   <span>★★★★★</span>
                 </div>
-                <span className="ml-2 text-md font-bold text-white">3,560 calificaciones</span>
+                <span className="ml-2 text-md font-bold text-white">
+                  {courseRatings[selectedCourseIndex].count.toLocaleString()} calificaciones
+                </span>
               </div>
 
               <a
                 href={getWhatsAppLink(selectedCourseIndex)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full max-w-md bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
+                className="w-full text-center max-w-md bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +362,7 @@ export default function BarberAcademy() {
                     d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
                   />
                 </svg>
-                Obtener ahora vía WhatsApp
+                Obtener entrenamiento vía WhatsApp
               </a>
             </div>
           </div>
