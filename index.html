@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Erick Gomez ACADEMY.</title>
-    
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BHRFWDN9ZG"></script>
 <script>
@@ -16,6 +16,46 @@
   gtag('js', new Date());
 
   gtag('config', 'G-BHRFWDN9ZG');
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1) Leemos los parámetros de la URL actual
+    const params = new URLSearchParams(window.location.search);
+
+    // 2) Revisamos si vienen UTM (o cualquier otro) y los juntamos
+    const utmParts = [];
+    if (params.has('utm_source')) {
+      utmParts.push('utm_source=' + params.get('utm_source'));
+    }
+    if (params.has('utm_medium')) {
+      utmParts.push('utm_medium=' + params.get('utm_medium'));
+    }
+    if (params.has('utm_campaign')) {
+      utmParts.push('utm_campaign=' + params.get('utm_campaign'));
+    }
+    if (params.has('utm_term')) {
+      utmParts.push('utm_term=' + params.get('utm_term'));
+    }
+    if (params.has('utm_content')) {
+      utmParts.push('utm_content=' + params.get('utm_content'));
+    }
+
+    // 3) Armamos la URL base de Calendly
+    //    (cambia aquí "tu-cuenta" y "tu-evento" por lo tuyo)
+    let calendlyBase = 'https://calendly.com/tu-cuenta/tu-evento';
+
+    // 4) Si hay parámetros, se los pegamos
+    if (utmParts.length > 0) {
+      calendlyBase += '/?' + utmParts.join('&');
+    }
+
+    // 5) Cambiamos el href del botón (el que tenga ID = "calendly-button")
+    const calendlyBtn = document.getElementById('calendly-button');
+    if (calendlyBtn) {
+      calendlyBtn.setAttribute('href', calendlyBase);
+    }
+  });
 </script>
 
     <!-- Meta Pixel Code -->

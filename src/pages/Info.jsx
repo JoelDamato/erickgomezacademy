@@ -49,7 +49,7 @@ export default function BarberAcademy() {
   // Update featured course when current course changes
   useEffect(() => {
     setFeaturedCourseIndex((currentCourseIndex + 1) % courseImages.length)
-  }, [currentCourseIndex, courseImages.length])
+  }, [currentCourseIndex])
 
   // Auto-scroll carousel every 5 seconds
   useEffect(() => {
@@ -148,14 +148,14 @@ export default function BarberAcademy() {
             </div>
 
             {/* Featured Course Card (Mobile Only) */}
-            <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
+            <div className="rounded-xl flex flex-col items-center justify-center mt-2 mb-6">
               {/* Featured Course Card */}
               <div className="rounded-xl flex flex-col items-center md:justify-center ">
                 <div className="relative w-full">
                   {/* Contenedor del fondo - Aumentamos la altura en móvil */}
                   <div className="w-full h-[300px] sm:h-[350px] md:h-[450px] flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
                     {/* Contenedor de las tarjetas - Ajustamos el espacio y padding */}
-                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px]  transition-all duration-700 ease-in-out">
+                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px] mb-4 transition-all duration-700 ease-in-out">
                       {visibleCards.map((card, idx) => (
                         <div
                           key={idx}
@@ -212,7 +212,31 @@ export default function BarberAcademy() {
                   </button>
                 </div>
 
-           
+                {/* WhatsApp button - hidden on mobile since it's in the featured card */}
+                <button className="hidden md:block mb-5 w-full max-w-md">
+                  <a
+                    href={getWhatsAppLink(featuredCourseIndex)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Obtener ahora vía WhatsApp
+                  </a>
+                </button>
               </div>
               {/* Imagen principal que abre el modal al hacer clic */}
               <div
@@ -223,11 +247,11 @@ export default function BarberAcademy() {
                 <div className="absolute inset-0 bg-black/80"></div>
 
                 {/* Contenedor de la imagen con z-index para que esté por encima del overlay */}
-                <div className="relative z-10 flex justify-center py-6">
+                <div className="relative z-10 flex justify-center py-3">
                   <img
                     src={courseImages[featuredCourseIndex] || "/placeholder.svg"}
                     alt={courseNames[featuredCourseIndex]}
-                    className="max-w-[280px] md:max-w-[400px] object-contain rounded-lg shadow-lg"
+                    className="max-w-[280px] md:max-w-[400px] h-auto object-contain rounded-lg shadow-lg"
                   />
                 </div>
               </div>
