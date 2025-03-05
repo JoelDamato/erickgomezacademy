@@ -9,7 +9,6 @@ export default function BarberAcademy() {
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0)
   const [featuredCourseIndex, setFeaturedCourseIndex] = useState(1) // Default to middle card
 
-
   const courseImages = [
     "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
     "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
@@ -29,24 +28,21 @@ export default function BarberAcademy() {
   }
 
   const nextCourse = useCallback(() => {
-    setCurrentCourseIndex((prevIndex) => {
-      const newIndex = prevIndex === courseImages.length - 3 ? 0 : prevIndex + 1
-      return newIndex
-    })
+    setCurrentCourseIndex((prevIndex) => (prevIndex + 1) % courseImages.length)
+
     // Añadir un pequeño retraso para la animación
     setTimeout(() => {
-      setFeaturedCourseIndex((currentCourseIndex + 2) % courseImages.length)
+      setFeaturedCourseIndex((currentCourseIndex + 1 + 1) % courseImages.length)
     }, 50)
-  }, [courseImages.length, currentCourseIndex])
+  }, [currentCourseIndex, courseImages.length])
 
   const prevCourse = useCallback(() => {
-    setCurrentCourseIndex((prevIndex) => {
-      const newIndex = prevIndex === 0 ? courseImages.length - 3 : prevIndex - 1
-      return newIndex
-    })
+    setCurrentCourseIndex((prevIndex) => (prevIndex === 0 ? courseImages.length - 1 : prevIndex - 1))
+
     // Añadir un pequeño retraso para la animación
     setTimeout(() => {
-      setFeaturedCourseIndex(currentCourseIndex === 0 ? courseImages.length - 1 : currentCourseIndex - 1)
+      const newIndex = currentCourseIndex === 0 ? courseImages.length - 1 : currentCourseIndex - 1
+      setFeaturedCourseIndex(newIndex)
     }, 50)
   }, [currentCourseIndex, courseImages.length])
 
@@ -76,6 +72,7 @@ export default function BarberAcademy() {
   const getVisibleCards = () => {
     const cards = []
     for (let i = 0; i < 3; i++) {
+      // Aseguramos que el índice sea circular
       const index = (currentCourseIndex + i) % courseImages.length
       cards.push({
         image: courseImages[index],
@@ -151,14 +148,14 @@ export default function BarberAcademy() {
             </div>
 
             {/* Featured Course Card (Mobile Only) */}
-            <div className="rounded-xl flex flex-col items-center justify-center mt-2 mb-6">
+            <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
               {/* Featured Course Card */}
               <div className="rounded-xl flex flex-col items-center md:justify-center ">
                 <div className="relative w-full">
                   {/* Contenedor del fondo - Aumentamos la altura en móvil */}
                   <div className="w-full h-[300px] sm:h-[350px] md:h-[450px] flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
                     {/* Contenedor de las tarjetas - Ajustamos el espacio y padding */}
-                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px] mb-4 transition-all duration-700 ease-in-out">
+                    <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px]  transition-all duration-700 ease-in-out">
                       {visibleCards.map((card, idx) => (
                         <div
                           key={idx}
@@ -170,18 +167,16 @@ export default function BarberAcademy() {
                           onClick={() => {
                             // Actualizamos la imagen principal
                             setFeaturedCourseIndex(card.index)
-                            // Actualizamos la posición del carrusel para centrar esta imagen
-                            setCurrentCourseIndex(
-                              card.position === "left"
-                                ? currentCourseIndex === 0
-                                  ? courseImages.length - 1
-                                  : currentCourseIndex - 1
-                                : card.position === "right"
-                                  ? currentCourseIndex === courseImages.length - 3
-                                    ? 0
-                                    : currentCourseIndex + 1
-                                  : currentCourseIndex,
-                            )
+
+                            // Calculamos el nuevo índice del carrusel basado en la posición de la tarjeta
+                            if (card.position === "left") {
+                              setCurrentCourseIndex(
+                                (currentCourseIndex - 1 + courseImages.length) % courseImages.length,
+                              )
+                            } else if (card.position === "right") {
+                              setCurrentCourseIndex((currentCourseIndex + 1) % courseImages.length)
+                            }
+                            // Si es la del medio, mantenemos el índice actual
                           }}
                         >
                           <div className="overflow-hidden rounded-lg">
@@ -217,42 +212,24 @@ export default function BarberAcademy() {
                   </button>
                 </div>
 
-                {/* WhatsApp button - hidden on mobile since it's in the featured card */}
-                <button className="hidden md:block mb-5 w-full max-w-md">
-                  <a
-                    href={getWhatsAppLink(featuredCourseIndex)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-8 w-8 mr-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                      />
-                    </svg>
-                    Obtener ahora vía WhatsApp
-                  </a>
-                </button>
+           
               </div>
               {/* Imagen principal que abre el modal al hacer clic */}
               <div
-                className="w-full max-w-[280px] cursor-pointer bg-[url('https://i.ibb.co/L7xrzRz/Social-proof-banner.png')] bg-cover bg-center bg-no-repeat h-"
+                className="w-full cursor-pointer bg-[url('https://i.ibb.co/L7xrzRz/Social-proof-banner.png')] bg-cover bg-center bg-no-repeat relative"
                 onClick={() => openModal(featuredCourseIndex)}
               >
-                <img
-                  src={courseImages[featuredCourseIndex] || "/placeholder.svg"}
-                  alt={courseNames[featuredCourseIndex]}
-                  className="w-full object-cover rounded-lg shadow-lg"
-                />
+                {/* Overlay oscuro */}
+                <div className="absolute inset-0 bg-black/80"></div>
+
+                {/* Contenedor de la imagen con z-index para que esté por encima del overlay */}
+                <div className="relative z-10 flex justify-center py-6">
+                  <img
+                    src={courseImages[featuredCourseIndex] || "/placeholder.svg"}
+                    alt={courseNames[featuredCourseIndex]}
+                    className="max-w-[280px] md:max-w-[400px] object-contain rounded-lg shadow-lg"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-center relative z-100 mt-5 mb-4">
