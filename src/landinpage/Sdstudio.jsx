@@ -168,11 +168,13 @@ const LandingPage = () => {
       </section>
 
       <div className="w-full aspect-video">
-          <iframe
-            src={fileUrl}
-            className="w-full h-full border rounded-lg"
-            allow="autoplay"
-          ></iframe>
+      <iframe
+  src="https://www.youtube.com/embed/3Z6iaXyzYDQ"
+  className="w-full h-full border rounded-lg"
+  allow="autoplay; encrypted-media"
+  allowFullScreen
+></iframe>
+
         </div>
 
       {/* Products Section */}
