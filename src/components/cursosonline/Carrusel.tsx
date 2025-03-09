@@ -110,17 +110,11 @@ export default function Steps() {
   }, [nextCourse]);
 
   return (
-    <section className="px-1 py-1">
-    
-
-      {/* Featured Course Card (Mobile Only) */}
+    <section className="px-1 py-1 md:mt-20  lg:mt-20 " >
       <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
-        {/* Featured Course Card */}
-        <div className="rounded-xl flex flex-col items-center md:justify-center ">
+        <div className="rounded-xl flex flex-col items-center md:justify-center hidden md:block">
           <div className="relative w-full">
-            {/* Contenedor del fondo - Aumentamos la altura en móvil */}
             <div className="w-full h-[300px] sm:h-[350px] md:h-[450px] flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
-              {/* Contenedor de las tarjetas - Ajustamos el espacio y padding */}
               <div className="flex flex-row gap-4 md:gap-6 px-4 md:px-6 justify-center items-center w-full overflow-visible mt-[-10px] md:mt-[-30px] transition-all duration-700 ease-in-out">
                 {visibleCards.map((card: any, idx: any) => (
                   <div
@@ -131,10 +125,8 @@ export default function Steps() {
                         : "max-w-[80px] sm:max-w-[100px] md:max-w-[250px] scale-[0.9] md:scale-[0.8] opacity-60 brightness-50"
                     }`}
                     onClick={() => {
-                      // Actualizamos la imagen principal
                       setFeaturedCourseIndex(card.index);
 
-                      // Calculamos el nuevo índice del carrusel basado en la posición de la tarjeta
                       if (card.position === "left") {
                         setCurrentCourseIndex(
                           (currentCourseIndex - 1 + courseImages.length) %
@@ -145,7 +137,6 @@ export default function Steps() {
                           (currentCourseIndex + 1) % courseImages.length
                         );
                       }
-                      // Si es la del medio, mantenemos el índice actual
                     }}
                   >
                     <div className="overflow-hidden rounded-lg">
@@ -164,7 +155,6 @@ export default function Steps() {
               </div>
             </div>
 
-            {/* Botón izquierdo */}
             <button
               onClick={prevCourse}
               className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 rounded-full p-1 sm:p-2 transition-all duration-300 ease-in-out z-20"
@@ -172,7 +162,6 @@ export default function Steps() {
               <ChevronLeft size={16} className="md:size-24" />
             </button>
 
-            {/* Botón derecho */}
             <button
               onClick={nextCourse}
               className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-black/90 rounded-full p-1 sm:p-2 transition-all duration-300 ease-in-out z-20"
@@ -181,12 +170,14 @@ export default function Steps() {
             </button>
           </div>
 
-          <p className="p-2 text-center mt-[-70px]">
+         
+        </div>
+        <div className="md:mt-20 hidden md:block">
+        <p className="p-2 text-center mt-[-70px]">
             Toca las flechas para ver todos los cursos disponibles
           </p>
 
-          {/* WhatsApp button - hidden on mobile since it's in the featured card */}
-          <button className="hidden md:block mb-5 w-full max-w-md">
+          {/* <button className="hidden md:block mb-5 w-full max-w-md">
             <a
               href={getWhatsAppLink(featuredCourseIndex)}
               target="_blank"
@@ -209,13 +200,16 @@ export default function Steps() {
               </svg>
               Obtener ahora vía WhatsApp
             </a>
-          </button>
-        </div>
+          </button> */}
+          </div>
+
+
         {/* Imagen principal que abre el modal al hacer clic */}
         <div
           className="w-full cursor-pointer bg-[url('https://i.ibb.co/L7xrzRz/Social-proof-banner.png')] bg-cover bg-center bg-no-repeat relative"
           onClick={() => openModal(featuredCourseIndex)}
         >
+        <div className="hidden md:block">
           {/* Overlay oscuro */}
           <div className="absolute inset-0 bg-black/80"></div>
 
@@ -228,6 +222,48 @@ export default function Steps() {
             />
           </div>
         </div>
+        </div>
+        <div className="block md:hidden space-y-6 p-4">
+        {courseNames.map((name, index) => (
+          <div key={index} className="bg-black border-2 border-yellow-500 rounded-xl p-4">
+            <h2 className="text-2xl font-bold text-white mb-4 text-center">{name}</h2>
+            <img
+              src={courseImages[index] || "/placeholder.svg"}
+              alt={name}
+              className="w-full max-h-[60vh] object-contain mb-4 rounded-lg"
+            />
+            <div className="flex items-center justify-center mb-4">
+              <span className="mr-2 font-bold text-white">{courseRatings[index].score}</span>
+              <div className="flex text-[#D4AF37]">★★★★★</div>
+              <span className="ml-2 text-md font-bold text-white">
+                {courseRatings[index].count.toLocaleString()} calificaciones
+              </span>
+            </div>
+            <motion.a
+              href={getWhatsAppLink(index)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center"
+              animate={{ y: [0, -5, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z" />
+              </svg>
+              Obtener entrenamiento vía WhatsApp
+            </motion.a>
+          </div>
+        ))}
+      </div>
+
 
         <div className="flex items-center justify-center relative z-100 mt-5 mb-4">
           <span className="mr-2 font-bold">
@@ -347,7 +383,6 @@ export default function Steps() {
           </div>
         </div>
       )}
-      {/* Course Cards Carousel - Separado de la imagen principal */}
     </section>
   );
 }
