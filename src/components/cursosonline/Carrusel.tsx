@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { motion } from "framer-motion";
+import ButtonWpp from "./ButtonWpp";
 
 const courseImages = [
   "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
@@ -82,13 +82,7 @@ export default function Steps() {
     }, 50);
   }, [currentCourseIndex, courseImages.length]);
 
-  const phoneNumber = "+59891640623"; // Reemplaza con tu número de WhatsApp
-
-  const getWhatsAppLink = (index) => {
-    const message = `Hola, estoy interesado en el curso "${courseNames[index]}". ¿Podrías darme más información?`;
-    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  };
-
+ 
   const openModal = (index) => {
     setSelectedCourseIndex(index);
     setIsModalOpen(true);
@@ -239,27 +233,7 @@ export default function Steps() {
                 {courseRatings[index].count.toLocaleString()} calificaciones
               </span>
             </div>
-            <motion.a
-              href={getWhatsAppLink(index)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-center bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z" />
-              </svg>
-              Obtener entrenamiento vía WhatsApp
-            </motion.a>
+           <ButtonWpp inx={index}/>
           </div>
         ))}
       </div>
@@ -277,39 +251,7 @@ export default function Steps() {
             calificaciones
           </span>
         </div>
-
-        <motion.a
-          href={getWhatsAppLink(selectedCourseIndex)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full text-center max-w-md bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
-          animate={{
-            y: [0, -5, 0], // Movimiento arriba y abajo
-          }}
-          transition={{
-            repeat: Infinity, // Se repite infinitamente
-            duration: 1.5, // Duración de la animación
-            ease: "easeInOut", // Movimiento suave
-          }}
-          whileHover={{ scale: 1.1 }} // Se agranda al pasar el mouse
-          whileTap={{ scale: 0.9 }} // Se achica al hacer clic
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z"
-            />
-          </svg>
-          Obtener entrenamiento vía WhatsApp
-        </motion.a>
+        <ButtonWpp inx={selectedCourseIndex} width={"25%"} />
         <p className="text-white text-sm p-2 text-center">
           {" "}
           Vas a ser redirigido a mi WhatsApp Oficial para hablar conmigo o
@@ -345,40 +287,7 @@ export default function Steps() {
                   {courseRatings[selectedCourseIndex].count.toLocaleString()} calificaciones
                 </span>
               </div>
-
-              <motion.a
-  href={getWhatsAppLink(selectedCourseIndex)}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="w-full text-center max-w-md bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
-  animate={{
-    y: [0, -5, 0], // Movimiento arriba y abajo
-  }}
-  transition={{
-    repeat: Infinity, // Se repite infinitamente
-    duration: 1.5, // Duración de la animación
-    ease: "easeInOut", // Movimiento suave
-  }}
-  whileHover={{ scale: 1.1 }} // Se agranda al pasar el mouse
-  whileTap={{ scale: 0.9 }} // Se achica al hacer clic
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-8 w-8 mr-2"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z"
-    />
-  </svg>
-  Obtener entrenamiento vía WhatsApp
-</motion.a>
-
+            <ButtonWpp inx={selectedCourseIndex} width={"50%"} />
             </div>
           </div>
         </div>

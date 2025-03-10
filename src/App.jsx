@@ -20,6 +20,7 @@ import Stam from './landinpage/Stam.jsx';
 import Sdstudio from './landinpage/Sdstudio.jsx';
 import Celin from './landinpage/Celinbarber.jsx';
 import Metricas  from './pages/Metricas.jsx';
+import Colorimetria  from './components/Colorimetria.jsx';
 
 function App() {
   return (
@@ -46,8 +47,7 @@ function App() {
         <Route path="/Sdstudio" element={<><Sdstudio /></>} />
         <Route path="/Celinbarber" element={<><Celin /></>} />
         <Route path="/Metricas" element={<><Metricas /></>} />
-
-
+        <Route path="/colorimetria" element={<><Colorimetria/></>} />
       </Routes>
     </Router>
   );
