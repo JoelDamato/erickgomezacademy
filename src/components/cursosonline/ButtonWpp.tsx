@@ -27,7 +27,8 @@ interface ButtonWppProps {
       
     return(
         <>
-        <div style={{ width }}>
+        <div className='flex justify-center' style={{width: '100%'}} >
+        <div className={` lg:width-${width} md:width-${width} sm:width-[100%] `} >
           <motion.a
               href={getWhatsAppLink(inx)}
               target="_blank"
@@ -41,7 +42,7 @@ interface ButtonWppProps {
                  <div className="flex items-center justify-center">
           <img
             src="src/assets/phone.svg"
-            className="h-8 w-8 mr-2"
+            className="h-8 w-8 ml-2"
             />
             <path
               strokeLinecap="round"
@@ -49,9 +50,10 @@ interface ButtonWppProps {
               strokeWidth={2}
               d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z"
             />
-              Obtener entrenamiento vía WhatsApp
+              <p>Obtener entrenamiento vía WhatsApp</p>
             </div>
             </motion.a>
+            </div>
             </div>
         </>
     )

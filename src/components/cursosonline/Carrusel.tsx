@@ -35,6 +35,9 @@ export default function Steps() {
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+
+
   const getVisibleCards = () => {
     const cards: {
       image: string;
@@ -103,6 +106,7 @@ export default function Steps() {
     return () => clearInterval(interval);
   }, [nextCourse]);
 
+
   return (
     <section className="px-1 py-1 md:mt-20  lg:mt-20 " >
       <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
@@ -170,34 +174,7 @@ export default function Steps() {
         <p className="p-2 text-center mt-[-70px]">
             Toca las flechas para ver todos los cursos disponibles
           </p>
-
-          {/* <button className="hidden md:block mb-5 w-full max-w-md">
-            <a
-              href={getWhatsAppLink(featuredCourseIndex)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                />
-              </svg>
-              Obtener ahora vía WhatsApp
-            </a>
-          </button> */}
           </div>
-
-
         {/* Imagen principal que abre el modal al hacer clic */}
         <div
           className="w-full cursor-pointer bg-[url('https://i.ibb.co/L7xrzRz/Social-proof-banner.png')] bg-cover bg-center bg-no-repeat relative"
@@ -238,8 +215,8 @@ export default function Steps() {
         ))}
       </div>
 
-
-        <div className="flex items-center justify-center relative z-100 mt-5 mb-4">
+        <div className="hidden md:block">
+        <div className=" flex items-center justify-center relative z-100 mt-5 mb-4">
           <span className="mr-2 font-bold">
             {courseRatings[featuredCourseIndex].score}
           </span>
@@ -251,12 +228,13 @@ export default function Steps() {
             calificaciones
           </span>
         </div>
-        <ButtonWpp inx={selectedCourseIndex} width={"25%"} />
+        <ButtonWpp inx={selectedCourseIndex} width="w-full md:w-1/2" />
         <p className="text-white text-sm p-2 text-center">
           {" "}
           Vas a ser redirigido a mi WhatsApp Oficial para hablar conmigo o
           alguien de mi equipo y culminar la inscripción
         </p>
+        </div>
       </div>
 
       {isModalOpen && (
@@ -287,7 +265,7 @@ export default function Steps() {
                   {courseRatings[selectedCourseIndex].count.toLocaleString()} calificaciones
                 </span>
               </div>
-            <ButtonWpp inx={selectedCourseIndex} width={"50%"} />
+            <ButtonWpp inx={selectedCourseIndex} width="w-full md:w-1/2" />
             </div>
           </div>
         </div>
