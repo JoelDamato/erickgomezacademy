@@ -228,7 +228,7 @@ export default function Steps() {
             calificaciones
           </span>
         </div>
-        <ButtonWpp inx={selectedCourseIndex} width="w-full md:w-1/2" />
+        <ButtonWpp inx={featuredCourseIndex} width="w-full md:w-1/2" />
         <p className="text-white text-sm p-2 text-center">
           {" "}
           Vas a ser redirigido a mi WhatsApp Oficial para hablar conmigo o
