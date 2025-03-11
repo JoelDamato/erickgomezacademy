@@ -158,7 +158,7 @@ export default function BarberAcademy() {
             </div>
 
             {/* Featured Course Card (Mobile Only) */}
-            <div className="px-1 py-1 md:mt-20  lg:mt-20 rounded-xl flex flex-col items-center justify-center mt-2 ">
+            <div className="rounded-xl flex flex-col items-center justify-center mt-2 ">
               {/* Featured Course Card */}
               <div className="rounded-xl flex flex-col items-center md:justify-center ">
                 <div className="relative w-full">
@@ -221,11 +221,35 @@ export default function BarberAcademy() {
                     <ChevronRight size={16} className="md:size-24" />
                   </button>
                 </div>
-                <div className="md:mt-20 hidden md:block">
-                <p className="p-2 text-center mt-[-70px]">Toca las flechas para ver todos los cursos disponibles</p>
-              </div>
-          </div>
 
+                <p className="p-2 text-center mt-[-70px]">Toca las flechas para ver todos los cursos disponibles</p>
+
+                {/* WhatsApp button - hidden on mobile since it's in the featured card */}
+                <button className="hidden md:block mb-5 w-full max-w-md">
+                  <a
+                    href={getWhatsAppLink(featuredCourseIndex)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5 transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Obtener ahora vía WhatsApp
+                  </a>
+                </button>
+              </div>
               {/* Imagen principal que abre el modal al hacer clic */}
               <div
                 className="w-full cursor-pointer bg-[url('https://i.ibb.co/L7xrzRz/Social-proof-banner.png')] bg-cover bg-center bg-no-repeat relative"
@@ -270,16 +294,20 @@ export default function BarberAcademy() {
   whileHover={{ scale: 1.1 }} // Se agranda al pasar el mouse
   whileTap={{ scale: 0.9 }} // Se achica al hacer clic
 >
-<img
-            src="src/assets/phone.svg"
-            className="h-8 w-8 mr-2"
-            />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-8 w-8 mr-2"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
       d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z"
     />
+  </svg>
   Obtener entrenamiento vía WhatsApp
 </motion.a>
               <p className="text-white text-sm p-2 text-center">
@@ -340,16 +368,20 @@ export default function BarberAcademy() {
   whileHover={{ scale: 1.1 }} // Se agranda al pasar el mouse
   whileTap={{ scale: 0.9 }} // Se achica al hacer clic
 >
-<img
-            src="src/assets/phone.svg"
-            className="h-8 w-8 mr-2"
-            />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-8 w-8 mr-2"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
       d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2v14a2 2z"
     />
+  </svg>
   Obtener entrenamiento vía WhatsApp
 </motion.a>
 
