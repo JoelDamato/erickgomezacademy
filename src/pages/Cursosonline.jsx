@@ -348,7 +348,7 @@ export default function BarberAcademy() {
               <img
                 src={courseImages[selectedCourseIndex] || "/placeholder.svg"}
                 alt={courseNames[selectedCourseIndex]}
-                className="w-full max-h-[60vh] object-contain mb-6"
+                className="w-full max-h-[60vh] object-contain mb-1"
               />
 
               <div className="flex items-center justify-center mb-4">
@@ -380,7 +380,7 @@ export default function BarberAcademy() {
                 whileHover={{ scale: 1.1 }} // Se agranda al pasar el mouse
                 whileTap={{ scale: 0.9 }} // Se achica al hacer clic
               >
-                <img src="src/assets/phone.svg" className="h-8 w-8 mr-2" />
+                <img src="./phone.svg" className="h-8 w-8 mr-2" />
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

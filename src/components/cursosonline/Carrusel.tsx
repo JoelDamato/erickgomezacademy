@@ -201,7 +201,7 @@ export default function Steps() {
             <img
               src={courseImages[index] || "/placeholder.svg"}
               alt={name}
-              className="w-full max-h-[60vh] object-contain mb-4 rounded-lg"
+              className="w-full max-h-[60vh] object-contain mb-1 rounded-lg"
             />
             <div className="flex items-center justify-center mb-4">
               <span className="mr-2 font-bold text-white">{courseRatings[index].score}</span>
