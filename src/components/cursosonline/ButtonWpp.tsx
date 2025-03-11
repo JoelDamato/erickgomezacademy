@@ -41,7 +41,7 @@ interface ButtonWppProps {
             >
                  <div className="flex items-center justify-center">
           <img
-            src="src/assets/phone.svg"
+            src="/phone.svg"
             className="h-8 w-8 ml-2"
             />
             <path
