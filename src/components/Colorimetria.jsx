@@ -3,12 +3,14 @@ import { Worker, Viewer } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+import PDFViewerNoDownload from "./Ebook/PDFBookViewer";
+import PDFBookViewer from "./Ebook/PDFBookViewer";
 
 const Ebook = () => {
   const defaultLayout = defaultLayoutPlugin();
 
   // Ruta del PDF
-  const pdfUrl = "/Colorimetria.pdf"; // Asegúrate de que este archivo esté en `public`
+  const pdfUrl = "src/assets/EBOOK-COLORIMETRIA.pdf"; // Asegúrate de que este archivo esté en `public`
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
@@ -22,10 +24,16 @@ const Ebook = () => {
       <main className="flex flex-col items-center justify-center w-full max-w-4xl mt-8 p-4 bg-gray-900 rounded-lg shadow-lg">
         <div className="w-full h-[75vh] bg-gray-800 rounded-lg overflow-hidden shadow-lg">
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js">
-            <Viewer
+            {/* <Viewer
+
               fileUrl={pdfUrl}
-              plugins={[defaultLayout]} // Funcionalidades como zoom, búsqueda, navegación
+              plugins={[defaultLayout]}
+              protectContent // Funcionalidades como zoom, búsqueda, navegación
               theme="dark"
+            /> */}
+            <PDFBookViewer 
+            fileUrl={pdfUrl}
+              // plugins={[defaultLayout]} // Funcionalidades como zoom, búsqueda, navegación
             />
           </Worker>
         </div>
