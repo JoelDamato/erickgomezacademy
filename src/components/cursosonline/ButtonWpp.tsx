@@ -20,6 +20,7 @@ interface ButtonWppProps {
   ];
 
     const getWhatsAppLink = (inx) => {
+      // console.log(inx, courseNames[inx])
         const message = `Hola, estoy interesado en el curso "${courseNames[inx]}". ¿Podrías darme más información?`;
         return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       };
@@ -41,7 +42,7 @@ interface ButtonWppProps {
             >
                  <div className="flex items-center justify-center">
           <img
-            src="src/assets/phone.svg"
+            src="/phone.svg"
             className="h-8 w-8 ml-2"
             />
             <path
