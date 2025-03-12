@@ -19,6 +19,7 @@ import Luisfer from './landinpage/Luisfer.jsx';
 import Stam from './landinpage/Stam.jsx';
 import Sdstudio from './landinpage/Sdstudio.jsx';
 import Celin from './landinpage/Celinbarber.jsx';
+import Coco  from './landinpage/Coco.jsx';
 import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/Stambarber" element={<><Stam /></>} />
         <Route path="/Sdstudio" element={<><Sdstudio /></>} />
         <Route path="/Celinbarber" element={<><Celin /></>} />
+        <Route path="/Coco" element={<><Coco/></>} />
         <Route path="/Metricas" element={<><Metricas /></>} />
         <Route path="/colorimetria" element={<><Colorimetria/></>} />
       </Routes>
