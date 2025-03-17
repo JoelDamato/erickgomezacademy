@@ -10,6 +10,7 @@ export default function BarberAcademy() {
   const [featuredCourseIndex, setFeaturedCourseIndex] = useState(1); // Default to middle card
 
   const courseImages = [
+    "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
     "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
     "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
     "https://i.ibb.co/ymf4c9b2/Tarjeta-Colorimetria.png",
@@ -19,6 +20,7 @@ export default function BarberAcademy() {
   ];
 
   const courseNames = [
+    "Growth Barber",
     "Master Fade",
     "Cutting Mastery",
     "Colorimetría",
@@ -28,6 +30,7 @@ export default function BarberAcademy() {
   ];
 
   const courseRatings = [
+    { score: 4.8, count: 3882 },
     { score: 4.9, count: 3782 },
     { score: 4.8, count: 3560 },
     { score: 4.7, count: 2945 },

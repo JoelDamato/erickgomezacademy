@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import ButtonWpp from "./ButtonWpp";
 
 const courseImages = [
+  "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
   "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
   "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
   "https://i.ibb.co/ymf4c9b2/Tarjeta-Colorimetria.png",
@@ -12,6 +13,7 @@ const courseImages = [
 ];
 
 const courseNames = [
+  "Growth Barber",
   "Master Fade",
   "Cutting Mastery",
   "Colorimetría",
@@ -21,6 +23,7 @@ const courseNames = [
 ];
 
 const courseRatings = [
+  { score: 4.8, count: 3782 },
   { score: 4.9, count: 3782 },
   { score: 4.8, count: 3560 },
   { score: 4.7, count: 2945 },
