@@ -190,7 +190,7 @@ const LandingPage = () => {
             </h3>
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="https://i.pinimg.com/736x/f7/db/3e/f7db3e32869dc4210e1f147bc4ba9865.jpg"
+                src="https://i.pinimg.com/736x/e0/6e/6a/e06e6a09b9c8f1df6e2567e2f56c9f5c.jpg"
                 alt="Haircuts"
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-64 object-cover"
               />
@@ -218,7 +218,7 @@ const LandingPage = () => {
             </h3>
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="https://i.ibb.co/ymKCq0r0/unnamed-1.jpg"
+                src="https://i.pinimg.com/736x/dd/19/68/dd1968a0365947ea669bf4f7a8a86145.jpg"
                 alt="Beard Grooming"
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-64 object-cover"
               />
@@ -256,13 +256,13 @@ const LandingPage = () => {
           <div className="backdrop-blur-sm bg-black/40 p-6 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl border border-yellow-500/20">
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="https://i.pinimg.com/736x/e0/6e/6a/e06e6a09b9c8f1df6e2567e2f56c9f5c.jpg"
+                 src="https://i.ibb.co/pjNpBRhC/121d7503-d099-4fcc-b2d1-3ff98fbc43a4.jpg"
                 alt="Resultado 1"
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-72 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <p className="p-4 text-white font-medium">
-                  Moderno y elegante para destacar.
+                  Moderno para destacar.
                 </p>
               </div>
               <p className="absolute top-3 right-3 bg-yellow-500 text-black px-4 py-1 font-bold text-lg rounded-md shadow-md">
@@ -275,7 +275,8 @@ const LandingPage = () => {
           <div className="backdrop-blur-sm bg-black/40 p-6 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl border border-yellow-500/20">
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="https://i.pinimg.com/736x/dd/19/68/dd1968a0365947ea669bf4f7a8a86145.jpg"
+              src="https://i.ibb.co/wrxyScXm/b73504ef-08ea-40b1-bf17-65272aa9b266.jpg"
+               
                 alt="Resultado 2"
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-72 object-cover"
               />
@@ -294,7 +295,7 @@ const LandingPage = () => {
           <div className="backdrop-blur-sm bg-black/40 p-6 rounded-lg shadow-xl transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl border border-yellow-500/20">
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="https://i.pinimg.com/736x/73/b0/52/73b0528e014c9b3264c72b49a66200fa.jpg"
+                src="https://i.ibb.co/35XJTW0g/29de580f-1340-43b0-b1a8-48142732f06f.jpg"
                 alt="Resultado 3"
                 className="transition-transform duration-500 transform hover:scale-105 rounded-lg w-full h-72 object-cover"
               />
