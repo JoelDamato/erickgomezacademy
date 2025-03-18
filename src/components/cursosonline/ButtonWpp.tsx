@@ -11,6 +11,7 @@ interface ButtonWppProps {
   const phoneNumber = "+59891640623"; 
 
   const courseNames = [
+    "Growth Barber",
     "Master Fade",
     "Cutting Mastery",
     "Colorimetría",
