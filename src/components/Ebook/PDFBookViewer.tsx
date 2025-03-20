@@ -23,6 +23,10 @@ const PDFBookViewer: React.FC<RemovePartsDefaultToolbarExampleProps> = ({
     ...slot,
     Download: () => <></>,
     Print: () => <></>,
+    OpenMenuItem: () => <></>,
+    PrintMenuItem: () => <></>,
+    DownloadMenuItem: () => <></>,
+    SwitchThemeMenuItem:()=><></>
   });
 
   return (
@@ -38,13 +42,14 @@ const PDFBookViewer: React.FC<RemovePartsDefaultToolbarExampleProps> = ({
       <div
         style={{
           alignItems: "center",
-          backgroundColor: "#eeeeee",
+          backgroundColor: "#d1d1d1",
+          color: "white",
           borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
           display: "flex",
           padding: "0.25rem",
         }}
       >
-        <Toolbar>{renderDefaultToolbar(transform)}</Toolbar>
+        <Toolbar >{renderDefaultToolbar(transform)}</Toolbar>
       </div>
       <div
         style={{
@@ -52,7 +57,7 @@ const PDFBookViewer: React.FC<RemovePartsDefaultToolbarExampleProps> = ({
           overflow: "hidden",
         }}
       >
-        <Viewer fileUrl={fileUrl} theme='dark'  plugins={[toolbarPluginInstance, themePluginInstance]} />
+        <Viewer fileUrl={fileUrl} theme='dark' plugins={[toolbarPluginInstance, themePluginInstance]} />
       </div>
     </div>
   );
