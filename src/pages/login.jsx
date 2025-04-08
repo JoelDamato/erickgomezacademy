@@ -1,76 +1,76 @@
-import '../App.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import "../App.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
 
   const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
-      ? 'https://back-cursos.onrender.com'
-      : 'http://localhost:5000';
+    process.env.NODE_ENV === "production"
+      ? "https://back-cursos.onrender.com"
+      : "http://localhost:5000";
 
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('');
-        setSuccessMessage('');
-    
-     
-    
-        
-    
-        // Validar confirmación de contraseña en registro
-        if (!isLogin && password !== confirmPassword) {
-          setError('Las contraseñas no coinciden.');
-          return;
-        }
-    
-        setIsLoading(true);
-    
-        try {
-          const endpoint = isLogin ? '/api/auth/login' : '/api/create/register';
-          const payload = isLogin
-            ? { email: email.toLowerCase(), password }
-            : { nombre, email: email.toLowerCase(), password, rol: 'user' };
-    
-          const response = await axios.post(`${API_BASE_URL}${endpoint}`, payload);
-    
-          if (response.status === 201) {
-            // Registro exitoso
-            setSuccessMessage('Cuenta creada exitosamente. ¡Ahora puedes iniciar sesión!');
-            setNombre('');
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-            setIsLogin(true); // Cambia al formulario de inicio de sesión
-          } else if (response.status === 200) {
-            // Login exitoso
-            const { token } = response.data;
-            localStorage.setItem('token', token);
-            localStorage.setItem('email', email.toLowerCase())
-            console.log('Respuesta completa del backend:', response.data);
-            
-    
-            navigate('/Dashboard');
-          }
-        } catch (err) {
-          setError(err.response?.data?.message || 'Error en el proceso. Intenta nuevamente.');
-        } finally {
-          setIsLoading(false);
-        }
-      };
-    
-  
+  // const API_BASE_URL = 'https://back-cursos.onrender.com'
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
+
+    // Validar confirmación de contraseña en registro
+    if (!isLogin && password !== confirmPassword) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const endpoint = isLogin ? "/api/auth/login" : "/api/create/register";
+      const payload = isLogin
+        ? { email: email.toLowerCase(), password }
+        : { nombre, email: email.toLowerCase(), password, rol: "user" };
+
+      const response = await axios.post(`${API_BASE_URL}${endpoint}`, payload);
+
+      if (response.status === 201) {
+        // Registro exitoso
+        setSuccessMessage(
+          "Cuenta creada exitosamente. ¡Ahora puedes iniciar sesión!"
+        );
+        setNombre("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setIsLogin(true); // Cambia al formulario de inicio de sesión
+      } else if (response.status === 200) {
+        // Login exitoso
+        const { token } = response.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("email", email.toLowerCase());
+        console.log("Respuesta completa del backend:", response.data);
+
+        navigate("/Dashboard");
+      }
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Error en el proceso. Intenta nuevamente."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const phoneNumber = "+59891640623"; // Reemplaza con tu número de WhatsApp en formato internacional
   const message = "Hola, tengo una consulta!."; // Mensaje predefinido opcional
 
@@ -81,14 +81,12 @@ function Home() {
   return (
     <div
       className="w-screen min-h-screen pb-5 flex flex-col items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('https://i.ibb.co/tJR6Gcz/FONDO-BARBER.jpg')" }}
+      style={{
+        backgroundImage: "url('https://i.ibb.co/tJR6Gcz/FONDO-BARBER.jpg')",
+      }}
     >
       {/* Logo */}
-      <img
-        src="/erickgomez.png"
-        alt="Logo"
-        className="w-full sm:w-1/4 "
-      />
+      <img src="/erickgomez.png" alt="Logo" className="w-full sm:w-1/4 " />
       <a
         href={whatsappLink}
         target="_blank"
@@ -111,23 +109,20 @@ function Home() {
           zIndex: 1000,
         }}
       >
-     <img
-  src="/soporte.png"
-  alt="Logo"
-  className="w-8 sm:w-13"
-/>
-
+        <img src="/soporte.png" alt="Logo" className="w-8 sm:w-13" />
         Soporte
       </a>
 
       {/* Formulario */}
       <div className="bg-black/70 p-8 rounded-lg shadow-lg w-11/12 sm:w-1/2">
         <h1 className="text-white text-4xl mb-6 text-center font-bold">
-          {isLogin ? 'Iniciar Sesión' : 'Crear Cuenta'}
+          {isLogin ? "Iniciar Sesión" : "Crear Cuenta"}
         </h1>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        {successMessage && <p className="text-green-500 text-center mb-4">{successMessage}</p>}
+        {successMessage && (
+          <p className="text-green-500 text-center mb-4">{successMessage}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* Nombre: Solo en Registro */}
@@ -174,7 +169,9 @@ function Home() {
           {/* Confirmar Contraseña */}
           {!isLogin && (
             <div>
-              <label className="block text-white mb-1">Repetir Contraseña</label>
+              <label className="block text-white mb-1">
+                Repetir Contraseña
+              </label>
               <input
                 type="password"
                 value={confirmPassword}
@@ -190,7 +187,7 @@ function Home() {
           <button
             type="submit"
             className={`${
-              isLoading ? 'bg-gray-600' : 'bg-blue-600 hover:bg-blue-800'
+              isLoading ? "bg-gray-600" : "bg-blue-600 hover:bg-blue-800"
             } text-white font-bold py-3 rounded-lg flex justify-center items-center`}
             disabled={isLoading}
           >
@@ -216,24 +213,24 @@ function Home() {
                 ></path>
               </svg>
             ) : isLogin ? (
-              'Iniciar Sesión'
+              "Iniciar Sesión"
             ) : (
-              'Registrarse'
+              "Registrarse"
             )}
           </button>
         </form>
 
         <p className="text-white mt-4 text-center">
-          {isLogin ? '¿No tienes cuenta?' : '¿Ya tienes una cuenta?'}{' '}
+          {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes una cuenta?"}{" "}
           <span
             className="text-blue-400 underline cursor-pointer"
             onClick={() => {
-              setError('');
-              setSuccessMessage('');
+              setError("");
+              setSuccessMessage("");
               setIsLogin(!isLogin);
             }}
           >
-            {isLogin ? 'Crear Cuenta' : 'Iniciar Sesión'}
+            {isLogin ? "Crear Cuenta" : "Iniciar Sesión"}
           </span>
         </p>
       </div>
