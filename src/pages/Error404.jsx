@@ -12,7 +12,7 @@ export default function Error404() {
             Esta silla está vacía...
           </h2>
           <p className="text-gray-300 mt-2 text-sm md:text-base">
-            Lo que buscás no está acá. Pero siempre podés volver al estilo.
+            Acá no hay fades, ni degradados... solo vacío.
           </p>
           <Link
             to="/"
