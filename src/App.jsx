@@ -53,8 +53,8 @@ function App() {
         <Route path="/Metricas" element={<><Metricas /></>} />
         <Route path="/colorimetria" element={<><Colorimetria/></>} />
         <Route path="/Politicarembolso" element={<><Politicaderembolso/></>} />
-        <Route path="/Error" element={<><Error404/></>} />
-
+        {/* <Route path="/Error" element={<><Error404/></>} /> */}
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
   );
