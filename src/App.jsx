@@ -23,7 +23,7 @@ import Coco  from './landinpage/Coco.jsx';
 import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
-import Error404 from './pages/Error404.jsx'
+import Error404 from './pages/error404.jsx'
 
 function App() {
   return (
@@ -53,8 +53,7 @@ function App() {
         <Route path="/Metricas" element={<><Metricas /></>} />
         <Route path="/colorimetria" element={<><Colorimetria/></>} />
         <Route path="/Politicarembolso" element={<><Politicaderembolso/></>} />
-        <Route path="/Error" element={<><Error404/></>} />
-
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
   );
