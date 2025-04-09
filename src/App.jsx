@@ -35,7 +35,7 @@ function App() {
         <Route path="/Login" element={<><Login /></>} />
         <Route path="/Dashboard" element={<><Dashboard /></>} />
         <Route path="/PanelControl" element={<><PanelControl /></>} />
-        <Route path="/:cursoId" element={<><Cursos /></>} />
+        <Route path="/cursos/:cursoId" element={<><Cursos /></>} />
         <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<><Capitulos /></>} />
         <Route path="/Certificados" element={<><Certificados /></>} />
         <Route path="/Certificadoscuty" element={<><Certificadoscuty /></>} />
