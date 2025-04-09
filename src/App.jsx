@@ -23,7 +23,7 @@ import Coco  from './landinpage/Coco.jsx';
 import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
-import Error404 from './pages/error404.jsx'
+import Error404 from './pages/Error404.jsx'
 
 function App() {
   return (
