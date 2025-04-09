@@ -45,7 +45,7 @@ export default Error404;
 //         </h2>
 //         <p className="text-gray-300 mt-2">
 //           La página que estás buscando no existe o fue movida.
-//         </p>
+//         </p>git
 //         <Link
 //           to="/"
 //           className="inline-block mt-6 px-6 py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#1a1a1a] transition rounded-lg"
