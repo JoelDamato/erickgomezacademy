@@ -260,7 +260,7 @@ function Dashboard() {
 
                 {hasCourse(course.courseTitle) ? (
                   <button
-                    onClick={() => navigate(`/${sanitizeCourseTitle(course.courseTitle)}`)}
+                    onClick={() => navigate(`/cursos/${sanitizeCourseTitle(course.courseTitle)}`)}
                     className="bg-black text-white py-2 px-4 rounded-lg hover:bg-black/90 transition"
                   >
                     Ver Curso
