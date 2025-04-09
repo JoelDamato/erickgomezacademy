@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Error404() {
+ function Error404() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center px-6 py-12">
       <div className="w-full flex items-center justify-center">
@@ -25,6 +25,7 @@ export default function Error404() {
     </div>
   );
 }
+export default Error404;
 
 // // src/pages/Error404.jsx
 
