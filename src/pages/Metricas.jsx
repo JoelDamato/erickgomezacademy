@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Users, BookOpen, UserCheck, Clock, Ticket } from "lucide-react"
 import axios from "axios"
 import Navbar from "../components/Navbar"
+import Clicks from "../components/Clicks"
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#FF69B4", "#4BC0C0", "#36A2EB"]
 
@@ -117,6 +118,8 @@ const Metricas = () => {
   return (
     <>
       <Navbar />
+       <Clicks />
+
       <div className="bg-gray-100 p-6 w-full min-h-screen">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard de Métricas</h1>
 
