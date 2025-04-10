@@ -1,43 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 
 const API_BASE_URL = import.meta.env.PROD
   ? "https://back-cursos.onrender.com"
   : "http://localhost:5000"
 
-const agruparClicks = (data, modo, cursoSeleccionado) => {
-  const agrupado = {}
-
-  data.forEach((item) => {
-    if (cursoSeleccionado !== "todos" && item.curso !== cursoSeleccionado) return
-
-    const fecha = new Date(item.fecha)
-    let key = ""
-
-    if (modo === "dia") {
-      key = fecha.toISOString().split("T")[0]
-    } else if (modo === "semana") {
-      key = `Semana ${getWeekNumber(fecha)}`
-    } else if (modo === "mes") {
-      key = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).toString().padStart(2, "0")}`
-    }
-
-    if (!agrupado[key]) agrupado[key] = {}
-    agrupado[key][item.curso] = (agrupado[key][item.curso] || 0) + 1
-  })
-
-  return agrupado
-}
-
-function getWeekNumber(date) {
-  const firstDay = new Date(date.getFullYear(), 0, 1)
-  const pastDaysOfYear = (date - firstDay) / 86400000
-  return Math.ceil((pastDaysOfYear + firstDay.getDay() + 1) / 7)
-}
-
-export default function ClicksDeCompra() {
+export default function ClicksDashboard() {
   const [clicks, setClicks] = useState([])
-  const [modoAgrupacion, setModoAgrupacion] = useState("dia")
-  const [cursoSeleccionado, setCursoSeleccionado] = useState("todos")
+  const [tab, setTab] = useState("dia")
+  const [fechaDesde, setFechaDesde] = useState("")
+  const [fechaHasta, setFechaHasta] = useState("")
+  const [semanaSeleccionada, setSemanaSeleccionada] = useState("")
 
   useEffect(() => {
     const fetchClicks = async () => {
@@ -52,61 +24,149 @@ export default function ClicksDeCompra() {
     fetchClicks()
   }, [])
 
+  const agruparPor = (modo) => {
+    const agrupado = {}
+    clicks.forEach((item) => {
+      const fecha = new Date(item.fecha)
+      let key = ""
+
+      if (modo === "mes") {
+        key = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).toString().padStart(2, "0")}`
+      } else if (modo === "semana") {
+        const oneJan = new Date(fecha.getFullYear(), 0, 1)
+        const numberOfDays = Math.floor((fecha - oneJan) / (24 * 60 * 60 * 1000))
+        const week = Math.ceil((fecha.getDay() + 1 + numberOfDays) / 7)
+        key = `${fecha.getFullYear()}-W${week.toString().padStart(2, "0")}`
+      } else {
+        key = fecha.toISOString().split("T")[0]
+      }
+
+      if (!agrupado[key]) agrupado[key] = {}
+      agrupado[key][item.curso] = (agrupado[key][item.curso] || 0) + 1
+    })
+    return agrupado
+  }
+
   const cursosUnicos = Array.from(new Set(clicks.map((c) => c.curso)))
-  const agrupado = agruparClicks(clicks, modoAgrupacion, cursoSeleccionado)
+  const agrupadoPorDia = agruparPor("dia")
+  const agrupadoPorSemana = agruparPor("semana")
+  const agrupadoPorMes = agruparPor("mes")
+
+  const filtrarPorRango = (agrupado) => {
+    return Object.entries(agrupado).filter(([fecha]) => {
+      return (!fechaDesde || fecha >= fechaDesde) && (!fechaHasta || fecha <= fechaHasta)
+    })
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <div className="flex flex-wrap gap-4 justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Clicks de Compra</h2>
-        <div className="flex gap-4">
-          <select
-            value={modoAgrupacion}
-            onChange={(e) => setModoAgrupacion(e.target.value)}
-            className="border border-gray-300 rounded-md p-2"
-          >
-            <option value="dia">Por Día</option>
-            <option value="semana">Por Semana</option>
-            <option value="mes">Por Mes</option>
-          </select>
-
-          <select
-            value={cursoSeleccionado}
-            onChange={(e) => setCursoSeleccionado(e.target.value)}
-            className="border border-gray-300 rounded-md p-2"
-          >
-            <option value="todos">Todos los cursos</option>
-            {cursosUnicos.map((curso, idx) => (
-              <option key={idx} value={curso}>{curso}</option>
-            ))}
-          </select>
-        </div>
+      <div className="flex gap-2 mb-6">
+        <button
+          onClick={() => setTab("dia")}
+          className={`px-4 py-2 rounded ${tab === "dia" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+        >
+          Por Día
+        </button>
+        <button
+          onClick={() => setTab("semana")}
+          className={`px-4 py-2 rounded ${tab === "semana" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+        >
+          Por Semana
+        </button>
+        <button
+          onClick={() => setTab("mes")}
+          className={`px-4 py-2 rounded ${tab === "mes" ? "bg-blue-600 text-white" : "bg-gray-200"}`}
+        >
+          Por Mes
+        </button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border border-gray-200">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="px-4 py-2 border">Periodo</th>
-              {(cursoSeleccionado === "todos" ? cursosUnicos : [cursoSeleccionado]).map((curso, idx) => (
-                <th key={idx} className="px-4 py-2 border">{curso}</th>
+      {tab === "dia" && (
+        <div>
+          <h2 className="text-lg font-bold mb-2">Clicks por Día</h2>
+          <div className="flex gap-4 mb-4">
+            <input
+              type="date"
+              value={fechaDesde}
+              onChange={(e) => setFechaDesde(e.target.value)}
+              className="border p-2 rounded"
+            />
+            <input
+              type="date"
+              value={fechaHasta}
+              onChange={(e) => setFechaHasta(e.target.value)}
+              className="border p-2 rounded"
+            />
+          </div>
+          <TablaDatos
+            datos={filtrarPorRango(agrupadoPorDia)}
+            cursos={cursosUnicos}
+            encabezado="Fecha"
+          />
+        </div>
+      )}
+
+      {tab === "semana" && (
+        <div>
+          <h2 className="text-lg font-bold mb-2">Clicks por Semana</h2>
+          <div className="mb-4">
+            <label className="mr-2">Seleccionar semana:</label>
+            <select
+              value={semanaSeleccionada}
+              onChange={(e) => setSemanaSeleccionada(e.target.value)}
+              className="border p-2 rounded"
+            >
+              <option value="">Todas</option>
+              {Object.keys(agrupadoPorSemana).map((s, idx) => (
+                <option key={idx} value={s}>{s}</option>
+              ))}
+            </select>
+          </div>
+          <TablaDatos
+            datos={semanaSeleccionada ? [[semanaSeleccionada, agrupadoPorSemana[semanaSeleccionada]]] : Object.entries(agrupadoPorSemana)}
+            cursos={cursosUnicos}
+            encabezado="Semana"
+          />
+        </div>
+      )}
+
+      {tab === "mes" && (
+        <div>
+          <h2 className="text-lg font-bold mb-2">Clicks por Mes</h2>
+          <TablaDatos
+            datos={Object.entries(agrupadoPorMes)}
+            cursos={cursosUnicos}
+            encabezado="Mes"
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+function TablaDatos({ datos, cursos, encabezado }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full table-auto border border-gray-200">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="px-4 py-2 border">{encabezado}</th>
+            {cursos.map((curso, idx) => (
+              <th key={idx} className="px-4 py-2 border">{curso}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {datos.map(([fecha, clicks], i) => (
+            <tr key={i} className="text-center">
+              <td className="px-4 py-2 border font-medium">{fecha}</td>
+              {cursos.map((curso, idx) => (
+                <td key={idx} className="px-4 py-2 border">{clicks?.[curso] || 0}</td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {Object.entries(agrupado).map(([periodo, data], i) => (
-              <tr key={i} className="text-center">
-                <td className="px-4 py-2 border">{periodo}</td>
-                {(cursoSeleccionado === "todos" ? cursosUnicos : [cursoSeleccionado]).map((curso, idx) => (
-                  <td key={idx} className="px-4 py-2 border">
-                    {data[curso] || 0}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
