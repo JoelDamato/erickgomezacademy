@@ -6,6 +6,7 @@ import { Users, BookOpen, UserCheck, Clock, Ticket } from "lucide-react"
 import axios from "axios"
 import Navbar from "../components/Navbar"
 import Clicks from "../components/Clicks"
+import MetricasAds from "../components/MetaAds"
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#FF69B4", "#4BC0C0", "#36A2EB"]
 
@@ -20,6 +21,7 @@ const Metricas = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mostrarMetricas, setMostrarMetricas] = useState(false);
 
   // Determinar la URL base en función del entorno
   const API_BASE_URL =
@@ -118,7 +120,25 @@ const Metricas = () => {
   return (
     <>
       <Navbar />
-       <Clicks />
+       
+      <Clicks />
+
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setMostrarMetricas(!mostrarMetricas)}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
+          {mostrarMetricas ? "Ocultar Meta ADS" : "Ver Meta ADS"}
+        </button>
+      </div>
+
+      {mostrarMetricas && (
+        <div className="mt-6">
+          <MetricasAds />
+        </div>
+      )}
+    
+       
 
       <div className="bg-gray-100 p-6 w-full min-h-screen">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard de Métricas</h1>
