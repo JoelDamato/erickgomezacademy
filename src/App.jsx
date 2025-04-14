@@ -30,37 +30,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<><Home /></>} />
-        <Route path="/Cursosonline" element={<><Cursosonline/></>} />
-        <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
-        <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
-        <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
-        <Route path="/setter" element={<><CursosonlineRefactor/></>} />
-        <Route path="/ads" element={<><CursosonlineRefactor/></>} />
-        <Route path="/Login" element={<><Login /></>} />
-        <Route path="/Dashboard" element={<><Dashboard /></>} />
-        <Route path="/PanelControl" element={<><PanelControl /></>} />
-        <Route path="/cursos/:cursoId" element={<><Cursos /></>} />
-        <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<><Capitulos /></>} />
-        <Route path="/Certificados" element={<><Certificados /></>} />
-        <Route path="/Certificadoscuty" element={<><Certificadoscuty /></>} />
-        <Route path="/Perfil" element={<><Perfil /></>} />
-        <Route path="/Regalo" element={<><Regalo /></>} />
-        <Route path="/Curses" element={<><Curses /></>} />
-        <Route path="/landing" element={<><EjemploLanding /></>} />
-        <Route path="/homee" element={<><HM /></>} />
-        <Route path="/landingbarberos" element={<><Landingbarberos /></>} />
-        <Route path="/luisferbarbershop" element={<><Luisfer /></>} />
-        <Route path="/Stambarber" element={<><Stam /></>} />
-        <Route path="/Sdstudio" element={<><Sdstudio /></>} />
-        <Route path="/Celinbarber" element={<><Celin /></>} />
-        <Route path="/Coco" element={<><Coco/></>} />
-        <Route path="/Metricas" element={<><Metricas /></>} />
-        <Route path="/colorimetria" element={<><Colorimetria/></>} />
-        <Route path="/Politicarembolso" element={<><Politicaderembolso/></>} />
-        <Route path="*" element={<Error404 />} /> */}
          {/* PÚBLICAS */}
-         <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Cursosonline" element={<Cursosonline />} />
         <Route path="/Cursosonline2" element={<CursosonlineRefactor />} />
         <Route path="/Login" element={<Login />} />
@@ -69,7 +40,7 @@ function App() {
         <Route path="/setter" element={<><CursosonlineRefactor/></>} />
         <Route path="/ads" element={<><CursosonlineRefactor/></>} />
 
-         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/PanelControl" element={<PrivateRoute><PanelControl /></PrivateRoute>} />
         <Route path="/cursos/:cursoId" element={<PrivateRoute><Cursos /></PrivateRoute>} />
         <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<PrivateRoute><Capitulos /></PrivateRoute>} />
