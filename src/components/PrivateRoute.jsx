@@ -1,8 +1,7 @@
-// src/components/PrivateRoute.jsx
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem("user"); // o usá contexto, Redux, etc.
+  const isAuthenticated = localStorage.getItem("user"); 
   
   return isAuthenticated ? children : <Navigate to="/" />;
 };
