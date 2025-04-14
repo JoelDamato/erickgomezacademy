@@ -1,6 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import ButtonWpp from "./ButtonWpp";
+import { useLocation } from "react-router-dom";
+import ButtonWpp1 from "./ButtonWpp1";
+import ButtonWpp2 from "./ButtonWpp2";
+import ButtonWpp3 from "./ButtonWpp3";
+import ButtonWpp4 from "./ButtonWpp4";
+
 
 const courseImages = [
   "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
@@ -38,9 +44,21 @@ export default function Steps() {
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const location = useLocation();
 
+  const getButtonComponent = (inx, width = "") => {
+    const buttons = {
+      "/biografia": ButtonWpp1,
+      "/setter": ButtonWpp2,
+      "/instagram": ButtonWpp3,
+      "/ads": ButtonWpp4,
+    };
 
+    const ButtonComponent = buttons[location.pathname] || ButtonWpp;
+    return <ButtonComponent inx={inx} width={width} />;
+  };
 
+console.log(location, 'location')
   const getVisibleCards = () => {
     const cards: {
       image: string;
@@ -97,6 +115,7 @@ export default function Steps() {
   const closeModal = () => {
     setIsModalOpen(false)
   }
+  
   // Update featured course when current course changes
   useEffect(() => {
     setFeaturedCourseIndex((currentCourseIndex + 1) % courseImages.length);
@@ -213,7 +232,7 @@ export default function Steps() {
                 {courseRatings[index].count.toLocaleString()} calificaciones
               </span>
             </div>
-           <ButtonWpp inx={index}/>
+           {getButtonComponent(index)}
           </div>
         ))}
       </div>
@@ -231,7 +250,7 @@ export default function Steps() {
             calificaciones
           </span>
         </div>
-        <ButtonWpp inx={featuredCourseIndex} width="w-full md:w-1/2" />
+        {getButtonComponent(featuredCourseIndex, "w-full md:w-1/2")}
         <p className="text-white text-sm p-2 text-center">
           {" "}
           Vas a ser redirigido a mi WhatsApp Oficial para hablar conmigo o
@@ -268,7 +287,7 @@ export default function Steps() {
                   {courseRatings[selectedCourseIndex].count.toLocaleString()} calificaciones
                 </span>
               </div>
-            <ButtonWpp inx={selectedCourseIndex} width="w-full md:w-1/2" />
+              {getButtonComponent(selectedCourseIndex, "w-full md:w-1/2")}
             </div>
           </div>
         </div>

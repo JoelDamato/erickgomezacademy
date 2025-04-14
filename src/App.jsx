@@ -32,6 +32,10 @@ function App() {
         <Route path="/" element={<><Home /></>} />
         <Route path="/Cursosonline" element={<><Cursosonline/></>} />
         <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
+        <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
+        <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
+        <Route path="/setter" element={<><CursosonlineRefactor/></>} />
+        <Route path="/ads" element={<><CursosonlineRefactor/></>} />
         <Route path="/Login" element={<><Login /></>} />
         <Route path="/Dashboard" element={<><Dashboard /></>} />
         <Route path="/PanelControl" element={<><PanelControl /></>} />
