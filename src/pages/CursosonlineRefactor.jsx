@@ -3,6 +3,8 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { X } from "lucide-react"
 
+const API_BASE_URL = import.meta.env.PROD ? "https://back-cursos.onrender.com" : "http://localhost:5000"
+
 export default function BarberAcademy() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0)
@@ -30,6 +32,26 @@ export default function BarberAcademy() {
   const getWhatsAppLink = (index) => {
     const message = `Hola, estoy interesado en el curso "${courseNames[index]}". ¿Podrías darme más información?`
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  }
+
+  const handleClick = async (index) => {
+    try {
+      await fetch(`${API_BASE_URL}/api/clicks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          proyecto: "Erick Gómez",
+          curso: courseNames[index],
+          fecha: new Date().toISOString(),
+        }),
+      })
+    } catch (error) {
+      console.error("Error al registrar click:", error)
+    }
+
+    window.open(getWhatsAppLink(index), "_blank")
   }
 
   const openModal = (index) => {
@@ -129,10 +151,11 @@ export default function BarberAcademy() {
                         </span>
                       </div>
 
-                      <motion.a
-                        href={getWhatsAppLink(index)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <motion.button
+                        onClick={(e) => {
+                          e.stopPropagation() // Prevent modal from opening
+                          handleClick(index)
+                        }}
                         className="w-full text-center mt-4 bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center"
                         animate={{
                           y: [0, -3, 0],
@@ -160,7 +183,7 @@ export default function BarberAcademy() {
                           />
                         </svg>
                         Obtener vía WhatsApp
-                      </motion.a>
+                      </motion.button>
                     </div>
                   </div>
                 </div>
@@ -200,10 +223,8 @@ export default function BarberAcademy() {
                 </span>
               </div>
 
-              <motion.a
-                href={getWhatsAppLink(selectedCourseIndex)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => handleClick(selectedCourseIndex)}
                 className="w-full text-center max-w-md bg-red-600 hover:bg-red-700 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
                 animate={{
                   y: [0, -5, 0],
@@ -231,7 +252,7 @@ export default function BarberAcademy() {
                   />
                 </svg>
                 Obtener entrenamiento vía WhatsApp
-              </motion.a>
+              </motion.button>
             </div>
           </div>
         </div>
