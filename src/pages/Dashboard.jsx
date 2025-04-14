@@ -130,7 +130,6 @@ function Dashboard() {
         toggleMenu={toggleMenu}
         isMenuOpen={isMenuOpen}
       />
-
       <a
         href={whatsappLink}
         target="_blank"
