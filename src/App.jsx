@@ -24,12 +24,13 @@ import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Home /></>} />
+        {/* <Route path="/" element={<><Home /></>} />
         <Route path="/Cursosonline" element={<><Cursosonline/></>} />
         <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
         <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
@@ -57,6 +58,39 @@ function App() {
         <Route path="/Metricas" element={<><Metricas /></>} />
         <Route path="/colorimetria" element={<><Colorimetria/></>} />
         <Route path="/Politicarembolso" element={<><Politicaderembolso/></>} />
+        <Route path="*" element={<Error404 />} /> */}
+         {/* PÚBLICAS */}
+         <Route path="/" element={<Home />} />
+        <Route path="/Cursosonline" element={<Cursosonline />} />
+        <Route path="/Cursosonline2" element={<CursosonlineRefactor />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
+        <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
+        <Route path="/setter" element={<><CursosonlineRefactor/></>} />
+        <Route path="/ads" element={<><CursosonlineRefactor/></>} />
+
+         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/PanelControl" element={<PrivateRoute><PanelControl /></PrivateRoute>} />
+        <Route path="/cursos/:cursoId" element={<PrivateRoute><Cursos /></PrivateRoute>} />
+        <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<PrivateRoute><Capitulos /></PrivateRoute>} />
+        <Route path="/Certificados" element={<PrivateRoute><Certificados /></PrivateRoute>} />
+        <Route path="/Certificadoscuty" element={<PrivateRoute><Certificadoscuty /></PrivateRoute>} />
+        <Route path="/Perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
+        <Route path="/Regalo" element={<PrivateRoute><Regalo /></PrivateRoute>} />
+        <Route path="/Curses" element={<PrivateRoute><Curses /></PrivateRoute>} />
+        <Route path="/landing" element={<PrivateRoute><EjemploLanding /></PrivateRoute>} />
+        <Route path="/homee" element={<PrivateRoute><HM /></PrivateRoute>} />
+        <Route path="/landingbarberos" element={<PrivateRoute><Landingbarberos /></PrivateRoute>} />
+        <Route path="/luisferbarbershop" element={<PrivateRoute><Luisfer /></PrivateRoute>} />
+        <Route path="/Stambarber" element={<PrivateRoute><Stam /></PrivateRoute>} />
+        <Route path="/Sdstudio" element={<PrivateRoute><Sdstudio /></PrivateRoute>} />
+        <Route path="/Celinbarber" element={<PrivateRoute><Celin /></PrivateRoute>} />
+        <Route path="/Coco" element={<PrivateRoute><Coco /></PrivateRoute>} />
+        <Route path="/Metricas" element={<PrivateRoute><Metricas /></PrivateRoute>} />
+        <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
+        <Route path="/Politicarembolso" element={<PrivateRoute><Politicaderembolso /></PrivateRoute>} />
+
+        {/* 404 */}
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
