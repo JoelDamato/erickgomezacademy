@@ -13,6 +13,10 @@ export default function ButtonWpp({ inx, width = "80%" }: ButtonWppProps) {
     "Growth Barber",
     "Master Fade",
     "Cutting Mastery",
+    "Colorimetría",
+    "Barber Cash",
+    "Agendas Ilimitadas",
+    "Focus",
   ];
 
   // 🔁 URL del backend según entorno

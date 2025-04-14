@@ -12,12 +12,20 @@ const courseImages = [
   "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
   "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
   "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
+  "https://i.ibb.co/ymf4c9b2/Tarjeta-Colorimetria.png",
+  "https://i.ibb.co/MxMJGhVx/Tarjeta-Barber-Cash.png",
+  "https://i.ibb.co/tTff7Kh2/Tarjeta-Agendas-Ilimitadas.png",
+  "https://i.ibb.co/JWKGtLrr/Tarjeta-Focus.png",
 ];
 
 const courseNames = [
   "Growth Barber",
   "Master Fade",
   "Cutting Mastery",
+  "Colorimetría",
+  "Barber Cash",
+  "Agendas Ilimitadas",
+  "Focus",
 ];
 
 const courseRatings = [
