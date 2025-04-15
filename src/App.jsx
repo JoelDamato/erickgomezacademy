@@ -24,7 +24,10 @@ import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
-
+import CursosonlineYoutube from './pages/CursosonlineYoutube.jsx';
+import CursosonlineTiktok from './pages/CursosonlineTiktok.jsx';
+import CursosonlinePerfil from './pages/CursosonlinePerfil.jsx';
+import CursosonlineHistoria from './pages/CursosonlineHistoria.jsx';
 
 
 function App() {
@@ -35,10 +38,10 @@ function App() {
         <Route path="/" element={<><Home /></>} />
         <Route path="/Cursosonline" element={<><Cursosonline/></>} />
         <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
-        <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
-        <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
-        <Route path="/setter" element={<><CursosonlineRefactor/></>} />
-        <Route path="/ads" element={<><CursosonlineRefactor/></>} />
+        <Route path="/youtube" element={<><CursosonlineYoutube/></>} />
+        <Route path="/tiktok" element={<><CursosonlineTiktok/></>} />
+        <Route path="/perfil" element={<><CursosonlinePerfil/></>} />
+        <Route path="/historia" element={<><CursosonlineHistoria/></>} />
         <Route path="/Login" element={<><Login /></>} />
         <Route path="/Dashboard" element={<><Dashboard /></>} />
         <Route path="/PanelControl" element={<><PanelControl /></>} />
