@@ -8,20 +8,15 @@ export default function BarberAcademy() {
   const [isOpen, setIsOpen] = useState(false);
 
   const courseImages = [
+    "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
     "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
     "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
-    "https://i.ibb.co/ymf4c9b2/Tarjeta-Colorimetria.png",
-    "https://i.ibb.co/MxMJGhVx/Tarjeta-Barber-Cash.png",
-    "https://i.ibb.co/tTff7Kh2/Tarjeta-Agendas-Ilimitadas.png",
-    "https://i.ibb.co/JWKGtLrr/Tarjeta-Focus.png",
+
   ]
   const courseNames = [
     "Master Fade",
     "Cutting Mastery",
-    "Colorimetría",
-    "Barber Cash",
-    "Agendas Ilimitadas",
-    "Focus"
+    "Growth Barber",
 ];
 
 const phoneNumber = "+59891640623" // Reemplaza con tu número de WhatsApp
