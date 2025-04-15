@@ -33,7 +33,6 @@ export default function BarberAcademy() {
     const message = `Hola, estoy interesado en el curso "${courseNames[index]}". ¿Podrías darme más información?`
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
   }
-
   const handleClick = async (index) => {
     try {
       await fetch(`${API_BASE_URL}/api/clicks`, {
@@ -51,7 +50,8 @@ export default function BarberAcademy() {
       console.error("Error al registrar click:", error)
     }
 
-    window.open(getWhatsAppLink(index), "_blank")
+    window.location.href = getWhatsAppLink(index)
+
   }
 
   const openModal = (index) => {
