@@ -41,7 +41,7 @@ export default function BarberAcademy() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          proyecto: "Erick Gómez",
+          proyecto: "Historia",
           curso: courseNames[index],
           fecha: new Date().toISOString(),
         }),
