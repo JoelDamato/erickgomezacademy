@@ -3,8 +3,6 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 export default function BarberAcademy() {
-  const bitlyComboLink = "https://bit.ly/combo-erick" // 🔁 Reemplazá con tu link real
-  const bitlyGrowthLink = "https://bit.ly/growth-barber" // 🔁 Reemplazá con tu link real
 
   const comboCourses = [
     {
