@@ -27,6 +27,7 @@ import Error404 from './pages/Error404.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
 
 function App() {
+
   return (
     <Router>
       <Routes>

@@ -10,6 +10,7 @@ export default function ClicksDashboard() {
   const [fechaDesde, setFechaDesde] = useState("")
   const [fechaHasta, setFechaHasta] = useState("")
   const [semanaSeleccionada, setSemanaSeleccionada] = useState("")
+  const [proyectoSeleccionado, setProyectoSeleccionado] = useState("")
 
   useEffect(() => {
     const fetchClicks = async () => {
@@ -24,9 +25,9 @@ export default function ClicksDashboard() {
     fetchClicks()
   }, [])
 
-  const agruparPor = (modo) => {
+  const agruparPor = (modo, datos) => {
     const agrupado = {}
-    clicks.forEach((item) => {
+    datos.forEach((item) => {
       const fecha = new Date(item.fecha)
       let key = ""
 
@@ -47,10 +48,16 @@ export default function ClicksDashboard() {
     return agrupado
   }
 
+  const proyectosUnicos = Array.from(new Set(clicks.map((c) => c.proyecto)))
   const cursosUnicos = Array.from(new Set(clicks.map((c) => c.curso)))
-  const agrupadoPorDia = agruparPor("dia")
-  const agrupadoPorSemana = agruparPor("semana")
-  const agrupadoPorMes = agruparPor("mes")
+
+  const clicksFiltrados = proyectoSeleccionado
+    ? clicks.filter((c) => c.proyecto === proyectoSeleccionado)
+    : clicks
+
+  const agrupadoPorDia = agruparPor("dia", clicksFiltrados)
+  const agrupadoPorSemana = agruparPor("semana", clicksFiltrados)
+  const agrupadoPorMes = agruparPor("mes", clicksFiltrados)
 
   const filtrarPorRango = (agrupado) => {
     return Object.entries(agrupado).filter(([fecha]) => {
@@ -60,6 +67,22 @@ export default function ClicksDashboard() {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
+      {/* Filtro de Proyecto */}
+      <div className="mb-6">
+        <label className="mr-2 font-semibold">Filtrar por proyecto:</label>
+        <select
+          value={proyectoSeleccionado}
+          onChange={(e) => setProyectoSeleccionado(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="">Todos</option>
+          {proyectosUnicos.map((p, idx) => (
+            <option key={idx} value={p}>{p}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Tabs */}
       <div className="flex gap-2 mb-6">
         <button
           onClick={() => setTab("dia")}
@@ -81,6 +104,7 @@ export default function ClicksDashboard() {
         </button>
       </div>
 
+      {/* Contenido por tab */}
       {tab === "dia" && (
         <div>
           <h2 className="text-lg font-bold mb-2">Clicks por Día</h2>
@@ -123,7 +147,11 @@ export default function ClicksDashboard() {
             </select>
           </div>
           <TablaDatos
-            datos={semanaSeleccionada ? [[semanaSeleccionada, agrupadoPorSemana[semanaSeleccionada]]] : Object.entries(agrupadoPorSemana)}
+            datos={
+              semanaSeleccionada
+                ? [[semanaSeleccionada, agrupadoPorSemana[semanaSeleccionada]]]
+                : Object.entries(agrupadoPorSemana)
+            }
             cursos={cursosUnicos}
             encabezado="Semana"
           />
