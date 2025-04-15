@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from "react";
 import Home from './pages/home.jsx';
 import Login from './pages/login.jsx';
 import Cursosonline from './pages/Cursosonline.jsx';
@@ -24,8 +25,15 @@ import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
+import clarity from "react-microsoft-clarity"
+
+
+
 
 function App() {
+  useEffect(() => {
+    clarity.init("r49vkhdmgo") // tu ID de Clarity
+  }, [])
   return (
     <Router>
       <Routes>
