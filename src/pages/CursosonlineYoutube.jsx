@@ -10,15 +10,16 @@ export default function BarberAcademy() {
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0)
 
   const courseImages = [
-    "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
     "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
     "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
+    "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
   ]
 
   const courseNames = [
-    "Growth Barber",
+   
     "Master Fade",
     "Cutting Mastery",
+    "Growth Barber",
   ]
 
   const courseRatings = [
