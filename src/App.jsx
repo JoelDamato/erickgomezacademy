@@ -40,7 +40,7 @@ function App() {
         <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
         <Route path="/youtube" element={<><CursosonlineYoutube/></>} />
         <Route path="/tiktok" element={<><CursosonlineTiktok/></>} />
-        <Route path="/perfil" element={<><CursosonlinePerfil/></>} />
+        <Route path="/perfilerick" element={<><CursosonlinePerfil/></>} />
         <Route path="/historia" element={<><CursosonlineHistoria/></>} />
         <Route path="/Login" element={<><Login /></>} />
         <Route path="/Dashboard" element={<><Dashboard /></>} />
