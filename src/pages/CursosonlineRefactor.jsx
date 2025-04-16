@@ -7,19 +7,19 @@ export default function BarberAcademy() {
   const comboCourses = [
     {
       name: "Master Fade",
-      image: "https://i.ibb.co/cSNDmbZF/Tarjeta-Master-Fade.png",
+      image: "/Tarjeta-Master-Fade.webp",
       rating: { score: 4.8, count: 3882 },
     },
     {
       name: "Cutting Mastery",
-      image: "https://i.ibb.co/8D8162hD/Tarjeta-Cutting-Mastery.png",
+      image: "/Tarjeta-Cutting-Mastery.webp",
       rating: { score: 4.9, count: 3782 },
     },
   ]
 
   const growthCourse = {
     name: "Growth Barber",
-    image: "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
+    image: "/Tarjeta-Growth-Barber-1.png",
     rating: { score: 4.8, count: 3560 },
   }
 
@@ -105,7 +105,7 @@ style={{ backgroundImage: "url('https://i.ibb.co/jk0MLcD8/fondo.png')" }}
               src={comboCourses[currentComboIndex].image}
               alt={comboCourses[currentComboIndex].name}
               className="w-full object-contain rounded-lg shadow-lg"
-                            loading="lazy"
+              loading="lazy"
             />
 
             <h3 className="text-xl font-bold text-center mt-4">
