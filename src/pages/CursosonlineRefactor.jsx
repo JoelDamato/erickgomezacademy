@@ -19,7 +19,7 @@ export default function BarberAcademy() {
 
   const growthCourse = {
     name: "Growth Barber",
-    image: "/Tarjeta-Growth-Barber-1.png",
+    image: "https://i.ibb.co/RGV9ZzVQ/Tarjeta-Growth-Barber-1.webp",
     rating: { score: 4.8, count: 3560 },
   }
 
