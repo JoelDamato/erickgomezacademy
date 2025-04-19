@@ -258,12 +258,22 @@ function Dashboard() {
                 <p className="text-white font-bold mb-4">{course.courseDescription}</p>
 
                 {hasCourse(course.courseTitle) ? (
+
+
                   <button
-                    onClick={() => navigate(`/cursos/${sanitizeCourseTitle(course.courseTitle)}`)}
+                  onClick={() =>
+                    navigate(
+                      course.courseTitle === "Colorimetria"
+                        ? "/colorimetria"
+                        : `/cursos/${sanitizeCourseTitle(course.courseTitle)}`
+                    )
+                  }
                     className="bg-black text-white py-2 px-4 rounded-lg hover:bg-black/90 transition"
                   >
                     Ver Curso
                   </button>
+
+
                 ) : (
                   <a
                     href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
