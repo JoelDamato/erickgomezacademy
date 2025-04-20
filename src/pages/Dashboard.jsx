@@ -219,27 +219,13 @@ function Dashboard() {
 
       <div className="h-auto w-full sm:w-11/12 rounded-xl sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full shadow-1xl">
-          <div className="bg-gradient-to-r from-black/40 via-white/20 to-black/40 rounded-lg shadow-lg p-6 flex flex-col items-center transition-transform transform hover:scale-105 hover:shadow-xl">
-            <img
-              src="https://i.ibb.co/098whDQ/SDCSD.png"
-              className="w-full h-full max-w-[320px] max-h-[320px] rounded-lg shadow-md mb-4"
-              alt="Regalo especial"
-            />
-
-            <h3 className="text-white text-2xl font-bold mb-4">REGALO ESPECIAL PARA TÍ</h3>
-            <p className="text-white font-bold mb-4 text-shadow">Estamos haciendo historia juntos, tenemos la primer plataforma de educación para barbería propia en hablahispana, por esta razón quiero regalarte una clase gratis como agradecimiento por ser parte para que puedas comenzar a educarte antes del lanzamiento!</p>
-             
-            <button
-              onClick={() => navigate(`/Regalo`)}
-              className="bg-black text-white py-2 px-4 rounded-lg"
-            >
-              Ver Clase
-            </button>
-          </div>
-          
+    
           {/* Course cards - with null check for user */}
-          {user && courses.map((course, index) => (
-            // Filter courses that are not "REGALO DE LANZAMIENTO" without access and are not "CUPON"
+          
+         {user && courses
+          .filter((course) => user.cursos?.includes(course.courseTitle)) // Solo cursos adquiridos
+          .map((course, index) => (
+
             (course.courseTitle !== 'Cupon' &&
             (course.courseTitle !== 'REGALO DE LANZAMIENTO' || hasCourse(course.courseTitle))) && (
               <div 
