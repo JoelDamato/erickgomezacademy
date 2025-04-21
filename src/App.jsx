@@ -25,6 +25,7 @@ import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
+import MasterFadePage from './pages/MasterFade.jsx';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
         <Route path="/setter" element={<><CursosonlineRefactor/></>} />
         <Route path="/ads" element={<><CursosonlineRefactor/></>} />
+        <Route path="/fade1" element={<><MasterFadePage/></>} />
 
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/PanelControl" element={<PrivateRoute><PanelControl /></PrivateRoute>} />
