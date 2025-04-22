@@ -51,10 +51,10 @@ function MasterFadeHome() {
           <div className="w-full max-w-md mb-4 relative">
             <img src={botonDorado || "/placeholder.svg"} alt="Botón" className="w-full h-auto" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center ">
-              <p className="font-bebas uppercase text-xl sm:text-xl tracking-wide">
+              <p className="font-bebas uppercase text-xl sm:text-xl text-shadow-bebas" >
                 QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
               </p>
-              <span className="font-open text-[65%] mt-0">
+              <span className="font-opensans font-bold text-[60%] mt-0 text-shadow-open mt-[-5px]">
                 La técnica a tijera que genera autoridad, seguidores y más clientes
               </span>
             </div>

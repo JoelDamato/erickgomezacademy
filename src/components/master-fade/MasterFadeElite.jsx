@@ -58,7 +58,7 @@ const MasterFadeElite = () => {
               />
             </div>
 
-            <div className="text-center mb-1 md:mb-6 text-[55%] md:text-base font-open">
+            <div className="text-center mb-1 md:mb-6 text-[55%] md:text-base font-opensans">
               <p className="mb-2 md:mb-3">
                 Ser un barbero de élite en 2025 significa ir más allá del corte, la barbería es un arte, un negocio en
                 crecimiento que puede cambiar tu vida.
