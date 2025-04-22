@@ -31,15 +31,15 @@ const MasterFadeEstadisticas = () => {
         <div className="w-full bg-black py-1 md:" style={{ backgroundColor: "#000000" }}>
           <div className="flex justify-between w-full max-w-4xl mx-auto px-4 gap-2">
             <div className="w-[31%]">
-              <img src="/c1.png" alt="160K Seguidores en Instagram" className="w-full h-auto" />
+              <img src="/c1.png" alt="160K Seguidores en Instagram" className="w-full h-auto"  loading="lazy"/>
             </div>
   
             <div className="w-[31%]">
-              <img src="/c2.png" alt="+19 Países Educando Barberos" className="w-full h-auto" />
+              <img src="/c2.png" alt="+19 Países Educando Barberos" className="w-full h-auto" loading="lazy" />
             </div>
   
             <div className="w-[31%]">
-              <img src="/c3.png" alt="+11K Alumnos Graduados en Academia Online" className="w-full h-auto" />
+              <img src="/c3.png" alt="+11K Alumnos Graduados en Academia Online" className="w-full h-auto" loading="lazy" />
             </div>
           </div>
         </div>
