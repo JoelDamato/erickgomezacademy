@@ -1,286 +1,217 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts"
-import { Users, BookOpen, UserCheck, Clock, Ticket } from "lucide-react"
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell
+} from "recharts"
+import { Users, BookOpen, UserCheck, Clock, Ticket, Search } from "lucide-react"
 import axios from "axios"
 import Navbar from "../components/Navbar"
-import Clicks from "../components/Clicks"
+import SeguimientoCurso from "../components/ProgresoUsuario"
 import MetricasAds from "../components/MetaAds"
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#FF69B4", "#4BC0C0", "#36A2EB"]
 
 const Metricas = () => {
-  const [metricsData, setMetricsData] = useState({
-    totalUsers: 0,
-    courses: {},
-    roles: {},
-    usersPerDay: {},
-  })
-
+  const [metricsData, setMetricsData] = useState({ totalUsers: 0, courses: {}, roles: {}, usersPerDay: {} })
+  const [usuarios, setUsuarios] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [mostrarMetricas, setMostrarMetricas] = useState(false);
+  const [tabSeleccionado, setTabSeleccionado] = useState("metricas")
+  const itemsPorPagina = 25
+  const [paginaCurso1, setPaginaCurso1] = useState(0)
+  const [paginaCurso2a5, setPaginaCurso2a5] = useState(0)
+  const [paginaCurso6, setPaginaCurso6] = useState(0)
+  const [busqueda, setBusqueda] = useState("")
 
-  // Determinar la URL base en función del entorno
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production" ? "https://back-cursos.onrender.com" : "http://localhost:5000"
+  const API_BASE_URL = process.env.NODE_ENV === "production"
+    ? "https://back-cursos.onrender.com"
+    : "http://localhost:5000"
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        setLoading(true)
         const token = localStorage.getItem("token")
-        const response = await axios.get(`${API_BASE_URL}/api/search/totalsusers`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        const resMetrics = await axios.get(`${API_BASE_URL}/api/search/totalsusers`, {
+          headers: { Authorization: `Bearer ${token}` },
         })
-        setMetricsData(response.data)
+        setMetricsData(resMetrics.data)
+
+        const resUsuarios = await axios.get(`${API_BASE_URL}/api/search/usuarios`)
+        setUsuarios(resUsuarios.data)
+
         setLoading(false)
       } catch (err) {
-        console.error("Error fetching metrics:", err)
+        console.error("Error cargando datos:", err)
         setError("Error al cargar las métricas")
         setLoading(false)
       }
     }
 
     fetchMetrics()
-  }, [API_BASE_URL])
+  }, [])
 
-  // Transformar los datos para los gráficos
-  const prepareCourseData = () => {
-    return Object.entries(metricsData.courses || {})
-      .filter(([name]) => name !== "Cupon")
-      .map(([name, value]) => ({
-        name,
-        estudiantes: value,
-      }))
-  }
-
-  const prepareRoleData = () => {
-    return Object.entries(metricsData.roles || {}).map(([name, value]) => ({
-      name: name === "user" ? "Usuarios" : "Administradores",
-      value,
-    }))
-  }
+  const prepareCourseData = () => Object.entries(metricsData.courses || {})
+    .filter(([name]) => name !== "Cupon")
+    .map(([name, value]) => ({ name, estudiantes: value }))
 
   const calculateTopCourse = () => {
-    const filteredCourses = Object.entries(metricsData.courses || {}).filter(([name]) => name !== "Cupon")
-    if (filteredCourses.length === 0) return { name: "N/A", estudiantes: 0 }
-    filteredCourses.sort((a, b) => b[1] - a[1])
-    return { name: filteredCourses[0][0], estudiantes: filteredCourses[0][1] }
+    const filtered = Object.entries(metricsData.courses || {}).filter(([name]) => name !== "Cupon")
+    if (filtered.length === 0) return { name: "N/A", estudiantes: 0 }
+    filtered.sort((a, b) => b[1] - a[1])
+    return { name: filtered[0][0], estudiantes: filtered[0][1] }
   }
 
-  const calculateTotalEnrollments = () => {
-    return Object.entries(metricsData.courses || {})
-      .filter(([name]) => name !== "Cupon")
-      .reduce((total, [, count]) => total + count, 0)
-  }
+  const totalEnrollments = Object.entries(metricsData.courses || {})
+    .filter(([name]) => name !== "Cupon")
+    .reduce((total, [, count]) => total + count, 0)
 
-  const totalEnrollments = calculateTotalEnrollments()
   const topCourse = calculateTopCourse()
   const courseData = prepareCourseData()
-  const roleData = prepareRoleData()
-
-  const getCouponUsage = () => {
-    return metricsData.courses?.Cupon || 0
-  }
+  const getCouponUsage = () => metricsData.courses?.Cupon || 0
 
   const StatCard = ({ icon, title, value, subtitle, color }) => (
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-col">
       <div className="flex items-center mb-2">
         <div className={`p-2 rounded-full ${color}`}>{icon}</div>
-        <span className="ml-2 text-gray-500 font-medium">{title}</span>
+        <span className="ml-2 text-gray-500 font-medium text-sm">{title}</span>
       </div>
       <div className="flex flex-col">
-        <span className="text-2xl font-bold">{value}</span>
-        {subtitle && <span className="text-sm text-gray-500">{subtitle}</span>}
+        <span className="text-xl font-bold">{value}</span>
+        {subtitle && <span className="text-xs text-gray-500">{subtitle}</span>}
       </div>
     </div>
   )
 
-  if (loading) {
+  const renderUsuariosPaginated = (lista, title, pagina, setPagina) => {
+    const filtrados = lista.filter((u) => {
+      const texto = `${u.nombre} ${u.email}`.toLowerCase()
+      return texto.includes(busqueda.toLowerCase())
+    })
+    const totalPaginas = Math.ceil(filtrados.length / itemsPorPagina)
+    const visibles = filtrados.slice(pagina * itemsPorPagina, (pagina + 1) * itemsPorPagina)
+
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="bg-white p-4 rounded-lg shadow-md mb-6 w-full lg:w-[300px]">
+        <h2 className="text-base font-semibold mb-2">{title}</h2>
+        <ul className="space-y-1">
+          {visibles.map((user, i) => (
+            <li key={i} className="border-b pb-1 text-xs">
+              <details>
+                <summary className="cursor-pointer font-medium text-xs">
+                  {user.nombre || user.email} ({user.email}) - {user.cantidadCursos} curso{user.cantidadCursos > 1 ? 's' : ''}
+                </summary>
+                <ul className="ml-4 list-disc text-[11px] text-gray-600">
+                  {user.cursos.map((curso, idx) => <li key={idx}>{curso}</li>)}
+                </ul>
+              </details>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-wrap justify-center gap-1 mt-3">
+          {Array.from({ length: totalPaginas }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPagina(i)}
+              className={`text-xs px-2 py-1 rounded ${i === pagina ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+            >{i + 1}</button>
+          ))}
+        </div>
       </div>
     )
   }
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="bg-red-100 p-4 rounded-lg text-red-700">{error}</div>
-      </div>
-    )
-  }
+  const usuariosCon1Curso = usuarios.filter(u => u.cantidadCursos === 1)
+  const usuariosDe2a5Cursos = usuarios.filter(u => u.cantidadCursos >= 2 && u.cantidadCursos <= 5)
+  const usuariosCon6OMas = usuarios.filter(u => u.cantidadCursos >= 6)
+
+  if (loading) return <div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>
+  if (error) return <div className="flex justify-center items-center h-screen"><div className="bg-red-100 p-4 rounded-lg text-red-700">{error}</div></div>
 
   return (
     <>
       <Navbar />
-       
-      <Clicks />
 
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={() => setMostrarMetricas(!mostrarMetricas)}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          {mostrarMetricas ? "Ocultar Meta ADS" : "Ver Meta ADS"}
-        </button>
+      <div className="bg-white shadow-sm border-b mb-6">
+        <div className="max-w-screen-xl mx-auto flex justify-center gap-4 py-3">
+          {"metricas meta progreso".split(" ").map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setTabSeleccionado(tab)}
+              className={`px-4 py-2 rounded ${tabSeleccionado === tab ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+            >
+              {tab === "metricas" ? "Métricas Plataforma" : tab === "meta" ? "Meta ADS" : "Progreso de Usuarios"}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {mostrarMetricas && (
-        <div className="mt-6">
+      {tabSeleccionado === "metricas" && (
+        <div className="bg-gray-100 p-6 w-full min-h-screen">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard de Métricas</h1>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <StatCard icon={<Users size={24} className="text-white" />} title="Usuarios Totales" value={metricsData.totalUsers.toLocaleString()} subtitle="Usuarios registrados" color="bg-blue-500" />
+            <StatCard icon={<BookOpen size={24} className="text-white" />} title="Total Inscripciones" value={totalEnrollments.toLocaleString()} subtitle="Inscripciones a cursos" color="bg-purple-500" />
+            <StatCard icon={<UserCheck size={24} className="text-white" />} title="Curso Más Popular" value={topCourse.name} subtitle={`${topCourse.estudiantes.toLocaleString()} estudiantes`} color="bg-green-500" />
+            <StatCard icon={<Clock size={24} className="text-white" />} title="Cursos Disponibles" value={Object.keys(metricsData.courses || {}).filter(name => name !== "Cupon").length} subtitle="Cursos activos" color="bg-orange-500" />
+            <StatCard icon={<Ticket size={24} className="text-white" />} title="Cupones Usados" value={getCouponUsage().toLocaleString()} subtitle="Total de cupones" color="bg-pink-500" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+            <div className="bg-white p-4 rounded-lg shadow-md col-span-4">
+              <h2 className="text-lg font-semibold mb-4">Buscar Usuario por Nombre o Email</h2>
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  placeholder="Buscar..."
+                  value={busqueda}
+                  onChange={(e) => setBusqueda(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded"
+                />
+                <Search className="text-gray-500" />
+              </div>
+            </div>
+
+            <div className="bg-white p-4 rounded-lg shadow-md col-span-2">
+              <h2 className="text-lg font-semibold mb-4">Distribución de Estudiantes por Curso</h2>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={courseData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
+                  <YAxis />
+                  <Tooltip formatter={(value) => [`${value} estudiantes`, "Cantidad"]} />
+                  <Bar dataKey="estudiantes" fill="#8884d8">
+                    {courseData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
+            {renderUsuariosPaginated(usuariosCon1Curso, "Usuarios con 1 Curso", paginaCurso1, setPaginaCurso1)}
+            {renderUsuariosPaginated(usuariosDe2a5Cursos, "Usuarios con 2 a 5 Cursos", paginaCurso2a5, setPaginaCurso2a5)}
+            {renderUsuariosPaginated(usuariosCon6OMas, "Usuarios con 6 o más Cursos", paginaCurso6, setPaginaCurso6)}
+          </div>
+        </div>
+      )}
+
+      {tabSeleccionado === "meta" && (
+        <div className="p-6 bg-gray-100 min-h-screen">
+          <h1 className="text-2xl font-bold mb-4 text-gray-800">Métricas Meta ADS</h1>
           <MetricasAds />
         </div>
       )}
-    
-       
 
-      <div className="bg-gray-100 p-6 w-full min-h-screen">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard de Métricas</h1>
-
-        {/* Tarjetas de estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-          <StatCard
-            icon={<Users size={24} className="text-white" />}
-            title="Usuarios Totales"
-            value={metricsData.totalUsers.toLocaleString()}
-            subtitle="Usuarios registrados"
-            color="bg-blue-500"
-          />
-          <StatCard
-            icon={<BookOpen size={24} className="text-white" />}
-            title="Total Inscripciones"
-            value={totalEnrollments.toLocaleString()}
-            subtitle="Inscripciones a cursos"
-            color="bg-purple-500"
-          />
-          <StatCard
-            icon={<UserCheck size={24} className="text-white" />}
-            title="Curso Más Popular"
-            value={topCourse.name}
-            subtitle={`${topCourse.estudiantes.toLocaleString()} estudiantes`}
-            color="bg-green-500"
-          />
-          <StatCard
-            icon={<Clock size={24} className="text-white" />}
-            title="Cursos Disponibles"
-            value={Object.keys(metricsData.courses || {}).filter((name) => name !== "Cupon").length}
-            subtitle="Cursos activos"
-            color="bg-orange-500"
-          />
-          <StatCard
-            icon={<Ticket size={24} className="text-white" />}
-            title="Cupones Usados"
-            value={getCouponUsage().toLocaleString()}
-            subtitle="Total de cupones"
-            color="bg-pink-500"
-          />
+      {tabSeleccionado === "progreso" && (
+        <div className="p-6 bg-gray-100 min-h-screen">
+          <h1 className="text-2xl font-bold mb-4 text-gray-800">Progreso de Usuarios</h1>
+          <SeguimientoCurso />
         </div>
-
-        {/* Gráficos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Gráfico de distribución de cursos */}
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Distribución de Estudiantes por Curso</h2>
-            <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={courseData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
-                <YAxis />
-                <Tooltip formatter={(value) => [`${value} estudiantes`, "Cantidad"]} />
-                <Bar dataKey="estudiantes" fill="#8884d8">
-                  {courseData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Gráfico de roles */}
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Distribución de Roles</h2>
-            <div className="flex justify-center">
-              <ResponsiveContainer width="100%" height={400}>
-                <PieChart>
-                  <Pie
-                    data={roleData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={true}
-                    outerRadius={150}
-                    fill="#8884d8"
-                    dataKey="value"
-                    nameKey="name"
-                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                  >
-                    {roleData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip formatter={(value) => [`${value} usuarios`, "Cantidad"]} />
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
-
-        {/* Tabla de cursos */}
-        <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-lg font-semibold mb-4">Detalles de Cursos</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nombre del Curso
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Estudiantes
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    % del Total
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Progreso
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {courseData
-                  .sort((a, b) => b.estudiantes - a.estudiantes)
-                  .map((course, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{course.name}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {course.estudiantes.toLocaleString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {((course.estudiantes / totalEnrollments) * 100).toFixed(1)}%
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                          <div
-                            className="bg-blue-600 h-2.5 rounded-full"
-                            style={{ width: `${(course.estudiantes / courseData[0].estudiantes) * 100}%` }}
-                          ></div>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      )}
     </>
   )
 }
 
 export default Metricas
-

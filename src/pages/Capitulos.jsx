@@ -124,12 +124,46 @@ function Capitulos() {
     }
   }, [comments, showComments]);
 
-  const goToNextChapter = () => {
+  const goToNextChapter = async () => {
     const currentIndex = parseInt(chapterId, 10) - 1;
-    if (currentModuleChapters && currentIndex < currentModuleChapters.length - 1) {
-      navigate(`/cursos/${cursoId}/${moduleName}/${currentIndex + 2}`);
+    const nextIndex = currentIndex + 1;
+  
+    const email = localStorage.getItem("email");
+    const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
+    const capituloSiguiente = `${moduleName}-${nextIndex + 1}`;
+  
+    try {
+      // 1. Marcar capítulo actual como finalizado
+      await fetch(`${API_BASE_URL}/api/progreso`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          cursoId,
+          capituloId: capituloActual,
+          accion: "finalizado",
+        }),
+      });
+  
+      // 2. Marcar capítulo siguiente como iniciado
+      await fetch(`${API_BASE_URL}/api/progreso`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          cursoId,
+          capituloId: capituloSiguiente,
+          accion: "inicio",
+        }),
+      });
+  
+      // 3. Navegar al siguiente capítulo
+      navigate(`/cursos/${cursoId}/${moduleName}/${nextIndex + 1}`);
+    } catch (error) {
+      console.error("Error al actualizar progreso:", error);
     }
   };
+  
 
   const goToPreviousChapter = () => {
     const currentIndex = parseInt(chapterId, 10) - 1;
