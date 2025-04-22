@@ -1,8 +1,8 @@
-import fondoAzul from "/fondo-azul-home.png"
-import titulo from "/titulo.png"
-import logoMasterFade from "/logo-master-fade.png"
-import laptop from "/laptop.png"
-import botonDorado from "/Boton-dorado.png"
+import fondoAzul from "/fondo-azul-home.webp"
+import titulo from "/titulo.webp"
+import logoMasterFade from "/logo-master-fade.webp"
+import laptop from "/laptop.webp"
+import botonDorado from "/Boton-dorado.webp"
 
 function MasterFadeHome() {
   return (

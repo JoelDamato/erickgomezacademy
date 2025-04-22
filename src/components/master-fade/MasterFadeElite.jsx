@@ -35,7 +35,7 @@ const MasterFadeElite = () => {
             <div className="h-[45vh] md:h-[80vh]">
               <img
                loading="lazy"
-                src="/erick-elite.png"
+                src="/erick-elite.webp"
                 alt="Erick Gómez"
                 className="h-full md:h-[80vh] w-auto max-w-none object-cover object-left"
               />
@@ -47,12 +47,12 @@ const MasterFadeElite = () => {
             className="relative h-[50vh] z-20 ml-[40%] md:ml-[35%] pl-[5%] flex flex-col items-center"
           >
             <div className="relative flex justify-center md:w-24 md:h-24 md:mb-2 mx-auto">
-              <img src="/comillas.png" alt="Comillas" className="w-[20%] md:w-[80%] h-auto" loading="lazy" />
+              <img src="/comillas.webp" alt="Comillas" className="w-[20%] md:w-[80%] h-auto" loading="lazy" />
             </div>
 
             <div className="mb-2 md:mb-6 w-full mt-2 md:mt-0">
               <img
-                src="/titulo-elite.png"
+                src="/titulo-elite.webp"
                 alt="CONOCE A TU MENTOR: ERICK GÓMEZ"
                 className="w-[90%] md:w-full max-w-md mx-auto" loading="lazy"
               />
@@ -70,13 +70,13 @@ const MasterFadeElite = () => {
             </div>
 
             <div className="mb-1 md:mb-6 md:w-48 flex justify-end">
-              <img src="/firma.png" alt="Firma Erick Gómez" className="w-1/3 md:w-[80%]"  loading="lazy"/>
+              <img src="/firma.webp" alt="Firma Erick Gómez" className="w-1/3 md:w-[80%]"  loading="lazy"/>
             </div>
 
             <div className="w-full mb-1 md:mb-6 text-[20%] md:text-sm font-open">
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
-                  src="/mini-estrella.png"
+                  src="/mini-estrella.webp"
                   alt="Estrella"
                   className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
@@ -84,7 +84,7 @@ const MasterFadeElite = () => {
               </div>
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
-                  src="/mini-estrella.png"
+                  src="/mini-estrella.webp"
                   alt="Estrella"
                   className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
@@ -92,7 +92,7 @@ const MasterFadeElite = () => {
               </div>
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
-                  src="/mini-estrella.png"
+                  src="/mini-estrella.webp"
                   alt="Estrella"
                   className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
@@ -100,7 +100,7 @@ const MasterFadeElite = () => {
               </div>
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
-                  src="/mini-estrella.png"
+                  src="/mini-estrella.webp"
                   alt="Estrella"
                   className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
@@ -115,7 +115,7 @@ const MasterFadeElite = () => {
                 rel="noopener noreferrer"
                 className="block transition-transform duration-300 hover:scale-105"
               >
-                <img src="/boton-ig.png" alt="Seguir en Instagram" className="flex justify-center md:w-64" loading="lazy" />
+                <img src="/boton-ig.webp" alt="Seguir en Instagram" className="flex justify-center md:w-64" loading="lazy" />
               </a>
             </div>
           </div>
