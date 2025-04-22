@@ -1,15 +1,9 @@
-import fondoAzul from "/fondo-azul-home.webp"
-import titulo from "/titulo.webp"
-import logoMasterFade from "/logo-master-fade.webp"
-import laptop from "/laptop.webp"
-import botonDorado from "/Boton-dorado.webp"
-
 function MasterFadeHome() {
   return (
     <main className="flex flex-col items-center bg-black text-white  overflow-hidden">
       <div className="relative w-full">
         <div className="absolute inset-0 z-0">
-          <img src={fondoAzul || "/placeholder.svg"} alt="Fondo" className="object-cover w-full h-full absolute" />
+          <img src="https://i.ibb.co/9mq2S3SK/fondo-azul-home.webp" alt="Fondo" className="object-cover w-full h-full absolute" />
         </div>
 
         <div className="relative z-10 w-full bg-azul-profundo  mb-2">
@@ -22,7 +16,7 @@ function MasterFadeHome() {
           <div className="text-center mb-4">
             <div className="mb-1">
               <img
-                src={titulo || "/placeholder.svg"}
+                src="https://i.ibb.co/PGPhwQLv/titulo.webp"
                 alt="Mejora tu técnica de fade y hazte viral"
                 className="w-full h-auto"
               />
@@ -34,10 +28,10 @@ function MasterFadeHome() {
           </div>
 
           <div className="relative w-full max-w-md ">
-            <img src={laptop || "/placeholder.svg"} alt="Laptop" className="w-full h-auto" />
+            <img src="https://i.ibb.co/B2k2NFLX/laptop.webp" alt="Laptop" className="w-full h-auto" />
 
             <div className="absolute top-0 left-0 w-24 h-24">
-              <img src={logoMasterFade || "/placeholder.svg"} alt="Master Fade 3.0 Elite" className="w-full h-auto" />
+              <img src="https://i.ibb.co/xStxDQMs/logo-master-fade.webp" alt="Master Fade 3.0 Elite" className="w-full h-auto" />
             </div>
 
             {/* este bloque luego cuando este el video se borra */}
@@ -49,7 +43,7 @@ function MasterFadeHome() {
           </div>
 
           <div className="w-full max-w-md mb-4 relative">
-            <img src={botonDorado || "/placeholder.svg"} alt="Botón" className="w-full h-auto" />
+            <img src="https://i.ibb.co/vx3gKzjr/Boton-dorado.webp" alt="Boton-dorado" className="w-full h-auto" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center ">
               <p className="font-bebas uppercase text-xl sm:text-xl text-shadow-bebas" >
                 QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
