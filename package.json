@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/bebas-neue": "^5.2.5",
     "@fontsource/lato": "^5.1.1",
+    "@fontsource/open-sans": "^5.2.5",
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@react-pdf-viewer/core": "^3.12.0",
