@@ -71,14 +71,14 @@ const Metricas = () => {
   const getCouponUsage = () => metricsData.courses?.Cupon || 0
 
   const StatCard = ({ icon, title, value, subtitle, color }) => (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col">
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col text-black">
       <div className="flex items-center mb-2">
         <div className={`p-2 rounded-full ${color}`}>{icon}</div>
-        <span className="ml-2 text-gray-500 font-medium text-sm">{title}</span>
+        <span className="ml-2 font-medium text-sm">{title}</span>
       </div>
       <div className="flex flex-col">
         <span className="text-xl font-bold">{value}</span>
-        {subtitle && <span className="text-xs text-gray-500">{subtitle}</span>}
+        {subtitle && <span className="text-xs">{subtitle}</span>}
       </div>
     </div>
   )
@@ -92,7 +92,7 @@ const Metricas = () => {
     const visibles = filtrados.slice(pagina * itemsPorPagina, (pagina + 1) * itemsPorPagina)
 
     return (
-      <div className="bg-white p-4 rounded-lg shadow-md mb-6 w-full lg:w-[300px]">
+      <div className="bg-white p-4 rounded-lg shadow-md mb-6 w-full lg:w-[300px] text-black">
         <h2 className="text-base font-semibold mb-2">{title}</h2>
         <ul className="space-y-1">
           {visibles.map((user, i) => (
@@ -125,14 +125,14 @@ const Metricas = () => {
   const usuariosDe2a5Cursos = usuarios.filter(u => u.cantidadCursos >= 2 && u.cantidadCursos <= 5)
   const usuariosCon6OMas = usuarios.filter(u => u.cantidadCursos >= 6)
 
-  if (loading) return <div className="flex justify-center items-center h-screen"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>
-  if (error) return <div className="flex justify-center items-center h-screen"><div className="bg-red-100 p-4 rounded-lg text-red-700">{error}</div></div>
+  if (loading) return <div className="flex justify-center items-center h-screen text-black"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>
+  if (error) return <div className="flex justify-center items-center h-screen text-black"><div className="bg-red-100 p-4 rounded-lg text-red-700">{error}</div></div>
 
   return (
     <>
       <Navbar />
 
-      <div className="bg-white shadow-sm border-b mb-6">
+      <div className="bg-white shadow-sm border-b mb-6 text-black">
         <div className="max-w-screen-xl mx-auto flex justify-center gap-4 py-3">
           {"metricas meta progreso".split(" ").map((tab) => (
             <button
@@ -147,8 +147,8 @@ const Metricas = () => {
       </div>
 
       {tabSeleccionado === "metricas" && (
-        <div className="bg-gray-100 p-6 w-full min-h-screen">
-          <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard de Métricas</h1>
+        <div className="bg-gray-100 p-6 w-full min-h-screen text-black">
+          <h1 className="text-3xl font-bold mb-6">Dashboard de Métricas</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
             <StatCard icon={<Users size={24} className="text-white" />} title="Usuarios Totales" value={metricsData.totalUsers.toLocaleString()} subtitle="Usuarios registrados" color="bg-blue-500" />
@@ -159,7 +159,7 @@ const Metricas = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
-            <div className="bg-white p-4 rounded-lg shadow-md col-span-4">
+            <div className="bg-white p-4 rounded-lg shadow-md col-span-4 text-black">
               <h2 className="text-lg font-semibold mb-4">Buscar Usuario por Nombre o Email</h2>
               <div className="flex items-center gap-2">
                 <input
@@ -173,7 +173,7 @@ const Metricas = () => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded-lg shadow-md col-span-2">
+            <div className="bg-white p-4 rounded-lg shadow-md col-span-2 text-black">
               <h2 className="text-lg font-semibold mb-4">Distribución de Estudiantes por Curso</h2>
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart data={courseData}>
@@ -198,15 +198,15 @@ const Metricas = () => {
       )}
 
       {tabSeleccionado === "meta" && (
-        <div className="p-6 bg-gray-100 min-h-screen">
-          <h1 className="text-2xl font-bold mb-4 text-gray-800">Métricas Meta ADS</h1>
+        <div className="p-6 bg-gray-100 min-h-screen text-black">
+          <h1 className="text-2xl font-bold mb-4">Métricas Meta ADS</h1>
           <MetricasAds />
         </div>
       )}
 
       {tabSeleccionado === "progreso" && (
-        <div className="p-6 bg-gray-100 min-h-screen">
-          <h1 className="text-2xl font-bold mb-4 text-gray-800">Progreso de Usuarios</h1>
+        <div className="p-6 bg-gray-100 min-h-screen text-black">
+          <h1 className="text-2xl font-bold mb-4">Progreso de Usuarios</h1>
           <SeguimientoCurso />
         </div>
       )}
