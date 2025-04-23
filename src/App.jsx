@@ -24,45 +24,46 @@ import Metricas  from './pages/Metricas.jsx';
 import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
-import CursosonlineYoutube from './pages/CursosonlineYoutube.jsx';
-import CursosonlineTiktok from './pages/CursosonlineTiktok.jsx';
-import CursosonlinePerfil from './pages/CursosonlinePerfil.jsx';
-import CursosonlineHistoria from './pages/CursosonlineHistoria.jsx';
-
+import PrivateRoute from './components/PrivateRoute.jsx';
+import MasterFadePage from './pages/MasterFade.jsx';
 
 function App() {
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Home /></>} />
-        <Route path="/Cursosonline" element={<><Cursosonline/></>} />
-        <Route path="/Cursosonline2" element={<><CursosonlineRefactor/></>} />
-        <Route path="/youtube" element={<><CursosonlineYoutube/></>} />
-        <Route path="/tiktok" element={<><CursosonlineTiktok/></>} />
-        <Route path="/perfilerick" element={<><CursosonlinePerfil/></>} />
-        <Route path="/historia" element={<><CursosonlineHistoria/></>} />
-        <Route path="/Login" element={<><Login /></>} />
-        <Route path="/Dashboard" element={<><Dashboard /></>} />
-        <Route path="/PanelControl" element={<><PanelControl /></>} />
-        <Route path="/cursos/:cursoId" element={<><Cursos /></>} />
-        <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<><Capitulos /></>} />
-        <Route path="/Certificados" element={<><Certificados /></>} />
-        <Route path="/Certificadoscuty" element={<><Certificadoscuty /></>} />
-        <Route path="/Perfil" element={<><Perfil /></>} />
-        <Route path="/Regalo" element={<><Regalo /></>} />
-        <Route path="/Curses" element={<><Curses /></>} />
-        <Route path="/landing" element={<><EjemploLanding /></>} />
-        <Route path="/homee" element={<><HM /></>} />
-        <Route path="/landingbarberos" element={<><Landingbarberos /></>} />
-        <Route path="/luisferbarbershop" element={<><Luisfer /></>} />
-        <Route path="/Stambarber" element={<><Stam /></>} />
-        <Route path="/Sdstudio" element={<><Sdstudio /></>} />
-        <Route path="/Celinbarber" element={<><Celin /></>} />
-        <Route path="/Coco" element={<><Coco/></>} />
-        <Route path="/Metricas" element={<><Metricas /></>} />
-        <Route path="/colorimetria" element={<><Colorimetria/></>} />
-        <Route path="/Politicarembolso" element={<><Politicaderembolso/></>} />
+         {/* PÚBLICAS */}
+        <Route path="/" element={<Home />} />
+        <Route path="/Cursosonline" element={<Cursosonline />} />
+        <Route path="/Cursosonline2" element={<CursosonlineRefactor />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
+        <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
+        <Route path="/setter" element={<><CursosonlineRefactor/></>} />
+        <Route path="/ads" element={<><CursosonlineRefactor/></>} />
+        <Route path="/fade1" element={<><MasterFadePage/></>} />
+
+        <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/PanelControl" element={<PrivateRoute><PanelControl /></PrivateRoute>} />
+        <Route path="/cursos/:cursoId" element={<PrivateRoute><Cursos /></PrivateRoute>} />
+        <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<PrivateRoute><Capitulos /></PrivateRoute>} />
+        <Route path="/Certificados" element={<PrivateRoute><Certificados /></PrivateRoute>} />
+        <Route path="/Certificadoscuty" element={<PrivateRoute><Certificadoscuty /></PrivateRoute>} />
+        <Route path="/Perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
+        <Route path="/Regalo" element={<PrivateRoute><Regalo /></PrivateRoute>} />
+        <Route path="/Curses" element={<PrivateRoute><Curses /></PrivateRoute>} />
+        <Route path="/landing" element={<PrivateRoute><EjemploLanding /></PrivateRoute>} />
+        <Route path="/homee" element={<PrivateRoute><HM /></PrivateRoute>} />
+        <Route path="/landingbarberos" element={<PrivateRoute><Landingbarberos /></PrivateRoute>} />
+        <Route path="/luisferbarbershop" element={<PrivateRoute><Luisfer /></PrivateRoute>} />
+        <Route path="/Stambarber" element={<PrivateRoute><Stam /></PrivateRoute>} />
+        <Route path="/Sdstudio" element={<PrivateRoute><Sdstudio /></PrivateRoute>} />
+        <Route path="/Celinbarber" element={<PrivateRoute><Celin /></PrivateRoute>} />
+        <Route path="/Coco" element={<PrivateRoute><Coco /></PrivateRoute>} />
+        <Route path="/Metricas" element={<PrivateRoute><Metricas /></PrivateRoute>} />
+        <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
+        <Route path="/Politicarembolso" element={<PrivateRoute><Politicaderembolso /></PrivateRoute>} />
+
+        {/* 404 */}
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
