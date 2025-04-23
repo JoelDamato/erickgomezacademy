@@ -73,7 +73,7 @@ const MasterFadeElite = () => {
               <img src="https://i.ibb.co/Gv4xZ4Zj/firma.webp" alt="Firma Erick Gómez" className="w-1/3 md:w-[80%]"  loading="lazy"/>
             </div>
 
-            <div className="w-full mb-1 md:mb-6 text-[20%] md:text-sm font-open">
+            <div className="w-full mb-1 md:mb-6 text-[40%] md:text-sm font-open">
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
                   src="https://i.ibb.co/M5GpLyTM/mini-estrella.webp"
