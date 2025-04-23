@@ -73,12 +73,12 @@ const MasterFadeElite = () => {
               <img src="https://i.ibb.co/Gv4xZ4Zj/firma.webp" alt="Firma Erick Gómez" className="w-1/3 md:w-[80%]"  loading="lazy"/>
             </div>
 
-            <div className="w-full mb-1 md:mb-6 text-[40%] md:text-sm font-open">
+            <div className="w-full mb-1 md:mb-6 text-[35%] md:text-sm font-open">
               <div className="flex items-start mb-1 md:mb-3 justify-center text-left">
                 <img
                   src="https://i.ibb.co/M5GpLyTM/mini-estrella.webp"
                   alt="Estrella"
-                  className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
+                  className="w-3 md:w-5 h-2 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
                 <p className="font-open">Fundador de Erick Gómez Academy en 2018, referente N.º 1 en el mundo del Fade a tijera.</p>
               </div>
@@ -86,7 +86,7 @@ const MasterFadeElite = () => {
                 <img
                   src="https://i.ibb.co/M5GpLyTM/mini-estrella.webp"
                   alt="Estrella"
-                  className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
+                  className="w-3 md:w-5 h-2 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
                 <p>Más de 10.000 barberos formados en todo el mundo en su academia.</p>
               </div>
@@ -94,7 +94,7 @@ const MasterFadeElite = () => {
                 <img
                   src="https://i.ibb.co/M5GpLyTM/mini-estrella.webp"
                   alt="Estrella"
-                  className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
+                  className="w-3 md:w-5 h-2 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
                 <p>Reconocido por enseñar técnicas y secretos que nadie más comparte.</p>
               </div>
@@ -102,7 +102,7 @@ const MasterFadeElite = () => {
                 <img
                   src="https://i.ibb.co/M5GpLyTM/mini-estrella.webp"
                   alt="Estrella"
-                  className="w-3 md:w-5 h-3 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
+                  className="w-3 md:w-5 h-2 md:h-5 mr-1 md:mr-2 mt-0.5 md:mt-1 flex-shrink-0" loading="lazy"
                 />
                 <p>Mentor de los barberos que buscan dominar la industria y dejar huella.</p>
               </div>
