@@ -38,7 +38,7 @@ const OfertaMasterFade = () => {
         {/* Lista de beneficios */}
         <div className="w-full max-w-sm mb-6">
           {beneficios.map((beneficio, index) => (
-            <div key={index} className="flex items-start mb-3">
+            <div key={index} className="flex items-start mb-2 font-bold">
               <img
                 src="https://i.ibb.co/60zSzgJF/Check-dorado-5s.webp"
                 alt="Check"
@@ -53,14 +53,14 @@ const OfertaMasterFade = () => {
         </div>
   
         {/* Precio */}
-        <div className="w-full max-w-xs mb-6">
+        <div className="w-full mb-2">
           <img
             src="https://i.ibb.co/LdX4n1NP/Precio-5s.webp"
             alt="Precio oferta"
             className="w-full h-auto"
             loading="lazy"
-            width="300"
-            height="100"
+            width="400"
+            height="200"
           />
         </div>
   
@@ -69,7 +69,7 @@ const OfertaMasterFade = () => {
   <img
     src="https://i.ibb.co/fYTmk4Nh/Instagram-icono-5s.webp"
     alt="Whatsapp"
-    className="w-14 h-14 flex-shrink-0"  // Más ancho (56px)
+    className="w-20 h-14 flex-shrink-0"  // Más ancho (56px)
     loading="lazy"
     width="56"
     height="56"
