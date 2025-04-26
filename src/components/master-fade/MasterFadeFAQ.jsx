@@ -1,4 +1,4 @@
-import Carrusel from '/src/components/cursosonline/Carrusel';
+import Carrusel from "./components/Carrusel";
 
 
 export default function MasterFadeFAQ(){
@@ -13,11 +13,11 @@ export default function MasterFadeFAQ(){
             </h2>
           </div>
         </div>
-        {/* <Carrusel /> */}
+        <div className="mt-6">
+          <Carrusel />
+        </div>
         <div className="max-w-3xl w-full mt-20 md:px-0">
-        {/* Contenedor principal con bordes blancos verticales */}
         <div className="relative flex flex-col items-center">
-          {/* Sección superior con la imagen completa de la garantía */}
           <div className="w-full">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/barra%20completa%20s9-ERCEfeL0s1tVAZdv4GGfR4nxERO07M.png"
@@ -26,13 +26,10 @@ export default function MasterFadeFAQ(){
             />
           </div>
 
-          {/* Espacio entre secciones */}
           <div className="h-16"></div>
 
-          {/* Título de dudas */}
           <h2 className="text-xl font-bold mb-1 text-center">¿TIENES ALGUNA DUDA?</h2>
 
-          {/* Botón de WhatsApp */}
           <div className="w-full max-w-lg px-4 mb-12">
             <a href="https://wa.me/message/YOURWHATSAPPLINK" target="_blank" rel="noopener noreferrer">
               <img

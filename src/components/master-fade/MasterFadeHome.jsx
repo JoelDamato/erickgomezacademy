@@ -2,7 +2,6 @@ function MasterFadeHome() {
   return (
     <main className="flex flex-col items-center bg-black text-white overflow-hidden">
       <div className="relative w-full">
-        {/* Fondo con lazy loading */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://i.ibb.co/9mq2S3SK/fondo-azul-home.webp"

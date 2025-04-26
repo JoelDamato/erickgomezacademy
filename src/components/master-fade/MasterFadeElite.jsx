@@ -37,6 +37,7 @@ const MasterFadeElite = () => {
                 src="https://i.ibb.co/9KVgpxn/erick-elite.webp"
                 alt="Erick Gómez"
                 className="h-full md:h-[80vh] w-auto max-w-none object-cover object-left"
+                loading="lazy"
               />
             </div>
           </div>

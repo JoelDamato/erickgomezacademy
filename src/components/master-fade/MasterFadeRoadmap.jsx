@@ -1,7 +1,6 @@
 function MasterFadeRoadmap() {
     return (
       <div className="bg-black text-white min-h-auto">
-        {/* Header Banner */}
         <div className="w-full max-w-5xl mx-auto relative">
           <div className="py-8 px-4">
             <div className="relative w-full">
@@ -9,23 +8,21 @@ function MasterFadeRoadmap() {
                 src="https://i.ibb.co/ccpqytRm/titulo-s6.png"
                 alt="Pasar de aprender una técnica a ser el próximo viral en redes"
                 className="w-full h-auto"
+                loading="lazy"
               />
             </div>
           </div>
         </div>
   
-        {/* Section 1 - Inicio: El Despertar */}
-        {/* Section 1 - Inicio: El Despertar */}
       <div className="w-full max-w-5xl mx-auto px-4 ">
         <div className="relative mt-[-1rem]">
-          {/* Imagen base (1. Roadmap.png) */}
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.%20Roadmap-ZbFpc5T5uS3dHr5Nsstkkoec4RcqpT.png"
             alt="Roadmap Sección 1"
             className="w-full h-auto"
+            loading="lazy"
           />
           
-          {/* Texto superpuesto */}
           <div className="absolute top-0 left-0 w-full h-full flex">
             <div className="w-[16%]">{/* Espacio para la imagen de la lámpara */}</div>
             <div className="w-[70%] p-2 flex flex-col justify-center">
@@ -40,16 +37,14 @@ function MasterFadeRoadmap() {
         </div>
       </div>
 
-    {/* Section 2 - Técnica de Fade a Tijera de Erick */}
     <div className="w-full max-w-5xl pr-11 pl-1">
         <div className="relative mt-[-1.5rem] ">
-          {/* Imagen base (2. Roadmap.png) */}
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.%20Roadmap-9EDHalgWlVO2McQFPXMAWop4aDWsp5.png"
             alt="Roadmap Sección 2"
             className="w-full h-auto"
+            loading="lazy"
           />
-       {/* Texto superpuesto */}
        <div className="absolute top-0 left-0 w-full h-full flex">
             <div className="w-[38%]">{/* Espacio para la imagen de las tijeras */}</div>
             <div className="w-[65%] p-2 flex flex-col justify-center">
@@ -63,18 +58,14 @@ function MasterFadeRoadmap() {
           </div>
         </div>
       </div>
-    {/* Section 3 */}
-
       <div className="w-full max-w-5xl pl-9 pr-1">
         <div className="relative mt-[-1.5rem]">
-          {/* Imagen base (1. Roadmap.png) */}
           <img
             src="https://i.ibb.co/sdhWWwG3/3-Roadmap.png"
             alt="Roadmap Sección 3"
             className="w-full h-auto"
+            loading="lazy"
           />
-          
-          {/* Texto superpuesto */}
           <div className="absolute top-0 left-0 w-full h-full flex">
             <div className="w-[20%]">{/* Espacio para la imagen de la lámpara */}</div>
             <div className="w-[65%] p-2 flex flex-col justify-center">
@@ -87,16 +78,14 @@ function MasterFadeRoadmap() {
         </div>
       </div>
 
-{/* Section 4 - Tu Estilo, Tu Marca */}
 <div className="w-full max-w-5xl pr-9 pl-1">
         <div className="relative mt-[-1.5rem] ">
-          {/* Imagen base (4. Roadmap.png) */}
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4.%20Roadmap-LqPGWx5c9rWrGOqsK6rdG17Fu0crUk.png"
             alt="Roadmap Sección 4"
             className="w-full h-auto"
+            loading="lazy"
           />
-          {/* Texto superpuesto */}
           <div className="absolute top-0 left-0 w-full h-full flex">
             <div className="w-[38%]">{/* Espacio para la imagen del cerebro */}</div>
             <div className="w-[65%] p-2 flex flex-col justify-center">
@@ -111,17 +100,14 @@ function MasterFadeRoadmap() {
         </div>
       </div>
 
-      {/* Section 5 - Certificación */}
       <div className="w-full max-w-5xl pl-9 pr-1 ">
         <div className="relative mt-[-1rem]">
-          {/* Imagen base (5. Roadmap.png) */}
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5.%20Roadmap-WFSTifojzdaUCeOrxXTw28ShyxqmPB.png"
             alt="Roadmap Sección 5"
             className="w-full h-auto"
+            loading="lazy"
           />
-
-          {/* Texto superpuesto */}
           <div className="absolute top-0 left-0 w-full h-full flex">
             <div className="w-[20%]">{/* Espacio para la imagen del certificado */}</div>
             <div className="w-[65%] p-2 flex flex-col justify-center">
@@ -135,17 +121,15 @@ function MasterFadeRoadmap() {
         </div>
       </div>
 
-      {/* Section 6 - Tu Salto a Viralizar y Monetizar */}
       <div className="w-full flex justify-center">
       <div className="w-[80%] ">
         <div className="relative mt-[-1.5rem] ml-8 ">
-          {/* Imagen base (6. Roadmap.png) */}
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6.%20Roadmap-kI0rQfsai20YmOwHn6Tuf29szfT1Xn.png"
             alt="Roadmap Sección 6"
             className="w-full h-auto"
+            loading="lazy"
           />
-          {/* Texto superpuesto */}
           <div className="absolute top-3 left-0 w-full h-full flex">
             <div className="w-[25%]">{/* Espacio para la imagen del cohete */}</div>
             <div className="w-[75%] p-2 flex flex-col justify-center">
