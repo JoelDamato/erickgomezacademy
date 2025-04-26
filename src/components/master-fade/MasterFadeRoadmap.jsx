@@ -1,6 +1,6 @@
 function MasterFadeRoadmap() {
     return (
-      <div className="bg-black text-white min-h-screen">
+      <div className="bg-black text-white min-h-auto">
         {/* Header Banner */}
         <div className="w-full max-w-5xl mx-auto relative">
           <div className="py-8 px-4">

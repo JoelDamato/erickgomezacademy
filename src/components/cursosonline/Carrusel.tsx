@@ -32,7 +32,7 @@ const courseRatings = [
   { score: 4.7, count: 2890 },
 ];
 
-export default function Steps() {
+export default function Carrusel() {
   const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
   const [featuredCourseIndex, setFeaturedCourseIndex] = useState(1);
   const [selectedCourseIndex, setSelectedCourseIndex] = useState(0);

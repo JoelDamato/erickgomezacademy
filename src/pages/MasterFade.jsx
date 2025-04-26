@@ -5,6 +5,7 @@ import MasterFadeElite from "../components/master-fade/MasterFadeElite";
 import MasterFadeCel from "../components/master-fade/MasterFadeCel";
 import MasterFadeStackValue from "../components/master-fade/MasterFadeStackValue"
 import MasterFadeRoadmap from "../components/master-fade/MasterFadeRoadmap";
+import MasterFadeFAQ from "../components/master-fade/MasterFadeFAQ";
 
 export default function MasterFadePage(){
     return(
@@ -15,6 +16,7 @@ export default function MasterFadePage(){
         <MasterFadeCel />
         <MasterFadeStackValue />
         <MasterFadeRoadmap />
+        <MasterFadeFAQ />
         </>
     )
 }
