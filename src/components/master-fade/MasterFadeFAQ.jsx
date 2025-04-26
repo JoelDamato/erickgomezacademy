@@ -30,7 +30,7 @@ export default function MasterFadeFAQ(){
           <div className="h-16"></div>
 
           {/* Título de dudas */}
-          <h2 className="text-4xl font-bold mb-8 text-center">¿TIENES ALGUNA DUDA?</h2>
+          <h2 className="text-xl font-bold mb-1 text-center">¿TIENES ALGUNA DUDA?</h2>
 
           {/* Botón de WhatsApp */}
           <div className="w-full max-w-lg px-4 mb-12">
