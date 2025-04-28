@@ -42,13 +42,14 @@ function MasterFadeHome() {
             <img
               src="https://i.ibb.co/B2k2NFLX/laptop.webp"
               alt="Laptop"
-              className="w-full h-auto"
+              className="w-full h-[282px] "
               loading="lazy"
               width="600"
-              height="400"
+              height="200"
             />
 
-            <div className="absolute top-0 left-0 w-24 h-24">
+<div className="absolute top-4 left-4 w-20 h-20 z-20">
+
               <img
                 src="https://i.ibb.co/xStxDQMs/logo-master-fade.webp"
                 alt="Master Fade 3.0 Elite"
@@ -58,14 +59,19 @@ function MasterFadeHome() {
                 height="96"
               />
             </div>
+            <div className="absolute top-[52%] left-[49%] transform -translate-x-1/2 -translate-y-1/2 w-[79%] h-[85%]">
+  <iframe
+    src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=6943273f-ec26-4591-a9ab-17714c19515f"
+    title="Master Fade Video"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    className="w-full h-full  shadow-lg"
+  ></iframe>
+</div>
 
-            {/* Placeholder del video */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-16 h-16 bg-black bg-opacity-50 rounded-full flex items-center justify-center cursor-pointer">
-                <div className="w-0 h-0 border-t-8 border-t-transparent border-l-16 border-l-white border-b-8 border-b-transparent ml-1"></div>
-              </div>
-            </div>
-          </div>
+
+
 
           <div className="w-full max-w-md mb-4 relative">
             <img
@@ -86,6 +92,7 @@ function MasterFadeHome() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </main>
   );
