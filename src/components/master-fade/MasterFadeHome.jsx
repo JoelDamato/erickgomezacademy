@@ -1,8 +1,13 @@
 function MasterFadeHome() {
+  const phoneNumber = "+59891640623";
+  const getWhatsAppLink = () => {
+    const message = "Hola, tengo dudas sobre el curso Master Fade. ¿Podrías darme más información?";
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  };
+
   return (
     <main className="flex flex-col items-center bg-black text-white overflow-hidden">
       <div className="relative w-full">
-        {/* Fondo con lazy loading */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://i.ibb.co/9mq2S3SK/fondo-azul-home.webp"
@@ -42,14 +47,13 @@ function MasterFadeHome() {
             <img
               src="https://i.ibb.co/B2k2NFLX/laptop.webp"
               alt="Laptop"
-              className="w-full h-[282px] "
+              className="w-full h-[282px]"
               loading="lazy"
               width="600"
               height="200"
             />
 
-<div className="absolute top-4 left-4 w-20 h-20 z-20">
-
+            <div className="absolute top-4 left-4 w-20 h-20 z-20">
               <img
                 src="https://i.ibb.co/xStxDQMs/logo-master-fade.webp"
                 alt="Master Fade 3.0 Elite"
@@ -59,19 +63,18 @@ function MasterFadeHome() {
                 height="96"
               />
             </div>
+
             <div className="absolute top-[52%] left-[49%] transform -translate-x-1/2 -translate-y-1/2 w-[79%] h-[85%]">
-  <iframe
-    src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=6943273f-ec26-4591-a9ab-17714c19515f"
-    title="Master Fade Video"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-    className="w-full h-full  shadow-lg"
-  ></iframe>
-</div>
-
-
-
+              <iframe
+                src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=6943273f-ec26-4591-a9ab-17714c19515f"
+                title="Master Fade Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full shadow-lg"
+              ></iframe>
+            </div>
+          </div>
 
           <div className="w-full max-w-md mb-4 relative">
             <img
@@ -82,17 +85,18 @@ function MasterFadeHome() {
               width="600"
               height="120"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <p className="font-bebas uppercase text-xl sm:text-xl text-shadow-bebas">
-                QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
-              </p>
-              <span className="font-opensans font-bold text-[60%] mt-[-5px] text-shadow-open">
-                La técnica a tijera que genera autoridad, seguidores y más clientes
-              </span>
-            </div>
+            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <p className="font-bebas uppercase text-xl sm:text-xl text-shadow-bebas">
+                  QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
+                </p>
+                <span className="font-opensans font-bold text-[60%] mt-[-5px] text-shadow-open">
+                  La técnica a tijera que genera autoridad, seguidores y más clientes
+                </span>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
       </div>
     </main>
   );
