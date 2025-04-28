@@ -10,7 +10,7 @@ function MasterFadeHome() {
       <div className="relative w-full">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://i.ibb.co/9mq2S3SK/fondo-azul-home.webp"
+            src="https://i.ibb.co/prWYdG19/fondo-azul-home.webp"
             alt="Fondo"
             className="object-cover w-full h-full absolute"
             loading="lazy"
@@ -29,7 +29,7 @@ function MasterFadeHome() {
           <div className="text-center mb-4">
             <div className="mb-1">
               <img
-                src="https://i.ibb.co/PGPhwQLv/titulo.webp"
+                src="https://i.ibb.co/C5rvv5Yj/titulo.webp"
                 alt="Mejora tu técnica de fade y hazte viral"
                 className="w-full h-auto"
                 loading="lazy"
@@ -45,7 +45,7 @@ function MasterFadeHome() {
 
           <div className="relative w-full max-w-md">
             <img
-              src="https://i.ibb.co/B2k2NFLX/laptop.webp"
+              src="https://i.ibb.co/N234zXJT/laptop.webp"
               alt="Laptop"
               className="w-full h-[282px]"
               loading="lazy"
@@ -54,8 +54,8 @@ function MasterFadeHome() {
             />
 
             <div className="absolute top-4 left-4 w-20 h-20 z-20">
-              <img
-                src="https://i.ibb.co/xStxDQMs/logo-master-fade.webp"
+              <img 
+              src="https://i.ibb.co/pvh0R3Dk/logo-master-fade.webp"
                 alt="Master Fade 3.0 Elite"
                 className="w-full h-auto"
                 loading="lazy"

@@ -27,7 +27,7 @@ export default function MasterFadeFAQ() {
           <div className="relative flex flex-col items-center">
             <div className="w-full">
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/barra%20completa%20s9-ERCEfeL0s1tVAZdv4GGfR4nxERO07M.png"
+                src="https://i.ibb.co/W4Z23qNw/barra-completa-s9.webp"
                 alt="7 días de garantía"
                 className="w-full h-auto"
               />
@@ -40,7 +40,7 @@ export default function MasterFadeFAQ() {
             <div className="w-full max-w-lg px-4 mb-12">
               <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Boton%20wsp%20s9-NadSW4ovPNpnhTRPqBwoKwxLS5E8AQ.png"
+                  src="https://i.ibb.co/zVG3JfV1/Boton-wsp-s9.webp"
                   alt="Habla con alguien de mi equipo vía WhatsApp"
                   className="w-full h-auto"
                 />
