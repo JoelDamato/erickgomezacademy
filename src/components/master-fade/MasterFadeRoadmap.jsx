@@ -5,7 +5,7 @@ function MasterFadeRoadmap() {
           <div className="py-8 px-4">
             <div className="relative w-full">
               <img
-                src="https://i.ibb.co/ccpqytRm/titulo-s6.png"
+                src="https://i.ibb.co/qMGZTVx9/titulo-s6.webp"
                 alt="Pasar de aprender una técnica a ser el próximo viral en redes"
                 className="w-full h-auto"
                 loading="lazy"
@@ -17,7 +17,7 @@ function MasterFadeRoadmap() {
       <div className="w-full max-w-5xl mx-auto px-4 ">
         <div className="relative mt-[-1rem]">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.%20Roadmap-ZbFpc5T5uS3dHr5Nsstkkoec4RcqpT.png"
+            src="https://i.ibb.co/F4tYL5hm/1-Roadmap.webp"
             alt="Roadmap Sección 1"
             className="w-full h-auto"
             loading="lazy"
@@ -40,7 +40,7 @@ function MasterFadeRoadmap() {
     <div className="w-full max-w-5xl pr-11 pl-1">
         <div className="relative mt-[-1.5rem] ">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.%20Roadmap-9EDHalgWlVO2McQFPXMAWop4aDWsp5.png"
+          src="https://i.ibb.co/9kq8FzSr/2-Roadmap.webp"
             alt="Roadmap Sección 2"
             className="w-full h-auto"
             loading="lazy"
@@ -61,7 +61,7 @@ function MasterFadeRoadmap() {
       <div className="w-full max-w-5xl pl-9 pr-1">
         <div className="relative mt-[-1.5rem]">
           <img
-            src="https://i.ibb.co/sdhWWwG3/3-Roadmap.png"
+            src="https://i.ibb.co/fdCm3xhP/3-Roadmap.webp"
             alt="Roadmap Sección 3"
             className="w-full h-auto"
             loading="lazy"
@@ -81,7 +81,7 @@ function MasterFadeRoadmap() {
 <div className="w-full max-w-5xl pr-9 pl-1">
         <div className="relative mt-[-1.5rem] ">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4.%20Roadmap-LqPGWx5c9rWrGOqsK6rdG17Fu0crUk.png"
+            src="https://i.ibb.co/JWsGP3G6/4-Roadmap.webp"
             alt="Roadmap Sección 4"
             className="w-full h-auto"
             loading="lazy"
@@ -103,7 +103,7 @@ function MasterFadeRoadmap() {
       <div className="w-full max-w-5xl pl-9 pr-1 ">
         <div className="relative mt-[-1rem]">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5.%20Roadmap-WFSTifojzdaUCeOrxXTw28ShyxqmPB.png"
+            src="https://i.ibb.co/Q36mQQKx/5-Roadmap.webp"
             alt="Roadmap Sección 5"
             className="w-full h-auto"
             loading="lazy"
@@ -125,7 +125,7 @@ function MasterFadeRoadmap() {
       <div className="w-[80%] ">
         <div className="relative mt-[-1.5rem] ml-8 ">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6.%20Roadmap-kI0rQfsai20YmOwHn6Tuf29szfT1Xn.png"
+            src="https://i.ibb.co/fVrRJsXn/6-Roadmap.webp"
             alt="Roadmap Sección 6"
             className="w-full h-auto"
             loading="lazy"

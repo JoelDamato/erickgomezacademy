@@ -10,27 +10,27 @@ function Carrusel() {
   const faqItems = [
     {
       id: 1,
-      image: "https://i.ibb.co/5WDMSQb3/1-FAQ.png",
+      image: "https://i.ibb.co/v6HTswGX/1-FAQ.webp",
       alt: "¿Por que vale la pena invertir en este entrenamiento?",
     },
     {
       id: 2,
-      image: "https://i.ibb.co/CKz3DwCR/2-FAQ.png",
+      image: "https://i.ibb.co/Jhv7cV2/2-FAQ.webp",
       alt: "¿Que contiene el entrenamiento Master Fade 3.0?",
     },
     {
       id: 3,
-      image: "https://i.ibb.co/rX08qpk/3-FAQ.png",
+      image: "https://i.ibb.co/KxzrBkwh/3-FAQ.webp",
       alt: "¿Puedo inscribirme desde cualquier país?",
     },
     {
       id: 4,
-      image: "https://i.ibb.co/Dfm1Tnxy/4-FAQ.png",
+      image: "https://i.ibb.co/wZb8GtQ2/4-FAQ.webp",
       alt: "¿El entrenamiento incluye acompañamiento?",
     },
     {
       id: 5,
-      image: "https://i.ibb.co/q2Zm1F5/5-FAQ.png",
+      image: "https://i.ibb.co/k2LBKbyJ/5-FAQ.webp",
       alt: "¿El entrenamiento está disponible en otros idiomas además del español?",
     },
   ]
