@@ -25,7 +25,7 @@ const VentajaCompetitiva = () => {
       {/* Título */}
       <div className="w-4/5 max-w-xs mb-[-50px]">
         <img
-          src="https://i.ibb.co/8Fbp2Yb/titulo-4s.webp"
+          src="https://i.ibb.co/cX2TLzR9/titulo-4s.png"
           alt="Lo que obtenés no es solo una técnica... es ventaja competitiva"
           className="w-full h-auto"
           loading="lazy"

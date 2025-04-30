@@ -29,7 +29,7 @@ function MasterFadeHome() {
           <div className="text-center mb-4">
             <div className="mb-1">
               <img
-                src="https://i.ibb.co/C5rvv5Yj/titulo.webp"
+                src="https://i.ibb.co/h1F7PqFG/titulo-s1.png"
                 alt="Mejora tu técnica de fade y hazte viral"
                 className="w-full h-auto"
                 loading="lazy"
@@ -78,7 +78,7 @@ function MasterFadeHome() {
 
           <div className="w-full max-w-md mb-4 relative">
             <img
-              src="https://i.ibb.co/vx3gKzjr/Boton-dorado.webp"
+              src="https://i.ibb.co/h1msk0zq/Boto-n-1s.png"
               alt="Boton dorado"
               className="w-full h-auto"
               loading="lazy"
