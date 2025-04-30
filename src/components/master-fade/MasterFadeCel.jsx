@@ -20,10 +20,10 @@ const VentajaCompetitiva = () => {
   }, []);
 
   return (
-    <section className="w-full flex flex-col items-center justify-center bg-black py-6 relative overflow-hidden">
+    <section className="w-full flex flex-col items-center justify-center bg-black  relative overflow-hidden">
       
       {/* Título */}
-      <div className="w-4/5 max-w-xs mb-[-50px]">
+      <div className="w-4/5 max-w-xs mb-[-100px]">
         <img
           src="https://i.ibb.co/cX2TLzR9/titulo-4s.png"
           alt="Lo que obtenés no es solo una técnica... es ventaja competitiva"

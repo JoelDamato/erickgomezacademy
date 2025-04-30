@@ -9,7 +9,7 @@ const OfertaMasterFade = () => {
     ];
   
     return (
-      <section className="w-full bg-black text-white py-4 px-4 flex flex-col items-center">
+      <section className="w-full bg-black text-white mt-[-10px] px-4 flex flex-col items-center">
         
         {/* Mockup general */}
         <div className="w-full max-w-md mb-4">
