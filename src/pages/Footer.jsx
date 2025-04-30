@@ -21,7 +21,7 @@ const ComponentName = () => {
       {/* Términos */}
       <p className="text-center text-sm">
         <a
-          href="/politicas-de-privacidad"
+          href="/PoliticaPrivacidad"
           className="hover:underline"
         >
           Políticas de privacidad

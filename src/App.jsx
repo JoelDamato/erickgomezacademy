@@ -25,6 +25,7 @@ import Colorimetria  from './components/Colorimetria.jsx';
 import Politicaderembolso from './pages/Politicasrembolso.jsx'
 import Error404 from './pages/Error404.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
+import PoliticasPrivacidad from './pages/PoliticasdePrivacidad.jsx';
 import MasterFadePage from './pages/MasterFade.jsx';
 
 function App() {
@@ -61,7 +62,8 @@ function App() {
         <Route path="/Coco" element={<PrivateRoute><Coco /></PrivateRoute>} />
         <Route path="/Metricas" element={<PrivateRoute><Metricas /></PrivateRoute>} />
         <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
-        <Route path="/Politicarembolso" element={<PrivateRoute><Politicaderembolso /></PrivateRoute>} />
+        <Route path="/Politicarembolso" element={<Politicaderembolso />} />
+        <Route path="/PoliticaPrivacidad" element={<PoliticasPrivacidad />} />
 
         {/* 404 */}
         <Route path="*" element={<Error404 />} />
