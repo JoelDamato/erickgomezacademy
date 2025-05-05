@@ -58,7 +58,7 @@ function PagoMercadoPago() {
         <h2 className="text-3xl font-bold text-center mb-6"> Master Fade 3.0</h2>
 
         <p className="text-yellow-400 mb-4 text-sm text-center">
-          Este email será tu acceso al curso. <strong>IMPORTANTE:</strong> ingresalo correctamente.
+          <strong>IMPORTANTE:</strong> Este email será tu acceso al curso ingresalo correctamente.
         </p>
 
         <div className="mb-4">
@@ -94,10 +94,14 @@ function PagoMercadoPago() {
         </button>
 
         <p className="text-xs text-center mt-5 text-zinc-300">
-          Al hacer clic en “Ir a pagar”, vas a ser dirigido a Mercado Pago.
-          <br />
-          Una vez confirmado el pago, te redirigiremos automáticamente a la página con tu acceso al curso.
-        </p>
+  Al hacer clic en <u>“Ir a pagar”</u>, vas a ser dirigido a Mercado Pago.
+  <br />
+  <strong className="text-red-400 underline">IMPORTANTE:</strong> una vez confirmado el pago,
+   te redirigiremos automáticamente a la página con tu acceso al curso.
+  <br />
+  <u>Solo tenés que esperar 5 segundos</u> luego de pagar dentro de Mercado Pago.
+</p>
+
       </div>
     </div>
   );

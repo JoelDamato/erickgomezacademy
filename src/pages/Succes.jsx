@@ -104,8 +104,9 @@ export default function Success() {
         </h2>
 <img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" />
         {loading ? (
-          <div className="flex justify-center mt-6">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-yellow-400"></div>
+            <div className="flex flex-col items-center justify-center mt-6">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-yellow-400 mb-4"></div>
+            <p className="text-yellow-300">⏳ Estamos configurando tu cuenta, por favor esperá un momento...</p>
           </div>
         ) : (
           <div className="text-lg mt-4">
