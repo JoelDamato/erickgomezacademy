@@ -5,7 +5,7 @@ function MasterFadeRoadmap() {
           <div className="py-8 px-4">
             <div className="relative w-full">
               <img
-                src="https://i.ibb.co/qMGZTVx9/titulo-s6.webp"
+                src="https://i.ibb.co/JjX0rKW7/titulo-s6.png"
                 alt="Pasar de aprender una técnica a ser el próximo viral en redes"
                 className="w-full h-auto"
                 loading="lazy"

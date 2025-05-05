@@ -15,7 +15,7 @@ const MasterFadeEstadisticas = () => {
 
         <div className="absolute  bottom-5 left-0 right-0 px-4">
           <img
-            src="https://i.ibb.co/qMYxtsFm/titulo-estadisticas.webp"
+            src="https://i.ibb.co/XQHK382/titulo-s2.png"
             alt="MÁS QUE NÚMEROS Y RESULTADOS REALES ERICK GÓMEZ VIENE TRANSFORMANDO BARBEROS EN REFERENTES"
             className="w-full max-w-4xl mx-auto h-auto"
           />
