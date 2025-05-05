@@ -5,71 +5,81 @@ import axios from "axios";
 export default function Success() {
   const [searchParams] = useSearchParams();
   const [mensaje, setMensaje] = useState("Procesando tu cuenta...");
+  const [mensajeDelServidor, setMensajeDelServidor] = useState("");
   const [passwordGenerada, setPasswordGenerada] = useState("");
+  const [mostrarCredenciales, setMostrarCredenciales] = useState(false);
+  const [mostrarMensajeServidor, setMostrarMensajeServidor] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const email = searchParams.get("email");
   const nombre = searchParams.get("nombre");
 
   const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
-      ? 'https://back-cursos.onrender.com'
-      : 'http://localhost:5000';
+    process.env.NODE_ENV === "production"
+      ? "https://back-cursos.onrender.com"
+      : "http://localhost:5000";
 
-  const generateRandomPassword = (length = 12) => {
-    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    let password = '';
-    for (let i = 0; i < length; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return password;
+  const generateReadablePassword = () => {
+    const palabras = ["barber", "fade", "corte", "peine", "tijera", "clipper"];
+    const palabra = palabras[Math.floor(Math.random() * palabras.length)];
+    const numero = Math.floor(100 + Math.random() * 900);
+    return `${palabra}${numero}`;
   };
 
   useEffect(() => {
     const crearUsuario = async () => {
       if (!email || !nombre) {
         setMensaje("❌ Faltan datos en la URL");
-        setLoading(false);
         return;
       }
 
-      const password = generateRandomPassword();
+      const password = generateReadablePassword();
       setPasswordGenerada(password);
 
-      const delay = new Promise(resolve => setTimeout(resolve, 5000));
-
       try {
-        const request = axios.post(`${API_BASE_URL}/api/create/register`, {
+        const response = await axios.post(`${API_BASE_URL}/api/create/registerauto`, {
           nombre,
           email,
           password,
           cursos: ["Master Fade 3.0"],
-          rol: "user"
+          rol: "user",
         });
 
-        const [response] = await Promise.all([request, delay]);
+        const serverMsg = response.data?.message || "Proceso completado";
+        setMensaje("✅ ¡Listo!");
+        setMensajeDelServidor(serverMsg);
 
-        if (response.status === 201) {
-          setMensaje("✅ ¡Cuenta creada con éxito!");
+        if (serverMsg.includes("creado") || serverMsg.includes("correo enviado")) {
+          setMostrarCredenciales(true);
+          setMostrarMensajeServidor(false);
         } else {
-          setMensaje("⚠️ No se pudo crear la cuenta.");
+          setMostrarCredenciales(false);
+          setMostrarMensajeServidor(true);
         }
 
       } catch (error) {
         console.error("❌ Error al crear usuario:", error);
+        const errorMsg =
+          error.response?.data?.message || "❌ Error desconocido al crear la cuenta.";
 
-        if (error.response?.status === 409) {
-          setMensaje("⚠️ El usuario ya existe. Podés iniciar sesión.");
-        } else {
-          setMensaje("❌ Error al crear la cuenta.");
-        }
-      } finally {
-        setLoading(false);
+        setMensaje("⚠️ No se pudo crear la cuenta.");
+        setMensajeDelServidor(errorMsg);
+        setMostrarCredenciales(false);
+        setMostrarMensajeServidor(true);
       }
     };
 
     crearUsuario();
   }, [email, nombre]);
+
+  // ⏱ Este timeout es el que controla cuándo ocultar el spinner
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 8000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div
@@ -80,35 +90,49 @@ export default function Success() {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute top-10 w-full flex justify-center">
-        <img
-          src="/erickgomez.png"
-          alt="Erick Gomez Academy"
-          className="w-[180px] drop-shadow-lg"
-        />
-      </div>
+<div className="absolute top-0 w-full flex justify-center">
+  <img
+    src="/erickgomez.png"
+    alt="Erick Gomez Academy"
+    className="w-[180px] drop-shadow-lg mt-4"
+  />
+</div>
 
-      <div className="bg-black/70 backdrop-blur-sm p-8 rounded-xl max-w-lg w-full text-center mt-28">
-        <h1 className="text-2xl font-bold mb-4">{mensaje}</h1>
-
+<div className="bg-black/70 flex flex-col items-center backdrop-blur-sm p-8 rounded-xl max-w-lg w-full text-center mt-32">
+ <h2 className="text-xl">
+          🎉 ¡Felicitaciones! Ya tenés acceso al curso <strong>Master Fade 3.0</strong>.
+        </h2>
+<img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" />
         {loading ? (
           <div className="flex justify-center mt-6">
             <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-yellow-400"></div>
           </div>
-        ) : mensaje.includes("éxito") ? (
-          <div className="text-lg mt-4">
-            <p><strong>Email:</strong> {email}</p>
-            <p><strong>Contraseña:</strong> {passwordGenerada}</p>
-            <p className="mt-2 text-yellow-400">Importante guardá estos datos para ingresar</p>
-            <a href="/login" className="block mt-4 underline text-yellow-300">
-              Iniciar sesión
-            </a>
-          </div>
         ) : (
-          <div className="text-red-400 text-lg mt-4">
-            <p>{mensaje}</p>
-            <a href="/login" className="block mt-4 underline text-yellow-300">
-              Ir al login
+          <div className="text-lg mt-4">
+            <p className="my-2">
+              <strong>Email:</strong> {email}
+            </p>
+
+            {mostrarCredenciales && (
+              <>
+                <p>
+                  <strong>Contraseña:</strong> {passwordGenerada}
+                </p>
+                <p className="mt-2 text-yellow-400">
+                  Importante: guardá estos datos para ingresar
+                </p>
+              </>
+            )}
+
+            {mostrarMensajeServidor && mensajeDelServidor && (
+              <p className="text-yellow-400 mb-2">{mensajeDelServidor}</p>
+            )}
+
+            <a
+              href="/login"
+              className="mt-4 inline-block bg-yellow-400 hover:bg-yellow-300 text-black font-semibold py-2 px-6 rounded-xl transition duration-300 shadow-md"
+            >
+              Iniciar sesión
             </a>
           </div>
         )}

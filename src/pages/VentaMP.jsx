@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 function PagoMercadoPago() {
-  const [title, setTitle] = useState("Master Fade 3.0");
-  const [price, setPrice] = useState("1"); // en ARS
+  const [title] = useState("Master Fade 3.0");
+  const [price] = useState("1"); // ARS
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -10,7 +10,7 @@ function PagoMercadoPago() {
 
   const API_BASE_URL =
     process.env.NODE_ENV === 'production'
-      ? 'https://back-cos-gim3.onrender.com'
+      ? 'https://back-cursos.onrender.com'
       : 'http://localhost:5000';
 
   const generarLinkDePago = async () => {
@@ -22,7 +22,7 @@ function PagoMercadoPago() {
     setLoading(true);
     setError('');
 
-    // Guardar en localStorage para luego recuperar en /success
+    // Guardar en localStorage para /success
     localStorage.setItem('nombre', nombre);
     localStorage.setItem('email', email);
 
@@ -30,19 +30,14 @@ function PagoMercadoPago() {
       const response = await fetch(`${API_BASE_URL}/api/generate-link`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title,
-          price: parseFloat(price),
-          nombre,
-          email
-        })
+        body: JSON.stringify({ title, price: parseFloat(price), nombre, email })
       });
 
       const data = await response.json();
       console.log("🎯 Respuesta:", data);
 
       if (response.ok && data.link) {
-        window.location.href = data.link; // Redirige al checkout de MercadoPago
+        window.location.href = data.link;
       } else {
         throw new Error(data.error || "Error desconocido");
       }
@@ -55,40 +50,55 @@ function PagoMercadoPago() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-zinc-900 text-white rounded-xl shadow-md mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center">Comprar Master Fade 3.0</h2>
+    <div className="min-h-screen flex items-center justify-center text-white px-4 relative bg-[url('https://i.ibb.co/6JRvGQ0M/Fondosinega2.png')] bg-cover bg-center">
+      <div className="bg-black/80 backdrop-blur-md p-8 rounded-xl max-w-lg w-full shadow-lg">
+      <div className='flex justify-center'>      <img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" /></div>
 
-      <div className="mb-4">
-        <label className="block mb-1 font-medium">Nombre completo</label>
-        <input
-          type="text"
-          className="w-full p-2 rounded bg-zinc-800 border border-zinc-600"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
+
+        <h2 className="text-3xl font-bold text-center mb-6"> Master Fade 3.0</h2>
+
+        <p className="text-yellow-400 mb-4 text-sm text-center">
+          Este email será tu acceso al curso. <strong>IMPORTANTE:</strong> ingresalo correctamente.
+        </p>
+
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Nombre completo</label>
+          <input
+            type="text"
+            className="w-full p-3 rounded bg-zinc-800 border border-zinc-600 focus:outline-none"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Email</label>
+          <input
+            type="email"
+            className="w-full p-3 rounded bg-zinc-800 border border-zinc-600 focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        {error && <p className="text-red-400 mb-3 text-sm">{error}</p>}
+
+        <button
+          onClick={generarLinkDePago}
+          disabled={loading}
+          className={`w-full py-3 rounded-xl font-semibold transition duration-300 shadow-md ${
+            loading ? "bg-gray-600 cursor-not-allowed" : "bg-yellow-400 text-black hover:bg-yellow-300"
+          }`}
+        >
+          {loading ? "Generando link de pago..." : "Ir a pagar"}
+        </button>
+
+        <p className="text-xs text-center mt-5 text-zinc-300">
+          Al hacer clic en “Ir a pagar”, vas a ser dirigido a Mercado Pago.
+          <br />
+          Una vez confirmado el pago, te redirigiremos automáticamente a la página con tu acceso al curso.
+        </p>
       </div>
-
-      <div className="mb-4">
-        <label className="block mb-1 font-medium">Email</label>
-        <input
-          type="email"
-          className="w-full p-2 rounded bg-zinc-800 border border-zinc-600"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
-      {error && <p className="text-red-400 mb-3">{error}</p>}
-
-      <button
-        onClick={generarLinkDePago}
-        disabled={loading}
-        className={`w-full py-2 rounded font-semibold ${
-          loading ? "bg-gray-600" : "bg-yellow-400 text-black hover:bg-yellow-300"
-        }`}
-      >
-        {loading ? "Generando..." : "Ir a pagar"}
-      </button>
     </div>
   );
 }
