@@ -13,7 +13,7 @@ export default function Success() {
 
   const API_BASE_URL =
     process.env.NODE_ENV === 'production'
-      ? 'https://back-cos-gim3.onrender.com'
+      ? 'https://back-cursos.onrender.com'
       : 'http://localhost:5000';
 
   const generateRandomPassword = (length = 12) => {
@@ -99,7 +99,7 @@ export default function Success() {
           <div className="text-lg mt-4">
             <p><strong>Email:</strong> {email}</p>
             <p><strong>Contraseña:</strong> {passwordGenerada}</p>
-            <p className="mt-2 text-yellow-400">Guardá estos datos para ingresar</p>
+            <p className="mt-2 text-yellow-400">Importante guardá estos datos para ingresar</p>
             <a href="/login" className="block mt-4 underline text-yellow-300">
               Iniciar sesión
             </a>
