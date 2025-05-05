@@ -25,6 +25,8 @@ import Error404 from './pages/Error404.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
 import PoliticasPrivacidad from './pages/PoliticasdePrivacidad.jsx';
 import MasterFadePage from './pages/MasterFade.jsx';
+import VentaMP from "./pages/VentaMP.jsx"
+import Success from './pages/Succes.jsx';
 
 function App() {
   return (
@@ -47,6 +49,9 @@ function App() {
         <Route path="/Sdstudio" element={<Sdstudio />} />
         <Route path="/Celinbarber" element={<Celin />} />
         <Route path="/Coco" element={<Coco />} />
+        <Route path="/pasarelamp" element={<VentaMP />} />
+        <Route path="/success" element={<Success />} />
+
 
         {/* PRIVADAS */}
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
