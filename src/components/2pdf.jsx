@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 const Ebook = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-      <h1 className="p-5 text-4xl md:text-6xl font-bold text-center text-transparent bg-gradient-to-b from-white/60 to-yellow-800 bg-clip-text drop-shadow-lg tracking-wide">
+      <h1 className="p-5 text-1xl md:text-6xl font-bold text-center text-transparent bg-gradient-to-b from-white/60 to-yellow-800 bg-clip-text drop-shadow-lg tracking-wide">
       Descarga y edúcate con nuestros recursos de la semana de Fade
       </h1>
 
