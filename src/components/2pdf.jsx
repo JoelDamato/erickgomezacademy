@@ -5,7 +5,7 @@ const Ebook = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
       <h1 className="p-5 text-4xl md:text-6xl font-bold text-center text-transparent bg-gradient-to-b from-white/60 to-yellow-800 bg-clip-text drop-shadow-lg tracking-wide">
-        Master Fade 3.0
+      Descarga y edúcate con nuestros recursos de la semana de Fade
       </h1>
 
       <main className="flex flex-col items-center justify-center w-full max-w-4xl mt-3 p-4 rounded-lg shadow-lg">
