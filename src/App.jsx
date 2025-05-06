@@ -6,8 +6,6 @@ import Dashboard from './pages/Dashboard.jsx';
 import Cursos from './pages/Cursos.jsx';
 import PanelControl from './pages/Panel.jsx';
 import Capitulos from './pages/Capitulos.jsx';
-import Certificados from './pages/Certificados.jsx';
-import Certificadoscuty from './pages/Certificadoscuty.jsx';
 import Perfil from './pages/Perfil.jsx';
 import Regalo from './pages/Regalo.jsx'; 
 import EjemploLanding from './landinpage/landingejemplo.jsx';
@@ -27,9 +25,7 @@ import PoliticasPrivacidad from './pages/PoliticasdePrivacidad.jsx';
 import MasterFadePage from './pages/MasterFade.jsx';
 import VentaMP from "./pages/VentaMP.jsx"
 import Success from './pages/Succes.jsx';
-import PreguntasFrecuentes from './pages/Preguntas.jsx';
-import Ebook  from './components/pdf.jsx';
-
+import Preguntas from'./pages/Preguntas.jsx';
 function App() {
   return (
     <Router>
@@ -53,16 +49,13 @@ function App() {
         <Route path="/Coco" element={<Coco />} />
         <Route path="/pasarelamp" element={<VentaMP />} />
         <Route path="/success" element={<Success />} />
-        <Route path="/preguntasfrecuentes" element={<PreguntasFrecuentes />} />
-        <Route path="/ebook" element={<Ebook />} />
+        <Route path="/preguntas" element={<Preguntas/>} />
 
         {/* PRIVADAS */}
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/PanelControl" element={<PrivateRoute><PanelControl /></PrivateRoute>} />
         <Route path="/cursos/:cursoId" element={<PrivateRoute><Cursos /></PrivateRoute>} />
         <Route path="/cursos/:cursoId/:moduleName/:chapterId" element={<PrivateRoute><Capitulos /></PrivateRoute>} />
-        <Route path="/Certificados" element={<PrivateRoute><Certificados /></PrivateRoute>} />
-        <Route path="/Certificadoscuty" element={<PrivateRoute><Certificadoscuty /></PrivateRoute>} />
         <Route path="/Perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
         <Route path="/Regalo" element={<PrivateRoute><Regalo /></PrivateRoute>} />
         <Route path="/landing" element={<PrivateRoute><EjemploLanding /></PrivateRoute>} />
