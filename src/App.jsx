@@ -27,6 +27,8 @@ import PoliticasPrivacidad from './pages/PoliticasdePrivacidad.jsx';
 import MasterFadePage from './pages/MasterFade.jsx';
 import VentaMP from "./pages/VentaMP.jsx"
 import Success from './pages/Succes.jsx';
+import PreguntasFrecuentes from './pages/Preguntas.jsx';
+import Ebook  from './components/pdf.jsx';
 
 function App() {
   return (
@@ -51,7 +53,8 @@ function App() {
         <Route path="/Coco" element={<Coco />} />
         <Route path="/pasarelamp" element={<VentaMP />} />
         <Route path="/success" element={<Success />} />
-
+        <Route path="/preguntasfrecuentes" element={<PreguntasFrecuentes />} />
+        <Route path="/ebook" element={<Ebook />} />
 
         {/* PRIVADAS */}
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
