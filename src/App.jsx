@@ -26,6 +26,8 @@ import MasterFadePage from './pages/MasterFade.jsx';
 import VentaMP from "./pages/VentaMP.jsx"
 import Success from './pages/Succes.jsx';
 import Preguntas from'./pages/Preguntas.jsx';
+import Pdf from'./components/2pdf.jsx';
+
 function App() {
   return (
     <Router>
@@ -50,6 +52,7 @@ function App() {
         <Route path="/pasarelamp" element={<VentaMP />} />
         <Route path="/success" element={<Success />} />
         <Route path="/preguntas" element={<Preguntas/>} />
+        <Route path="/pdf2" element={<Pdf/>} />
 
         {/* PRIVADAS */}
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
