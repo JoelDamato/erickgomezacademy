@@ -71,22 +71,41 @@ const FormOnboarding = () => {
   };
   
 
- const isStep2Valid = () => {
-  const newErrors = {};
-  const { desafio, herramientas, motivacion, objetivo3Meses, aprenderClientes, abrirBarberia, serEducador, esfuerzoExtra } = formData;
-
-  if (desafio.length === 0) newErrors.desafio = "Contanos cuál es tu mayor desafío";
-  if (herramientas.length === 0) newErrors.herramientas = "Seleccioná al menos una herramienta que uses";
-  if (!motivacion) newErrors.motivacion = "Contanos qué te motivó a tomar Master Fade 3.0";
-  if (!objetivo3Meses) newErrors.objetivo3Meses = "Definí un objetivo para los próximos 3 meses";
-  if (!aprenderClientes) newErrors.aprenderClientes = "Comentá si querés aprender a atraer clientes y por qué";
-  if (!abrirBarberia) newErrors.abrirBarberia = "Seleccioná si te interesa abrir una barbería";
-  if (!serEducador) newErrors.serEducador = "Contanos si te gustaría ser educador o referente";
-  if (!esfuerzoExtra) newErrors.esfuerzoExtra = "Indicá si estás dispuesto a invertir esfuerzo extra";
+  const isStep2Valid = () => {
+    const newErrors = {};
+    const {
+      desafio,
+      herramientas,
+      motivacion,
+      objetivo3Meses,
+      aprenderClientes,
+      abrirBarberia,
+      serEducador,
+      esfuerzoExtra
+    } = formData;
   
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+    if (desafio.length === 0) newErrors.desafio = "Contanos cuál es tu mayor desafío";
+    if (herramientas.length === 0) newErrors.herramientas = "Seleccioná al menos una herramienta que uses";
+  
+    if (!motivacion || motivacion.length < 20)
+      newErrors.motivacion = "Escribí al menos 20 caracteres en tu motivación";
+  
+    if (!objetivo3Meses || objetivo3Meses.length < 20)
+      newErrors.objetivo3Meses = "Escribí al menos 20 caracteres en tu objetivo";
+  
+    if (!aprenderClientes || aprenderClientes.length < 20)
+      newErrors.aprenderClientes = "Escribí al menos 20 caracteres sobre cómo atraer clientes";
+  
+    if (!serEducador || serEducador.length < 20)
+      newErrors.serEducador = "Escribí al menos 20 caracteres sobre si querés ser educador";
+  
+    if (!abrirBarberia) newErrors.abrirBarberia = "Seleccioná si te interesa abrir una barbería";
+    if (!esfuerzoExtra) newErrors.esfuerzoExtra = "Indicá si estás dispuesto a invertir esfuerzo extra";
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
 
 
   const handleChange = (e) => {

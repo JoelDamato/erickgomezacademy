@@ -105,7 +105,7 @@ function Dashboard() {
   const bienvenidaBanner = {
     banner: "https://i.ibb.co/XkJcr8JJ/Bienvenida.webp",
     courseTitle: "¡Bienvenido a la Academia!",
-    courseDescription: "Bienvenido a una nueva etapa. Este sistema fue creado para quienes quieren dejar huella en la barbería. Si estás acá, no es casualidad: estás en el lugar indicado para evolucionar y llevar tu carrera a lo más alto.",
+    courseDescription: "Bienvenido/a. Este no es solo un curso: es el inicio de tu transformación como barbero. Desde hoy sos parte de una comunidad de +10,000 barberos que crecen y se apoyan. No solo aprenderás técnica, sino a dejar tu marca en la industria. Este es tu momento. Este es tu lugar. Dale play… y empecemos.",
   };
   
 // Reordeno: primero bienvenida, luego Master Fade si existe, luego el resto
