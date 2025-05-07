@@ -27,6 +27,9 @@ import VentaMP from "./pages/VentaMP.jsx"
 import Success from './pages/Succes.jsx';
 import Preguntas from'./pages/Preguntas.jsx';
 import Pdf from'./components/2pdf.jsx';
+import Herramientas from './pages/Herramients.jsx';
+import VideoBarberos from './pages/Ultimomomento.jsx';
+
 
 function App() {
   return (
@@ -53,6 +56,9 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/preguntas" element={<Preguntas/>} />
         <Route path="/pdf2" element={<Pdf/>} />
+        <Route path="/ultimomomento" element={<VideoBarberos />} />
+
+
 
         {/* PRIVADAS */}
         <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
@@ -65,7 +71,7 @@ function App() {
         <Route path="/homee" element={<PrivateRoute><HM /></PrivateRoute>} />
         <Route path="/Metricas" element={<PrivateRoute><Metricas /></PrivateRoute>} />
         <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
-
+        <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
 
         {/* 404 */}
         <Route path="*" element={<Error404 />} />
