@@ -116,6 +116,12 @@ const bannersToShow = [bienvenidaBanner];
 if (masterFade) bannersToShow.push(masterFade);
 bannersToShow.push(...otherCourses);
 
+bannersToShow.push({
+  banner: "https://i.ibb.co/svyD9vkw/Nivel-3-Coming-soon.png",
+  courseTitle: "🔓 Se abre un nuevo nivel.",
+  courseDescription: "No importa si ya tenés barbería, si sos educador, nómada o estás por abrir tu primer local.Este sistema fue diseñado para llevarte a otro estándar.Organización. Escalabilidad. Libertad"
+});
+
   return (
     <>
       <div className="relative h-full w-screen flex flex-col items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black  bg-center" >
@@ -135,24 +141,27 @@ bannersToShow.push(...otherCourses);
 
                 <div key={index} className="w-full flex-shrink-0 snap-center px-0 md:px-2" style={{ minWidth: "100%", maxWidth: "100%" }}>
         <div
-  className={`relative text-white ${index === activeIndex ? 'opacity-100' : 'opacity-90'} h-full md:h-3/4 md:mt-10 transition-opacity duration-500 md:border border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row`}
+  className={`relative text-white ${index === activeIndex ? 'opacity-100' : 'opacity-90'} h-[100%] md:h-3/4 md:mt-10 transition-opacity duration-500 md:border border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row`}
 >
   {/* Imagen del banner */}
   <img
-    src={curso.banner}
-    alt={curso.courseTitle}
-    className="w-full h-full md:w-1/2 md:max-h-[100%] object-cover md:object-fit"
-  />
+  src={curso.banner}
+  alt={curso.courseTitle}
+  className="w-full h-[660px] md:w-1/2 md:h-full object-cover"
+/>
+
 
   {/* Contenido para PC */}
-  <div className="hidden md:flex flex-col justify-start w-full md:w-1/2 px-8 relative pt-32">
-  {curso.nivel && (
-    <img
-      src={curso.nivel}
-      alt="Nivel"
-      className="w-24 md:w-28 absolute top-6 left-8 z-10"
-    />
-  )}
+  <div className="hidden md:flex flex-col justify-start w-full md:w-1/2 px-8 pt-32 relative">
+  <div className="mb-4">
+    {curso.nivel && (
+      <img
+        src={curso.nivel}
+        alt="Nivel"
+        className="w-24 md:w-28"
+      />
+    )}
+  </div>
   <h3 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
     {curso.courseTitle}
   </h3>
@@ -162,17 +171,23 @@ bannersToShow.push(...otherCourses);
 </div>
 
 
+
   {/* Contenido superpuesto para mobile */}
-  <div className="md:hidden absolute inset-0 flex flex-col items-center justify-end  to-transparent px-4 pb-6 text-center">
+  {/* Contenido superpuesto para mobile */}
+<div className="md:hidden absolute inset-0 flex flex-col items-center justify-end px-4 pb-6 text-center">
+  {/* Contenedor de altura fija para imagen de nivel */}
+  <div className="h-[80px] flex items-end justify-center mb-2">
     {curso.nivel && (
       <img
         src={curso.nivel}
         alt="Nivel"
-        className="w-20 mb-4"
+        className="w-20 h-16 object-contain"
       />
     )}
-    <p className="text-sm text-gray-200">{curso.courseDescription}</p>
   </div>
+  <p className="text-sm text-gray-200">{curso.courseDescription}</p>
+</div>
+
 </div>
 
 
