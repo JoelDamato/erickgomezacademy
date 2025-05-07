@@ -47,7 +47,7 @@ export default function VideoBarberos() {
       </div>
 
       {/* Nota final */}
-      <p className="text-sm text-gray-400 max-w-xl text-center pb-10">
+      <p className="text-sm text-gray-400 max-w-xl text-center pb-10 mt-2">
         👉🏼 <span className="text-white font-medium">Solo los miembros del grupo VIP van a recibir esta oportunidad exclusiva.</span><br />
         Escucha esto antes de que sea tarde.
       </p>
