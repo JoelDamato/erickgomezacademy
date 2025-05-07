@@ -111,31 +111,6 @@ export default function BarberAcademy() {
          
 
            
-              <button>
-                <a
-                  href={getWhatsAppLink()}
-
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-green-500 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-8 w-8 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
-                  Quiero ser parte
-                </a>
-              </button>
             </div>
           </section>
         </div>

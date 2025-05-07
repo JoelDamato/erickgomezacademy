@@ -24,10 +24,30 @@ function Capitulos() {
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
+  const [videoFinalizado, setVideoFinalizado] = useState(false);
+
 
   const user = useUserStore((state) => state.user);
   const clearUserData = useUserStore((state) => state.clearUserData);
   const playerRef = useRef(null);
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (!event.data || typeof event.data !== "object") return;
+  
+      const { event: pandaEvent } = event.data;
+  
+      if (pandaEvent === "video-ended") {
+        console.log("🎬 Video finalizado");
+        setVideoFinalizado(true); // 🔓 desbloquea el botón
+      }
+    };
+  
+    window.addEventListener("message", handleMessage);
+  
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -335,12 +355,18 @@ function Capitulos() {
             Regresar
           </button>
           {parseInt(chapterId, 10) < currentModuleChapters.length && (
-            <button
-              onClick={goToNextChapter}
-              className="bg-black text-white py-2 px-4 rounded-lg"
-            >
-              Siguiente
-            </button>
+        <button
+        onClick={goToNextChapter}
+        className={`py-2 px-4 rounded-lg ${
+          videoFinalizado
+            ? "bg-black text-white hover:bg-gray-800"
+            : "bg-gray-600 text-white cursor-not-allowed"
+        }`}
+        disabled={!videoFinalizado}
+      >
+        Siguiente
+      </button>
+      
           )}
         </div>
       </div>
