@@ -259,7 +259,7 @@ const tieneMasterFade = user?.cursos?.some(curso =>
 
 
 
-    <input name="precioPromedio" placeholder="¿Cuál es tu precio promedio por corte?" onChange={handleChange} value={formData.precioPromedio} className="col-span-full p-3 bg-zinc-900 border border-gray-500 rounded" required />
+    <input name="precioPromedio" placeholder="¿Cuál es tu precio promedio en usd por corte?" onChange={handleChange} value={formData.precioPromedio} className="col-span-full p-3 bg-zinc-900 border border-gray-500 rounded" required />
    
     {Object.keys(errors).length > 0 && (
   <div className="col-span-full bg-red-500/10 border border-red-500 text-red-400 text-sm p-4 rounded">

@@ -135,7 +135,7 @@ bannersToShow.push(...otherCourses);
 
                 <div key={index} className="w-full flex-shrink-0 snap-center px-0 md:px-2" style={{ minWidth: "100%", maxWidth: "100%" }}>
         <div
-  className={`relative text-white ${index === activeIndex ? 'opacity-100' : 'opacity-90'} h-screen md:h-3/4 md:mt-10 transition-opacity duration-500 md:border border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row`}
+  className={`relative text-white ${index === activeIndex ? 'opacity-100' : 'opacity-90'} h-full md:h-3/4 md:mt-10 transition-opacity duration-500 md:border border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row`}
 >
   {/* Imagen del banner */}
   <img
@@ -145,22 +145,22 @@ bannersToShow.push(...otherCourses);
   />
 
   {/* Contenido para PC */}
-  <div className="hidden md:flex flex-col justify-center w-full md:w-1/2 px-8  relative">
-    {/* Nivel */}
-    {curso.nivel && (
-      <img
-        src={curso.nivel}
-        alt="Nivel"
-        className="w-24 md:w-28 absolute top-4 left-4"
-      />
-    )}
-    <h3 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide mt-12">
-      {curso.courseTitle}
-    </h3>
-    <p className="mt-6 text-base text-gray-300">
-      {curso.courseDescription}
-    </p>
-  </div>
+  <div className="hidden md:flex flex-col justify-start w-full md:w-1/2 px-8 relative pt-32">
+  {curso.nivel && (
+    <img
+      src={curso.nivel}
+      alt="Nivel"
+      className="w-24 md:w-28 absolute top-6 left-8 z-10"
+    />
+  )}
+  <h3 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
+    {curso.courseTitle}
+  </h3>
+  <p className="mt-6 text-base text-gray-300">
+    {curso.courseDescription}
+  </p>
+</div>
+
 
   {/* Contenido superpuesto para mobile */}
   <div className="md:hidden absolute inset-0 flex flex-col items-center justify-end  to-transparent px-4 pb-6 text-center">
