@@ -116,11 +116,7 @@ const bannersToShow = [bienvenidaBanner];
 if (masterFade) bannersToShow.push(masterFade);
 bannersToShow.push(...otherCourses);
 
-bannersToShow.push({
-  banner: "https://i.ibb.co/svyD9vkw/Nivel-3-Coming-soon.png",
-  courseTitle: "🔓 Se abre un nuevo nivel.",
-  courseDescription: "No importa si ya tenés barbería, si sos educador, nómada o estás por abrir tu primer local.Este sistema fue diseñado para llevarte a otro estándar.Organización. Escalabilidad. Libertad"
-});
+
 
   return (
     <>
