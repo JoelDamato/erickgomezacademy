@@ -1,11 +1,11 @@
 import React from "react";
-import { Worker, Viewer } from "@react-pdf-viewer/core";
+import { Worker} from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import PDFViewerNoDownload from "./Ebook/PDFBookViewer";
 import PDFBookViewer from "./Ebook/PDFBookViewer";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Ebook = () => {
   const defaultLayout = defaultLayoutPlugin();
@@ -14,6 +14,8 @@ const Ebook = () => {
   const pdfUrl = "/EBOOK-COLORIMETRIA.pdf"; // Asegúrate de que este archivo esté en `public`
 
   return (
+    <>
+    <Navbar/>
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
       {/* Encabezado */}
       <header className="w-full py-6 bg-gradient-to-r from-purple-600 to-indigo-600 shadow-lg text-center">
@@ -43,6 +45,7 @@ const Ebook = () => {
         </Link>
       </footer>
     </div>
+    </>
   );
 };
 

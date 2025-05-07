@@ -3,9 +3,10 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
-import ReactPlayer from "react-player";
 import useUserStore from "../store/users"; // Importar el store de Zustand
-import Ebook from "../components/Colorimetria.jsx";
+import ReactPlayer from 'react-player';
+import screenfull from 'screenfull';
+
 
 function Capitulos() {
   const API_BASE_URL = process.env.NODE_ENV === "production"
@@ -19,13 +20,14 @@ function Capitulos() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userName, setUserName] = useState(localStorage.getItem("nombre") || "Anónimo");
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
 
   const user = useUserStore((state) => state.user);
   const clearUserData = useUserStore((state) => state.clearUserData);
+  const playerRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -194,17 +196,18 @@ function Capitulos() {
   }
 
   return (
-    <div className="py-2 min-h-screen w-screen overflow-y-auto bg-gradient-to-r from-black/80 to-black flex flex-col items-center justify-center">
+<>
       <Navbar />
-
-      <h1 className="text-4xl font-bold mb-6 text-white text-center">
+      <div className="py-2 mt-5 min-h-screen w-screen overflow-y-auto bg-gradient-to-r from-black/80 to-black flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold mb-6 text-white text-center mt-10">
         {currentChapter.title}
       </h1>
       <p className="text-white mb-4 text-center">{currentChapter.description}</p>
 
       <div className="bg-gradient-to-b from-black/80 to-black w-full sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
       {currentChapter.video ? (
-  <div className="w-full h-[180px] md:h-[580px]">
+ 
+<div className="w-full h-[180px] md:h-[580px]">
     <iframe
       src={currentChapter.video}
       width="100%"
@@ -213,6 +216,7 @@ function Capitulos() {
       allowFullScreen
     ></iframe>
   </div>
+
 ) : (
   <p className="text-white">No hay video disponible para este capítulo.</p>
 )}
@@ -278,20 +282,23 @@ function Capitulos() {
               {comments.map((comment, index) => (
                 <div
                   key={index}
-                  className="bg-gray-800 p-4 rounded-lg shadow flex justify-between items-center"
+                  className="bg-black border-1 border-white p-4 rounded-lg shadow flex justify-between items-center"
                 >
                   <div>
-                    <p className="font-bold text-xl text-white">{comment.userEmail}</p>
-                    <p className="text-white">{comment.content}</p>
+                    <p className="font-bold text-lg text-white">{comment.userEmail}</p>
+                    <p className="text-white text-sm">{comment.content}</p>
                     <p className="text-sm text-gray-500">
                       {new Date(comment.createdAt).toLocaleString()}</p>
                   </div>
                   {comment.userEmail === userName || rol === "admin" ? (
                     <button
                       onClick={() => handleDeleteComment(comment._id)}
-                      className="bg-red-600 text-white py-1 px-2 rounded"
+                      className="bg-red-600 text-white py-1 px-1 rounded"
                     >
-                      Eliminar
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+</svg>
+
                     </button>
                   ) : null}
                 </div>
@@ -303,11 +310,11 @@ function Capitulos() {
               placeholder="Escribe tu comentario..."
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              className="w-full p-2 border rounded mb-2 bg-gray-900 text-white"
+              className="w-full p-2 border rounded mb-2 bg-white/60 text-white"
             />
             <button
               onClick={handleAddComment}
-              className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 px-4 rounded-lg w-full"
+              className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-full"
             >
               Agregar Comentario
             </button>
@@ -322,7 +329,7 @@ function Capitulos() {
             Anterior
           </button>
           <button
-            onClick={() => navigate(`/${cursoId}`)}
+            onClick={() => navigate(`/cursos/${cursoId}`)}
             className="bg-black text-white py-2 px-4 rounded-lg"
           >
             Regresar
@@ -338,6 +345,7 @@ function Capitulos() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

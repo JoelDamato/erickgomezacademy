@@ -15,8 +15,9 @@ const ComponentName = () => {
       
       {/* Texto principal */}
       <p className="text-center text-md font-bold mt-[-50px]">
-        Erick Gómez Academy 2019®️ | Todos los derechos reservados ©️
-      </p>
+  Erick Gómez Academy <span className="text-yellow-400">2019 (R)</span> | Todos los derechos reservados <span className="text-yellow-400">(C)</span>
+</p>
+
       
       {/* Términos */}
       <p className="text-center text-sm">

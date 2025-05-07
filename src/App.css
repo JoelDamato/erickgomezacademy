@@ -45,6 +45,15 @@ body {
 .bg-azul-profundo {
   background-color: var(--azul-profundo);
 }
+/* App.css o tailwind.css */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 .bg-black {
   background-color: black;

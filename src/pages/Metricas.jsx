@@ -132,7 +132,7 @@ const Metricas = () => {
     <>
       <Navbar />
 
-      <div className="bg-white shadow-sm border-b mb-6 text-black">
+      <div className="bg-white shadow-sm mt-14 border-b mb-6 text-black">
         <div className="max-w-screen-xl mx-auto flex justify-center gap-4 py-3">
           {"metricas meta progreso".split(" ").map((tab) => (
             <button

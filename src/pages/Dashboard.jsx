@@ -1,283 +1,215 @@
 import '../App.css';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users';
+import FormOnboarding from '../components/FormOnboarding';
+import PopupImportante from '../components/Popuplanzamiento';
 
 function Dashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [courses, setCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const scrollRef = useRef();
   const navigate = useNavigate();
 
-  // Get user state from Zustand
   const user = useUserStore((state) => state.user);
   const setUserData = useUserStore((state) => state.setUserData);
   const clearUserData = useUserStore((state) => state.clearUserData);
   const showProfile = useUserStore((state) => state.showProfile);
   const setShowProfile = useUserStore((state) => state.setShowProfile);
 
-  // Determine base URL based on environment
-  const API_BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://back-cursos.onrender.com'
-    : 'http://localhost:5000';
+  const API_BASE_URL =
+    process.env.NODE_ENV === 'production'
+      ? 'https://back-cursos.onrender.com'
+      : 'http://localhost:5000';
 
   useEffect(() => {
-    // Check if token exists
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
 
     if (!token) {
-      setIsLoading(false); // Update loading state
+      setIsLoading(false);
     } else if (email) {
-      // Fetch user data from API
-      axios.post(`${API_BASE_URL}/api/search/users`, { email: email }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
+      axios.post(`${API_BASE_URL}/api/search/users`, { email }, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then(response => {
-        // Save user data in global state with Zustand
-        setUserData(response.data);
-
-        // Save user name in localStorage
-        if (response.data.nombre) {
-          localStorage.setItem('nombre', response.data.nombre);
-        }
-        setIsLoading(false); // Update loading state after data is loaded
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-        setIsLoading(false); // Update loading state even if there's an error
-      });
+        .then((res) => {
+          setUserData(res.data);
+          if (res.data.nombre) localStorage.setItem('nombre', res.data.nombre);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.error('Error fetching user data:', err);
+          setIsLoading(false);
+        });
     } else {
-      console.error('No email found in localStorage');
-      setIsLoading(false); // Update loading state
+      setIsLoading(false);
     }
   }, [navigate, API_BASE_URL, setUserData]);
 
-  // Reset profile state when component mounts
-  useEffect(() => {
-    setShowProfile(false);
-  }, [setShowProfile]);
+  useEffect(() => setShowProfile(false), [setShowProfile]);
 
-  // Get courses from API
   useEffect(() => {
     axios.get(`${API_BASE_URL}/api/courses/getcourses`)
-      .then(response => {
-        setCourses(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching courses:', error);
-      });
+      .then((res) => setCourses(res.data))
+      .catch((err) => console.error('Error fetching courses:', err));
   }, [API_BASE_URL]);
 
-  // Function to log out
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    localStorage.removeItem('nombre');
-    clearUserData();
-    navigate('/');
-  };
 
-  // Function to check if user has a specific course
-  const hasCourse = (courseTitle) => {
-    return user?.cursos?.includes(courseTitle);
-  };
 
-  // Function to show/hide profile
-  const toggleProfile = () => {
-    setShowProfile(!showProfile);
-    setIsMenuOpen(false);
-  };
+  const sanitizeCourseTitle = (title) => title.replace(/\s+/g, '-').toLowerCase();
 
-  // Function to show/hide menu (on mobile)
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Function to sanitize course title and convert it to a URL-safe slug
-  const sanitizeCourseTitle = (title) => {
-    return title.replace(/\s+/g, '-').toLowerCase();
-  };
+  const hasCourse = (courseTitle) => user?.cursos?.includes(courseTitle);
 
   const phoneNumber = "+59891640623";
-  const message = "Hola, tengo una consulta!.";
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Hola, tengo una consulta!.")}`;
 
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message
-  )}`;
-  
-  // If still loading, show a loading indicator
+  const coursesWithBanner = courses.filter(c => c.banner);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!scrollRef.current || coursesWithBanner.length === 0) return;
+      const nextIndex = (activeIndex + 1) % bannersToShow.length;
+      scrollTo(nextIndex);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [activeIndex, coursesWithBanner]);
+
+  const scrollTo = (index) => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.offsetWidth;
+      scrollRef.current.scrollTo({ left: width * index, behavior: "smooth" });
+      setActiveIndex(index);
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const index = Math.round(scrollRef.current.scrollLeft / scrollRef.current.offsetWidth);
+      setActiveIndex(index);
+    }
+  };
+
   if (isLoading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co/fGZCrFh/FONDO-BARBER.jpg')" }}>
-        <div className="bg-black/80 p-8 rounded-lg text-white text-xl">
-          Cargando...
-        </div>
+      <div className="h-screen w-screen flex items-center justify-center bg-cover bg-center" >
+        <div className="bg-black/80 p-8 rounded-lg text-white text-xl">Cargando...</div>
       </div>
     );
   }
+  const bienvenidaBanner = {
+    banner: "https://i.ibb.co/XkJcr8JJ/Bienvenida.webp",
+    courseTitle: "¡Bienvenido a la Academia!",
+    courseDescription: "Bienvenido a una nueva etapa. Este sistema fue creado para quienes quieren dejar huella en la barbería. Si estás acá, no es casualidad: estás en el lugar indicado para evolucionar y llevar tu carrera a lo más alto.",
+  };
+  
+// Reordeno: primero bienvenida, luego Master Fade si existe, luego el resto
+const masterFade = coursesWithBanner.find(c => c.courseTitle?.toLowerCase().includes("master fade"));
+const otherCourses = coursesWithBanner.filter(c => c !== masterFade);
+
+const bannersToShow = [bienvenidaBanner];
+if (masterFade) bannersToShow.push(masterFade);
+bannersToShow.push(...otherCourses);
 
   return (
-    <div className="h-full w-screen flex flex-col items-center bg-fixed bg-cover bg-center" style={{ backgroundImage: "url('https://i.ibb.co/fGZCrFh/FONDO-BARBER.jpg')" }}>
-      {/* Navbar */}
-      <Navbar
-        toggleProfile={toggleProfile}
-        handleLogout={handleLogout}
-        toggleMenu={toggleMenu}
-        isMenuOpen={isMenuOpen}
+    <>
+      <div className="relative h-full w-screen flex flex-col items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black  bg-center" >
+        <Navbar />
+        <PopupImportante /> {/* Va primero, detrás visualmente */}
+        <FormOnboarding />  
+
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow z-50 flex items-center gap-2 font-bold text-sm">
+          <img src="https://i.ibb.co/xKKJDBCS/d62368f7-f3e3-48ce-84cd-04a00024000e.png" alt="Soporte" className="w-6 h-6 rounded-lg" /> Soporte
+        </a>
+
+        {/* Carrusel solo si hay cursos con banner */}
+        {coursesWithBanner.length > 0 && (
+          <div className="w-full max-w-6xl mx-auto px-0 md:px-4 pt-0 md:pt-8">
+            <div ref={scrollRef} onScroll={handleScroll} className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar w-full">
+            {bannersToShow.map((curso, index) => (
+
+                <div key={index} className="w-full flex-shrink-0 snap-center px-0 md:px-2" style={{ minWidth: "100%", maxWidth: "100%" }}>
+        <div
+  className={`relative text-white ${index === activeIndex ? 'opacity-100' : 'opacity-90'} h-screen md:h-3/4 md:mt-10 transition-opacity duration-500 md:border border-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row`}
+>
+  {/* Imagen del banner */}
+  <img
+    src={curso.banner}
+    alt={curso.courseTitle}
+    className="w-full h-full md:w-1/2 md:max-h-[100%] object-cover md:object-fit"
+  />
+
+  {/* Contenido para PC */}
+  <div className="hidden md:flex flex-col justify-center w-full md:w-1/2 px-8  relative">
+    {/* Nivel */}
+    {curso.nivel && (
+      <img
+        src={curso.nivel}
+        alt="Nivel"
+        className="w-24 md:w-28 absolute top-4 left-4"
       />
-      <a
-        href={whatsappLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "black",
-          color: "#fff",
-          padding: "10px 15px",
-          borderRadius: "50px",
-          textDecoration: "none",
-          boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          fontWeight: "bold",
-          fontSize: "16px",
-          zIndex: 1000,
-        }}
-      >
-        <img
-          src="/soporte.png"
-          alt="WhatsApp"
-          style={{ width: "28px", height: "28px" }}
-        />
-        Soporte
-      </a>
-   
-      {/* User profile modal */}
-      {showProfile && user && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-90 z-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 sm:w-1/2 relative z-60">
-            <button onClick={toggleProfile} className="absolute top-2 right-2 text-black text-2xl font-bold">
-              &times;
-            </button>
-            <h2 className="text-2xl font-bold mb-4">Mi Perfil</h2>
-            <p><strong>Nombre:</strong> {user.nombre}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Cursos Adquiridos:</strong></p>
-            <ul className="list-disc list-inside">
-              {user.cursos && user.cursos.length > 0 ? (
-                user.cursos.map((curso, index) => (
-                  <li key={index}>{curso}</li>
-                ))
-              ) : (
-                <li>No hay cursos adquiridos todavía</li>
-              )}
-            </ul>
+    )}
+    <h3 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide mt-12">
+      {curso.courseTitle}
+    </h3>
+    <p className="mt-6 text-base text-gray-300">
+      {curso.courseDescription}
+    </p>
+  </div>
+
+  {/* Contenido superpuesto para mobile */}
+  <div className="md:hidden absolute inset-0 flex flex-col items-center justify-end  to-transparent px-4 pb-6 text-center">
+    {curso.nivel && (
+      <img
+        src={curso.nivel}
+        alt="Nivel"
+        className="w-20 mb-4"
+      />
+    )}
+    <p className="text-sm text-gray-200">{curso.courseDescription}</p>
+  </div>
+</div>
+
+
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center gap-2 mt-1 md:-mt-20">
+            {bannersToShow.map((_, i) => (
+
+                <button key={i} onClick={() => scrollTo(i)} className={`w-3 h-3 rounded-full transition ${activeIndex === i ? "bg-white" : "bg-gray-500"}`} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tarjetas estilo Max */}
+        <div className="w-full px-4 mt-10 ">
+        <h1 className="text-4xl mb-8 text-center p-2 md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
+            Mis Cursos
+          </h1>
+          <div className="flex justify-center">
+            <div className="flex overflow-x-auto gap-4 no-scrollbar">
+              {courses.filter(c => hasCourse(c.courseTitle)).map((course, index) => (
+                <div key={index} className="min-w-[160px] max-w-[160px] flex-shrink-0 rounded-md shadow-md p-2">
+                  <a
+                    onClick={() => navigate(course.courseTitle === "Colorimetria" ? "/colorimetria" : `/cursos/${sanitizeCourseTitle(course.courseTitle)}`)}
+                    className="text-white text-sm font-bold w-full text-center mt-2 cursor-pointer"
+                  >
+                    <img src={course.image} alt={course.courseTitle} className="w-full h-40 object-cover rounded-md mb-2" />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      )}
-
-      {/* Coupon section - with null check for user */}
-      {user && !hasCourse('Cupon') && (
-        courses.map((course, index) => (
-          course.courseTitle === 'Cupon' && (
-            <div 
-              key={index} 
-              className="bg-red-900 w-full m-5 rounded-lg shadow-lg p-6 flex items-center justify-between"
-            >
-              <img
-                src={course.image}
-                alt={course.courseTitle}
-                className="w-20 h-20 rounded-lg"
-              />
-
-              <div className='flex flex-col items-center p-2 w-3/4'>
-                <h3 className="text-white text-2xl font-bold mb-4">Felicidades, ¡tienes un cupón disponible!</h3>
-
-                <a
-                  href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-                    `Hola, quiero usar mi cupón de descuento. Soy ${user.nombre || 'un estudiante'}`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white text-md py-2 px-4 rounded-lg border-2 border-white hover:bg-white/50 transition"
-                >
-                  RECLAMA TU DESCUENTO DEL 40% EN EL PRODUCTO QUE QUIERAS!
-                </a>
-              </div>
-            </div>
-          )
-        ))
-      )}
-
-      <div className="h-auto w-full sm:w-11/12 rounded-xl sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full shadow-1xl">
-    
-          {/* Course cards - with null check for user */}
-          
-         {user && courses
-          .filter((course) => user.cursos?.includes(course.courseTitle)) // Solo cursos adquiridos
-          .map((course, index) => (
-
-            (course.courseTitle !== 'Cupon' &&
-            (course.courseTitle !== 'REGALO DE LANZAMIENTO' || hasCourse(course.courseTitle))) && (
-              <div 
-                key={index} 
-                className="bg-black/90 rounded-lg shadow-lg p-6 flex flex-col items-center justify-between"
-                style={{ minHeight: "40rem", maxHeight: "50rem" }}
-              >
-                <img
-                  src={course.image}
-                  alt={course.courseTitle}
-                  className="w-full h-full max-w-[320px] max-h-[320px] rounded-lg shadow-md mb-4"
-                />
-
-                <h3 className="text-white text-2xl font-bold mb-4">{course.courseTitle}</h3>
-            
-                <p className="text-white font-bold mb-4">{course.courseDescription}</p>
-
-                {hasCourse(course.courseTitle) ? (
-
-
-                  <button
-                  onClick={() =>
-                    navigate(
-                      course.courseTitle === "Colorimetria"
-                        ? "/colorimetria"
-                        : `/cursos/${sanitizeCourseTitle(course.courseTitle)}`
-                    )
-                  }
-                    className="bg-black text-white py-2 px-4 rounded-lg hover:bg-black/90 transition"
-                  >
-                    Ver Curso
-                  </button>
-
-
-                ) : (
-                  <a
-                    href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-                      `Hola, me interesa más información sobre el curso: ${course.courseTitle}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
-                  >
-                    Obtener ahora
-                  </a>
-                )}
-              </div>
-            )
-          ))}
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 

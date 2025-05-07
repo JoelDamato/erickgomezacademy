@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
  function Error404() {
   return (
+<>
+    <Navbar/>
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center px-6 py-12">
       <div className="w-full flex items-center justify-center">
         <div className="border-2 border-[#d4af37] rounded-2xl p-10 md:p-16 max-w-xl w-full shadow-lg shadow-[#d4af3733] bg-[#1a1a1acc] backdrop-blur-md text-center">
@@ -23,6 +26,7 @@ import { Link } from "react-router-dom";
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Error404;

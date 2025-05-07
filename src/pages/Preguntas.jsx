@@ -75,16 +75,18 @@ const PreguntasFrecuentes = () => {
           alt="Fondo Barbería"
           className="absolute top-0 left-0 w-full h-full object-cover"
         />
+     
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-300 to-gray-200 drop-shadow-lg tracking-wide">
+        <img src="https://i.ibb.co/TqkLrN2p/soporte2.png" className="md:h-[300px] md:mt-[2%]" alt="" />
+          <h1 className="text-4xl md:text-5xl -mt-20  font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-300 to-gray-200 drop-shadow-lg tracking-wide">
             Preguntas Frecuentes
           </h1>
         </div>
       </div>
 
       {/* Preguntas */}
-      <div className="min-h-screen bg-black text-white py-10 px-6 md:px-16">
+      <div className="min-h-screen bg-black text-white md:pt-10 px-6 md:px-16">
         {secciones.map((seccion, i) => (
           <div key={i} className="mb-10">
             <h2 className="p-5 text-3xl md:text-3xl font-bold text-center mb-6 text-transparent bg-gradient-to-b from-gray-400 to-gray-200 bg-clip-text drop-shadow-lg tracking-wide">

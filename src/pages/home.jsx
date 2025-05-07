@@ -2,10 +2,22 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Menu, X, CircleUserRound } from "lucide-react";
+import Navbar from "../components/Navbar";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function BarberAcademy() {
   const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/Dashboard");
+    }
+  }, [navigate]);
+  
 
   const courseImages = [
     "https://i.ibb.co/CK6Qv1gr/Tarjeta-Growth-Barber-1.png",
@@ -33,7 +45,7 @@ export default function BarberAcademy() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
-      <div className="relative min-h-screen bg-gradient-to-r from-[#8B6914]/30 via-transparent to-[#8B6914]/30">
+      <div className="relative min-h-screen bg-gradient-to-r from-black/30 via-transparent to-white/10">
         {/* Background Image */}
         <div className="absolute inset-0 " />
 
@@ -43,28 +55,12 @@ export default function BarberAcademy() {
         {/* Content */}
         <div className="relative z-10 text-white">
           {/* Navigation Bar */}
-          <nav className="p-4 bg-black flex justify-between items-center">
-            {/* Botón de menú hamburguesa */}
-            <button className="text-white" >
-            <a
-                  href="/login"
-                  className="w-full text-center py-3 hover:bg-[#8B6914]/50 transition"
-                >
-               <CircleUserRound size={24} />
-               </a>
-            </button>
-
-      
-          </nav>
+       <Navbar/>
 
           {/* Header Section */}
-          <header className="px-6 pt-4 pb-8 bg-[url('https://i.ibb.co/jk0MLcD8/fondo.png')] bg-cover bg-center bg-no-repeat opacity-80">
-            <div className="mb-6">
-              <img
-                src="/erickgomez.png"
-                alt="Erick Gomez Academy"
-                className="w-[180px]"
-              />
+          <header className="p-5 bg-[url('https://i.ibb.co/jk0MLcD8/fondo.png')] bg-cover bg-center bg-no-repeat opacity-80">
+            <div className="mb-6 h-[180px]">
+          
             </div>
 
             <div className="flex  md:flex-row gap-8 z-10">
@@ -117,10 +113,11 @@ export default function BarberAcademy() {
            
               <button>
                 <a
-                  href={getWhatsAppLink}
+                  href={getWhatsAppLink()}
+
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-red-600 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
+                  className="w-full bg-green-500 text-white py-3 rounded-md font-bold flex items-center justify-center p-5"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

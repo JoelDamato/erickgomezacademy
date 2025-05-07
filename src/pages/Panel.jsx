@@ -234,29 +234,7 @@ const deleteUser = async () => {
     setShowProfile(false);
   }, [setShowProfile]);
 
-  // Función para cerrar sesión
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    clearUserData(); // Limpiar los datos del usuario en Zustand
-    navigate('/');
-  };
 
-  // Función para verificar si el usuario tiene un curso específico
-  const hasCourse = (courseName) => {
-    return user?.cursos?.includes(courseName);
-  };
-
-  // Función para mostrar/ocultar el perfil
-  const toggleProfile = () => {
-    setShowProfile(!showProfile);
-    setIsMenuOpen(false);
-  };
-
-  // Función para mostrar/ocultar el menú (en móvil)
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const handleCouponChange = async (action) => {
     if (!email) {
@@ -316,15 +294,11 @@ const deleteUser = async () => {
   return (
     <div className="h-full w-screen bg-gray-100 flex flex-col items-center">
           <Navbar
-        toggleProfile={toggleProfile}
-        handleLogout={handleLogout}
-        toggleMenu={toggleMenu}
-        isMenuOpen={isMenuOpen}
       />
 
       {/* Navegación entre secciones */}
 <div className="bg-gray-200 w-screen rounded-xl sm:rounded-2xl flex justify-center p-4 shadow-lg mb-5 overflow-x-auto sm:overflow-hidden whitespace-nowrap">
-  <div className="flex gap-2 sm:gap-4">
+  <div className="flex gap-2 sm:gap-4 mt-16 text-black">
     <button
       className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
         activeSection === 'crear' ? 'bg-gray-400 text-black' : 'bg-gray-200'
@@ -332,14 +306,6 @@ const deleteUser = async () => {
       onClick={() => setActiveSection('crear')}
     >
       Registro
-    </button>
-    <button
-      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
-        activeSection === 'cupones' ? 'bg-gray-400 text-black' : 'bg-gray-200'
-      }`}
-      onClick={() => setActiveSection('cupones')}
-    >
-      Cupones
     </button>
     <button
       className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
@@ -454,11 +420,11 @@ const deleteUser = async () => {
         />
       </label>
       <label className="flex items-center justify-between">
-        <span>REGALO DE LANZAMIENTO</span>
+        <span>Master Fade 3.0</span>
         <input
           type="checkbox"
-          value="REGALO DE LANZAMIENTO"
-          checked={cursos.includes('REGALO DE LANZAMIENTO')}
+          value="Master Fade 3.0"
+          checked={cursos.includes('Master Fade 3.0')}
           onChange={handleCursoChange}
           className="relative w-10 h-5 rounded-full appearance-none bg-gray-300 checked:bg-green-500 transition-colors duration-200 cursor-pointer"
         />
@@ -501,51 +467,6 @@ const deleteUser = async () => {
         </div>
       )}
 
-  {/* Sección para editar usuario */}
-  {activeSection === 'cupones' && (
-  <>
-    <div className="w-4/5">
-      <label className="block text-black font-semibold tracking-wide mb-2">
-        Email del Usuario:
-        <input
-          className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          type="email"
-          value={email}
-          placeholder="ejemplo@correo.com"
-          onChange={(e) => setEmail(e.target.value.toLowerCase())}
-          required
-        />
-      </label>
-    </div>
-
-    <div className="bg-gray-200 w-full m-5 p-6 rounded-lg shadow-lg text-white">
-      <h2 className="text-xl text-black font-bold mb-4 text-center">Gestionar Cupones</h2>
-     
-
-      <div className="flex justify-center gap-4 mt-4">
-
-      <button
-  onClick={() => handleCouponChange('add')}
-  className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition"
->
-  Sacar Cupón
-</button>
-
-<button
-  onClick={() => handleCouponChange('remove')}
-  className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition"
->
-  Dar Cupón
-</button>
-
-
-      </div>
-    </div>
-  </>
-)}
-
-
-
 
 
       {/* Sección para editar usuario */}
@@ -554,7 +475,7 @@ const deleteUser = async () => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-[60%]">
           <form className="flex flex-col w-full items-center gap-5" onSubmit={handleEditUser}>
             <div className="w-4/5">
-              <label className="text-gray-600 text-sm mb-4 text-center">
+              <label className="text-black text-sm mb-4 text-center">
                 Email del usuario a editar:
                 <input
       className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -567,7 +488,7 @@ const deleteUser = async () => {
                 </label>
               </div>
               <div className="w-4/5">
-                <label className="text-gray-600 text-sm mb-4 text-center">
+                <label className="text-black text-sm mb-4 text-center">
                   Nombre:
                   <input
       className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -635,11 +556,11 @@ const deleteUser = async () => {
         />
       </label>
       <label className="flex items-center justify-between">
-        <span>REGALO DE LANZAMIENTO</span>
+        <span>Master Fade 3.0</span>
         <input
           type="checkbox"
-          value="REGALO DE LANZAMIENTO"
-          checked={cursos.includes('REGALO DE LANZAMIENTO')}
+          value="Master Fade 3.0"
+          checked={cursos.includes('Master Fade 3.0')}
           onChange={handleCursoChange}
           className="relative w-10 h-5 rounded-full appearance-none bg-gray-300 checked:bg-green-500 transition-colors duration-200 cursor-pointer"
         />
@@ -670,9 +591,9 @@ const deleteUser = async () => {
 
     <form className="flex flex-col w-full items-center gap-5" onSubmit={handlePasswordChange}>
       <div className="w-4/5">
-        <label className="text-gray-600 text-sm mb-4 text-center">Email del Usuario:</label>
+        <label className="text-black text-sm mb-4 text-center">Email del Usuario:</label>
         <input
-      className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full px-4 text-black py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
       type="email"
           value={email}
           placeholder="ejemplo@correo.com"
@@ -681,9 +602,9 @@ const deleteUser = async () => {
         />
       </div>
       <div className="w-4/5">
-        <label className="text-gray-600 text-sm mb-4 text-center">Nueva Contraseña:</label>
+        <label className="text-black text-sm mb-4 text-center">Nueva Contraseña:</label>
         <input
-      className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full px-4 text-black py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
       type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
@@ -691,9 +612,9 @@ const deleteUser = async () => {
         />
       </div>
       <div className="w-4/5">
-        <label className="text-gray-600 text-sm mb-4 text-center">Confirmar Contraseña:</label>
+        <label className="text-black text-sm mb-4 text-center">Confirmar Contraseña:</label>
         <input
-      className="w-full px-4 py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="w-full px-4 text-black py-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
       type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
