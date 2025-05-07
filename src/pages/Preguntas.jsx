@@ -13,24 +13,9 @@ const PreguntasFrecuentes = () => {
       preguntas: [
         { pregunta: "¿En qué plataforma está el curso?", respuesta: "Actualmente, todos los cursos están en la plataforma oficial de Erick Gómez Academy. Se accede con el email brindado al momento de la compra." },
         { pregunta: "¿La clase en vivo se hace por Zoom?", respuesta: "Por el momento no se hacen clases en vivo. Estamos preparando un nuevo servicio con clases en vivo y seguimiento personalizado." },
-        { pregunta: "¿Cuántas clases incluye el curso Growth? ¿Y Focus?", respuesta: "Growth tiene 12 clases. Focus tiene 17 y pronto evolucionará a un servicio de transformación empresarial." },
+        { pregunta: "¿Cuántas clases incluye el curso Growth?", respuesta: "Growth tiene 12 clases. " },
         { pregunta: "¿El acceso es permanente o tiene vencimiento?", respuesta: "El acceso a todos los cursos es de por vida. Si un curso deja de estar visible, podés solicitar reactivación." },
         { pregunta: "¿Cómo se obtiene el certificado del curso?", respuesta: "Completando el curso y presentando resultados comprobables mediante un formulario." }
-      ]
-    },
-    {
-      titulo: "📲 Redes Sociales y Promoción",
-      preguntas: [
-        { pregunta: "¿Qué recomendaciones tienen para el contenido en redes?", respuesta: "Usá buena luz, encuadre limpio, música en tendencia y constancia. Mostrá antes y después." },
-        { pregunta: "¿Qué apps recomiendan para editar videos?", respuesta: "CapCut, VN Editor, InShot y Mojo son ideales para contenido rápido y profesional." },
-        { pregunta: "¿Qué horarios recomiendan para publicar en redes?", respuesta: "Entre 11-14 hs y 19-21 hs. TikTok premia la frecuencia: 1 reel diario ideal, mínimo 4 por semana." }
-      ]
-    },
-    {
-      titulo: "✂ Herramientas y Técnicas",
-      preguntas: [
-        { pregunta: "¿Qué máquina de fade recomiendan?", respuesta: "Babyliss Pro Gold FX, Wahl Senior o JRL 2020C por su precisión y durabilidad." },
-        { pregunta: "¿Cómo borro la línea 0 en un fade?", respuesta: "Abrí la máquina al siguiente punto, usá movimientos en C y no repitas mucho en la misma zona." }
       ]
     },
     {
