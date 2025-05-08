@@ -49,7 +49,7 @@ const LanzamientoMasterFade = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-16 p-8 bg-gradient-to-br from-black via-zinc-900 to-black rounded-2xl shadow-2xl text-white">
+    <div className="max-w-xl mb-10 mt-16 p-8 bg-gradient-to-br from-black via-zinc-900 to-black rounded-2xl shadow-2xl text-white">
       <h1 className="text-3xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-400 tracking-tight">
         🚀  Master Fade 3.0
       </h1>
