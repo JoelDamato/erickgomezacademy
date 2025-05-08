@@ -244,12 +244,24 @@ const tieneMasterFade = user?.cursos?.some(curso =>
   name="whatsapp"
   placeholder="WhatsApp"
   inputMode="numeric"
-  pattern="[0-9]+"
+  pattern="[0-9]*"
   onChange={handleChange}
+  onKeyDown={(e) => {
+    const allowedKeys = [
+      "Backspace", "ArrowLeft", "ArrowRight", "Tab", "Delete"
+    ];
+    if (
+      !/[0-9]/.test(e.key) &&
+      !allowedKeys.includes(e.key)
+    ) {
+      e.preventDefault();
+    }
+  }}
   value={formData.whatsapp}
   className="p-3 bg-zinc-900 border border-gray-500 rounded"
   required
 />
+
     <input name="instagram" placeholder="Instagram (de tus trabajos)" onChange={handleChange} value={formData.instagram} className="p-3 bg-zinc-900 border border-gray-500 rounded col-span-full" required />
 
     <div className="col-span-full">

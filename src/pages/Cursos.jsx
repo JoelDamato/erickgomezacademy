@@ -87,6 +87,11 @@ function Cursos() {
   const handleVerCapitulo = async (cursoTitle, moduleName, chapterIndex) => {
     const chapter = course.modules[moduleName][chapterIndex];
     const capituloId = `${moduleName}-${chapterIndex + 1}`;
+    
+    if (progreso[capituloId] === "completado") {
+      navigate(`/cursos/${sanitizeTitle(cursoTitle)}/${moduleName}/${chapterIndex + 1}`);
+      return;
+    }
   
     const body = {
       email: localStorage.getItem('email'),
