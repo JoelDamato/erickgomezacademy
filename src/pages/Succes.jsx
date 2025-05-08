@@ -100,8 +100,16 @@ export default function Success() {
 
 <div className="bg-black/70 flex flex-col items-center backdrop-blur-sm p-8 rounded-xl max-w-lg w-full text-center mt-32">
  <h2 className="text-xl">
+
           🎉 ¡Felicitaciones! Ya tenés acceso al curso <strong>Master Fade 3.0</strong>.
         </h2>
+        {mostrarCredenciales && (
+              <>
+                <p className="text-sm text-sm mt-2 text-red-400">
+                  Importante: Sacale captura de pantalla y guarda tu contraseña que luego no va a estar disponible
+                </p>
+              </>
+            )}
 <img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" />
         {loading ? (
             <div className="flex flex-col items-center justify-center mt-6">
