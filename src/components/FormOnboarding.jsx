@@ -240,7 +240,16 @@ const tieneMasterFade = user?.cursos?.some(curso =>
             {step === 1 && (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <input name="pais" placeholder="País de residencia" onChange={handleChange} value={formData.pais} className="p-3 bg-zinc-900 border border-gray-500 rounded" required />
-    <input name="whatsapp" placeholder="WhatsApp" onChange={handleChange} value={formData.whatsapp} className="p-3 bg-zinc-900 border border-gray-500 rounded" required />
+    <input
+  name="whatsapp"
+  placeholder="WhatsApp"
+  inputMode="numeric"
+  pattern="[0-9]+"
+  onChange={handleChange}
+  value={formData.whatsapp}
+  className="p-3 bg-zinc-900 border border-gray-500 rounded"
+  required
+/>
     <input name="instagram" placeholder="Instagram (de tus trabajos)" onChange={handleChange} value={formData.instagram} className="p-3 bg-zinc-900 border border-gray-500 rounded col-span-full" required />
 
     <div className="col-span-full">
