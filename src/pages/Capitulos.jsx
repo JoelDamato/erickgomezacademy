@@ -24,7 +24,10 @@ function Capitulos() {
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
-  const [videoFinalizado, setVideoFinalizado] = useState(false);
+  const [tiempoReproducido, setTiempoReproducido] = useState(0);
+const [duracionEstimativa, setDuracionEstimativa] = useState(0);
+const [videoFinalizado, setVideoFinalizado] = useState(false); 
+const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
 
 
   const user = useUserStore((state) => state.user);
@@ -32,21 +35,42 @@ function Capitulos() {
   const playerRef = useRef(null);
 
   useEffect(() => {
-    const handleMessage = (event) => {
-      if (!event.data || typeof event.data !== "object") return;
+    const verificarProgreso = async () => {
+      try {
+        const email = localStorage.getItem('email');
+        const res = await fetch(`${API_BASE_URL}/api/progresoget?email=${email}`);
+        const data = await res.json();
   
-      const { event: pandaEvent } = event.data;
+        const capituloActualId = `${moduleName}-${parseInt(chapterId, 10)}`;
+        const progresoActual = data.find(p => p.capituloId === capituloActualId && p.estado === 'completado');
   
-      if (pandaEvent === "video-ended") {
-        console.log("🎬 Video finalizado");
-        setVideoFinalizado(true); // 🔓 desbloquea el botón
+        if (progresoActual) {
+          setCapituloYaCompletado(true);
+        }
+      } catch (err) {
+        console.error('Error al verificar progreso:', err);
       }
     };
   
-    window.addEventListener("message", handleMessage);
+    if (cursoId && moduleName && chapterId) {
+      verificarProgreso();
+    }
+  }, [cursoId, moduleName, chapterId]);
   
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
+
+  const currentModuleChapters = course?.chapters?.filter(
+    (chapter) => chapter.module === moduleName
+  ) || [];
+  
+  const currentChapter = currentModuleChapters[parseInt(chapterId, 10) - 1];
+  
+
+  // SIEMPRE FUERA DE CONDICIONALES
+  useEffect(() => {
+    if (currentChapter?.duration) {
+      setDuracionEstimativa(currentChapter.duration);
+    }
+  }, [currentChapter]);
   
 
   useEffect(() => {
@@ -63,6 +87,43 @@ function Capitulos() {
       localStorage.setItem("lastChapter", chapterId);
     }
   }, [chapterId]);
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (!event.data || typeof event.data !== "object") return;
+  
+      const { message, playerData, currentTime } = event.data;
+  
+      if (message === "panda_allData") {
+        if (playerData?.duration) {
+          setDuracionEstimativa(playerData.duration);
+        }
+      }
+  
+      if (message === "panda_timeupdate" && typeof currentTime === "number") {
+        setTiempoReproducido(currentTime);
+      }
+    };
+  
+    window.addEventListener("message", handleMessage);
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+  
+
+  useEffect(() => {
+    if (duracionEstimativa > 0 && tiempoReproducido >= duracionEstimativa * 0.95) {
+      setVideoFinalizado(true);
+    }
+  }, [tiempoReproducido, duracionEstimativa]);
+  
+  function formatSecondsToMinutes(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${mins}:${secs}`;
+  }
+  
 
   useEffect(() => {
     const fetchCourseData = async () => {
@@ -200,20 +261,17 @@ function Capitulos() {
     return <div className="text-white">Cargando curso...</div>;
   }
 
-  const currentModuleChapters = course.chapters.filter(
-    (chapter) => chapter.module === moduleName
-  );
 
   if (currentModuleChapters.length === 0) {
     return <div className="text-white">Módulo no encontrado</div>;
   }
 
-  const currentChapter =
-    currentModuleChapters[parseInt(chapterId, 10) - 1];
 
+  // Después viene:
   if (!currentChapter) {
     return <div className="text-white">Capítulo no encontrado</div>;
   }
+  
 
   return (
 <>
@@ -349,25 +407,60 @@ function Capitulos() {
             Anterior
           </button>
           <button
-            onClick={() => navigate(`/cursos/${cursoId}`)}
-            className="bg-black text-white py-2 px-4 rounded-lg"
-          >
-            Regresar
-          </button>
-          {parseInt(chapterId, 10) < currentModuleChapters.length && (
-        <button
-        onClick={goToNextChapter}
-        className={`py-2 px-4 rounded-lg ${
-          videoFinalizado
-            ? "bg-black text-white hover:bg-gray-800"
-            : "bg-gray-600 text-white cursor-not-allowed"
-        }`}
-        disabled={!videoFinalizado}
-      >
-        Siguiente
-      </button>
+  onClick={async () => {
+    const esUltimoCapitulo = parseInt(chapterId, 10) === currentModuleChapters.length;
+    if (esUltimoCapitulo) {
+      const email = localStorage.getItem("email");
+      const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
+      try {
+        await fetch(`${API_BASE_URL}/api/progreso`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            cursoId,
+            capituloId: capituloActual,
+            accion: "completado", // 👈 importante
+          }),
+        });
+      } catch (error) {
+        console.error("Error al marcar como completado:", error);
+      }
+    }
+
+    navigate(`/cursos/${cursoId}`);
+  }}
+  className="bg-black text-white py-2 px-4 rounded-lg"
+>
+  Regresar
+</button>
+
       
-          )}
+
+
+          {parseInt(chapterId, 10) < currentModuleChapters.length && (
+  <button
+    onClick={goToNextChapter}
+    disabled={!(videoFinalizado || capituloYaCompletado)}
+    className={`py-2 px-4 rounded-lg transition-all ${
+      videoFinalizado || capituloYaCompletado
+        ? "bg-green-600 text-white hover:bg-green-700"
+        : "bg-gray-600 text-white cursor-not-allowed opacity-60"
+    }`}
+  >
+    Siguiente
+
+    {!(videoFinalizado || capituloYaCompletado) && (
+      <div className="text-white mt-4 text-sm">
+        ⏱ Reproducido: {formatSecondsToMinutes(tiempoReproducido)} / {formatSecondsToMinutes(duracionEstimativa)}
+      </div>
+    )}
+  </button>
+)}
+
+
+       
+        
         </div>
       </div>
     </div>
