@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Modal from '../components/Modal'; // Importar el componente Modal
 import useUserStore from '../store/users';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import LanzamientoMasterFade from '../components/LanzamientoMF';
 
 
 function PanelControl() {
@@ -16,7 +17,7 @@ function PanelControl() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [modalMessage, setModalMessage] = useState('');
-  const [activeSection, setActiveSection] = useState('crear');
+  const [activeSection, setActiveSection] = useState('lanzamiento');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [createdUser,setCreatedUser] = useState('');
@@ -296,9 +297,19 @@ const deleteUser = async () => {
           <Navbar
       />
 
-      {/* Navegación entre secciones */}
+
 <div className="bg-gray-200 w-screen rounded-xl sm:rounded-2xl flex justify-center p-4 shadow-lg mb-5 overflow-x-auto sm:overflow-hidden whitespace-nowrap">
+  
+
   <div className="flex gap-2 sm:gap-4 mt-16 text-black">
+  <button
+      className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
+        activeSection === 'crear' ? 'bg-gray-400 text-black' : 'bg-gray-200'
+      }`}
+      onClick={() => setActiveSection('lanzamiento')}
+    >
+      Lanzamiento
+    </button>
     <button
       className={`px-3 py-2 text-sm sm:text-base rounded-lg ${
         activeSection === 'crear' ? 'bg-gray-400 text-black' : 'bg-gray-200'
@@ -334,6 +345,9 @@ const deleteUser = async () => {
   </div>
 </div>
 
+{activeSection === 'lanzamiento' && (
+<LanzamientoMasterFade className="mb-5"/>
+ )}
       {/* Sección para crear usuario */}
       {activeSection === 'crear' && (
       <div className="flex  justify-center  bg-gray-100 w-screen">
