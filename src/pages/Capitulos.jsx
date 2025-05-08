@@ -20,7 +20,7 @@ function Capitulos() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userName, setUserName] = useState(localStorage.getItem("nombre") || "Anónimo");
-  const [showComments, setShowComments] = useState(true);
+  const [showComments, setShowComments] = useState(false);
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
@@ -353,7 +353,7 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
 
         <button
           onClick={() => setShowComments(!showComments)}
-          className="bg-gradient-to-r from-black to-black border-b-4  text-white font-bold py-2 px-4 rounded-lg mt-4"
+          className="bg-white/40 border-5  text-white font-bold py-2 px-4 rounded-lg mt-4"
         >
           {showComments ? "Ocultar Comentarios" : "Mostrar Comentarios"}
         </button>
@@ -454,10 +454,10 @@ console.log("🚦 puedeAvanzar:", puedeAvanzar);
     <button
       onClick={goToNextChapter}
       disabled={!puedeAvanzar}
-      className={`py-2 px-4 rounded-lg transition-all ${
+      className={`py-2 px-4 border-2 border-white rounded-lg transition-all ${
         puedeAvanzar
-          ? "bg-green-600 text-white hover:bg-green-700"
-          : "bg-gray-600 text-white cursor-not-allowed opacity-60"
+          ? "bg-green-500 text-white hover:bg-green-700"
+          : "bg-black text-white cursor-not-allowed opacity-60"
       }`}
     >
       Siguiente
