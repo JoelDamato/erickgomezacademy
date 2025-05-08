@@ -118,7 +118,7 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
   
 
   useEffect(() => {
-    if (duracionEstimativa > 0 && tiempoReproducido >= duracionEstimativa * 0.95) {
+    if (duracionEstimativa > 0 && tiempoReproducido >= duracionEstimativa * 0.80) {
       setVideoFinalizado(true);
     }
   }, [tiempoReproducido, duracionEstimativa]);
