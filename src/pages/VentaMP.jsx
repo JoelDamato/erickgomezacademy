@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function PagoMercadoPago() {
   const [title] = useState("Master Fade 3.0");
-  const [price] = useState("47000"); // ARS
+  const [price] = useState("61000"); // ARS
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
