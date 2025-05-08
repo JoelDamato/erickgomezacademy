@@ -44,6 +44,11 @@ const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
         const capituloActualId = `${moduleName}-${parseInt(chapterId, 10)}`;
         const progresoActual = data.find(p => p.capituloId === capituloActualId && p.estado === 'completado');
   
+
+        console.log("📊 Progreso desde el backend:", data);
+console.log("🧠 Capítulo actual ID:", `${moduleName}-${parseInt(chapterId, 10)}`);
+console.log("✅ ¿Está completado?:", !!progresoActual);
+
         if (progresoActual) {
           setCapituloYaCompletado(true);
         }
@@ -406,10 +411,9 @@ const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
           >
             Anterior
           </button>
-          <button
-  onClick={async () => {
-    const esUltimoCapitulo = parseInt(chapterId, 10) === currentModuleChapters.length;
-    if (esUltimoCapitulo) {
+          {parseInt(chapterId, 10) === currentModuleChapters.length && (
+  <button
+    onClick={async () => {
       const email = localStorage.getItem("email");
       const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
       try {
@@ -420,43 +424,53 @@ const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
             email,
             cursoId,
             capituloId: capituloActual,
-            accion: "completado", // 👈 importante
+            accion: "completado",
           }),
         });
       } catch (error) {
         console.error("Error al marcar como completado:", error);
       }
-    }
 
-    navigate(`/cursos/${cursoId}`);
-  }}
-  className="bg-black text-white py-2 px-4 rounded-lg"
->
-  Regresar
-</button>
+      navigate(`/cursos/${cursoId}`);
+    }}
+    className="bg-black text-white py-2 px-4 rounded-lg"
+  >
+    Regresar
+  </button>
+)}
+
 
       
 
 
-          {parseInt(chapterId, 10) < currentModuleChapters.length && (
-  <button
-    onClick={goToNextChapter}
-    disabled={!(videoFinalizado || capituloYaCompletado)}
-    className={`py-2 px-4 rounded-lg transition-all ${
-      videoFinalizado || capituloYaCompletado
-        ? "bg-green-600 text-white hover:bg-green-700"
-        : "bg-gray-600 text-white cursor-not-allowed opacity-60"
-    }`}
-  >
-    Siguiente
+{parseInt(chapterId, 10) < currentModuleChapters.length && (() => {
+  const puedeAvanzar = videoFinalizado || capituloYaCompletado;
 
-    {!(videoFinalizado || capituloYaCompletado) && (
-      <div className="text-white mt-4 text-sm">
-        ⏱ Reproducido: {formatSecondsToMinutes(tiempoReproducido)} / {formatSecondsToMinutes(duracionEstimativa)}
-      </div>
-    )}
-  </button>
-)}
+  console.log("🎥 videoFinalizado:", videoFinalizado);
+console.log("🟢 capituloYaCompletado:", capituloYaCompletado);
+console.log("🚦 puedeAvanzar:", puedeAvanzar);
+
+  return (
+    <button
+      onClick={goToNextChapter}
+      disabled={!puedeAvanzar}
+      className={`py-2 px-4 rounded-lg transition-all ${
+        puedeAvanzar
+          ? "bg-green-600 text-white hover:bg-green-700"
+          : "bg-gray-600 text-white cursor-not-allowed opacity-60"
+      }`}
+    >
+      Siguiente
+
+      {!puedeAvanzar && (
+        <div className="text-white mt-4 text-sm">
+          ⏱ Reproducido: {formatSecondsToMinutes(tiempoReproducido)} / {formatSecondsToMinutes(duracionEstimativa)}
+        </div>
+      )}
+    </button>
+  );
+})()}
+
 
 
        

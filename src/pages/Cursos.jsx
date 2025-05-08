@@ -87,31 +87,34 @@ function Cursos() {
   const handleVerCapitulo = async (cursoTitle, moduleName, chapterIndex) => {
     const chapter = course.modules[moduleName][chapterIndex];
     const capituloId = `${moduleName}-${chapterIndex + 1}`;
-
+  
     const body = {
       email: localStorage.getItem('email'),
       cursoId: sanitizeTitle(cursoTitle),
       capituloId,
-      accion: "finalizado"
+      accion: "inicio"
     };
-
+  
+    console.log("📤 Enviando progreso:", body); // <-- Agregado
+  
     try {
       const response = await fetch(`${API_BASE_URL}/api/progreso`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-
+  
       if (response.ok) {
-        setProgreso((prev) => ({ ...prev, [capituloId]: 'completado' }));
+        setProgreso((prev) => ({ ...prev, [capituloId]: 'en_progreso' }));
         navigate(`/cursos/${sanitizeTitle(cursoTitle)}/${moduleName}/${chapterIndex + 1}`);
       } else {
-        console.error('Error al registrar progreso:', response.statusText);
+        console.error('❌ Error al registrar progreso:', response.statusText);
       }
     } catch (error) {
-      console.error('Error al registrar progreso:', error);
+      console.error('❌ Error al registrar progreso:', error);
     }
   };
+  
 
   const toggleModule = (moduleName) => {
     setOpenModules((prev) => ({
