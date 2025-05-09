@@ -282,9 +282,9 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
 <>
       <Navbar />
       <div className="py-2 mt-5 min-h-screen w-screen overflow-y-auto bg-gradient-to-r from-black/80 to-black flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-6 text-white text-center mt-10">
-        {currentChapter.title}
-      </h1>
+      <h1 className="text-4xl text-center mb-6 md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
+      {currentChapter.title}
+            </h1>
       <p className="text-white mb-4 text-center">{currentChapter.description}</p>
 
       <div className="bg-gradient-to-b from-black/80 to-black w-full sm:rounded-2xl flex flex-col items-center p-8 shadow-lg">
