@@ -9,11 +9,11 @@ const API_BASE_URL =
 export default function UsuariosMasterFade() {
   const [usuarios, setUsuarios] = useState([]);
   const [busqueda, setBusqueda] = useState('');
+  const [tab, setTab] = useState('form');
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/api/search/usuarios`) // ✅ nuevo endpoint correcto
+    axios.get(`${API_BASE_URL}/api/search/usuarios`)
       .then(res => {
-        console.log("📦 Usuarios completos:", res.data);
         if (Array.isArray(res.data)) {
           setUsuarios(res.data);
         } else {
@@ -23,24 +23,93 @@ export default function UsuariosMasterFade() {
       .catch(err => console.error('Error cargando usuarios', err));
   }, []);
 
-  const usuariosFiltrados = usuarios.filter(user => {
-    const tieneCurso = user.cursos?.includes("Master Fade 3.0");
-    if (!tieneCurso) return false;
+  const getProgreso = (user) => {
+    return user.progresoCursos?.find(p => p.curso === "Master Fade 3.0")?.capitulos || [];
+  }
 
-    if (!busqueda) return true;
+  const getCompletados = (user) => {
+    return getProgreso(user).filter(c => c.estado === "completado").map(c => c.capituloId);
+  }
 
-    const termino = busqueda.toLowerCase();
-    return (
-      user.nombre?.toLowerCase().includes(termino) ||
-      user.email?.toLowerCase().includes(termino)
-    );
-  });
+  const getConteoPorTab = (tabId) => {
+    return usuarios.filter(user => {
+      const tieneCurso = user.cursos?.includes("Master Fade 3.0");
+      if (!tieneCurso) return false;
+
+      const completados = getCompletados(user);
+
+      switch (tabId) {
+        case 'form':
+          return !user.completoForm;
+        case 'bienvenida':
+          return user.completoForm && !completados.includes("Master Fade 3.0-1");
+        case 'clases':
+          return user.completoForm && completados.includes("Master Fade 3.0-1") && (!completados.includes("Master Fade 3.0-2") || !completados.includes("Master Fade 3.0-3"));
+        case 'mkt':
+          return user.completoForm && completados.includes("Master Fade 3.0-3") && !completados.includes("Master Fade 3.0-4");
+        case 'prueba':
+          return user.completoForm && completados.includes("Master Fade 3.0-4") && !completados.includes("Master Fade 3.0-5");
+        default:
+          return false;
+      }
+    }).length;
+  }
+
+  const filtrarUsuarios = () => {
+    return usuarios.filter(user => {
+      const tieneCurso = user.cursos?.includes("Master Fade 3.0");
+      if (!tieneCurso) return false;
+
+      const termino = busqueda.toLowerCase();
+      const coincideBusqueda =
+        !busqueda || user.nombre?.toLowerCase().includes(termino) || user.email?.toLowerCase().includes(termino);
+
+      const completados = getCompletados(user);
+
+      switch (tab) {
+        case 'form':
+          return coincideBusqueda && !user.completoForm;
+        case 'bienvenida':
+          return coincideBusqueda && user.completoForm && !completados.includes("Master Fade 3.0-1");
+        case 'clases':
+          return coincideBusqueda && user.completoForm && completados.includes("Master Fade 3.0-1") && (!completados.includes("Master Fade 3.0-2") || !completados.includes("Master Fade 3.0-3"));
+        case 'mkt':
+          return coincideBusqueda && user.completoForm && completados.includes("Master Fade 3.0-3") && !completados.includes("Master Fade 3.0-4");
+        case 'prueba':
+          return coincideBusqueda && user.completoForm && completados.includes("Master Fade 3.0-4") && !completados.includes("Master Fade 3.0-5");
+        default:
+          return false;
+      }
+    });
+  };
+
+  const usuariosFiltrados = filtrarUsuarios();
+
+  const tabs = [
+    { id: 'form', label: 'Pendiente de Formulario' },
+    { id: 'bienvenida', label: 'Pendiente de Bienvenida' },
+    { id: 'clases', label: 'Pendiente de Clases' },
+    { id: 'mkt', label: 'Pendiente de MKT' },
+    { id: 'prueba', label: 'Pendiente de Prueba' }
+  ];
 
   return (
     <div className="p-6 text-white">
       <h2 className="text-2xl font-bold mb-4">
         <span className="bg-white px-3 py-1 rounded text-black">Master Fade 3.0</span>
       </h2>
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        {tabs.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`px-3 py-1 rounded ${tab === t.id ? 'bg-yellow-400 text-black font-bold' : 'bg-zinc-700 text-white'}`}
+          >
+            {t.label} ({getConteoPorTab(t.id)})
+          </button>
+        ))}
+      </div>
 
       <input
         type="text"
@@ -65,27 +134,27 @@ export default function UsuariosMasterFade() {
               <p className="text-gray-400">{user.email}</p>
               <p>📞 {user.telefono || 'Sin teléfono'}</p>
               <p>🎓 Nivel: {user.nivel}</p>
+              <p>📌 CSM: {user.Csm || 'Sin asignar'}</p>
               <p>📝 Formulario: {user.completoForm ? '✅' : '❌'}</p>
               {user.fechaFormCompletado && (
-                <p className="text-xs text-gray-400">
-                  📅 {new Date(user.fechaFormCompletado).toLocaleDateString()}
-                </p>
+                <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleString()}</p>
+              )}
+              {user.fechaAsignacionMasterFade30 && (
+                <p className="text-xs text-gray-400">💸 Fecha de compra: {new Date(user.fechaAsignacionMasterFade30).toLocaleString()}</p>
               )}
 
               <details className="mt-2 w-full text-left text-xs">
                 <summary className="cursor-pointer text-teal-400">Ver progreso</summary>
-                {user.progresoCursos?.map((curso, i) => (
-                  <div key={i} className="mt-1">
-                    <p className="font-semibold">{curso.curso}</p>
-                    <ul className="list-disc ml-4 text-gray-300">
-                      {curso.capitulos.map((cap, j) => (
-                        <li key={j}>
-                          {cap.capituloId} – {cap.estado}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                <div className="mt-1">
+                  <p className="font-semibold">Master Fade 3.0</p>
+                  <ul className="list-disc ml-4 text-gray-300">
+                    {getProgreso(user).map((cap, j) => (
+                      <li key={j}>
+                        {cap.capituloId} – {cap.estado} {cap.fechaInicio && `📆 ${new Date(cap.fechaInicio).toLocaleDateString()}`}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </details>
             </div>
           ))
