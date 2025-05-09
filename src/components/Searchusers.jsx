@@ -1,12 +1,37 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
 import { Search } from "lucide-react"
 
-const UsuariosPorCursos = ({ usuarios }) => {
+const UsuariosPorCursos = () => {
+  const [usuarios, setUsuarios] = useState([])
   const [busqueda, setBusqueda] = useState("")
-  const itemsPorPagina = 25
   const [paginaCurso1, setPaginaCurso1] = useState(0)
   const [paginaCurso2a5, setPaginaCurso2a5] = useState(0)
   const [paginaCurso6, setPaginaCurso6] = useState(0)
+  const itemsPorPagina = 25
+
+  const API_BASE_URL =
+    process.env.NODE_ENV === "production"
+      ? "https://back-cursos.onrender.com"
+      : "http://localhost:5000"
+
+  useEffect(() => {
+    axios.get(`${API_BASE_URL}/api/search/usuarios`)
+      .then(res => {
+        console.log("📦 Usuarios completos:", res.data)
+        if (Array.isArray(res.data)) {
+          // Agregamos cantidadCursos a cada usuario
+          const procesados = res.data.map(u => ({
+            ...u,
+            cantidadCursos: u.cursos?.length || 0
+          }))
+          setUsuarios(procesados)
+        } else {
+          console.error("La respuesta no es un array")
+        }
+      })
+      .catch(err => console.error('Error cargando usuarios', err))
+  }, [])
 
   const renderUsuariosPaginated = (lista, title, pagina, setPagina) => {
     const filtrados = lista.filter((u) =>
@@ -26,7 +51,7 @@ const UsuariosPorCursos = ({ usuarios }) => {
                   {user.nombre || user.email} ({user.email}) - {user.cantidadCursos} curso{user.cantidadCursos > 1 ? "s" : ""}
                 </summary>
                 <ul className="ml-4 list-disc text-[11px] text-gray-600">
-                  {user.cursos.map((curso, idx) => <li key={idx}>{curso}</li>)}
+                  {user.cursos?.map((curso, idx) => <li key={idx}>{curso}</li>)}
                 </ul>
               </details>
             </li>
@@ -53,7 +78,6 @@ const UsuariosPorCursos = ({ usuarios }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* 🔍 Buscador */}
       <div className="bg-white p-4 rounded-lg shadow-md w-full text-black">
         <h2 className="text-lg font-semibold mb-4">Buscar Usuario por Nombre o Email</h2>
         <div className="flex items-center gap-2">
@@ -68,7 +92,6 @@ const UsuariosPorCursos = ({ usuarios }) => {
         </div>
       </div>
 
-      {/* 📋 Listas */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {renderUsuariosPaginated(usuariosCon1Curso, "Usuarios con 1 Curso", paginaCurso1, setPaginaCurso1)}
         {renderUsuariosPaginated(usuariosDe2a5Cursos, "Usuarios con 2 a 5 Cursos", paginaCurso2a5, setPaginaCurso2a5)}
