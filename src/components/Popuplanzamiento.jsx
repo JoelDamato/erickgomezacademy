@@ -1,10 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://back-cursos.onrender.com'
+    : 'http://localhost:5000';
+
 export default function PopupImportante() {
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const target = 32;
+
+  // Ocultar si el usuario ya tiene Master Fade 3.0
+  useEffect(() => {
+    const checkCursos = async () => {
+      const email = localStorage.getItem("email");
+      const token = localStorage.getItem("token");
+
+      if (!email || !token) return;
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/search/users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+
+        if (data?.cursos?.includes("Master Fade 3.0")) {
+          setVisible(false);
+        }
+      } catch (err) {
+        console.error("❌ Error al consultar cursos:", err);
+      }
+    };
+
+    checkCursos();
+  }, []);
 
   useEffect(() => {
     if (progress < target) {
@@ -31,7 +67,7 @@ export default function PopupImportante() {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto max-h-[90vh] overflow-y-auto text-xs md:text-sm "
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto max-h-[90vh] overflow-y-auto text-xs md:text-sm"
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.85 }}
@@ -60,11 +96,11 @@ export default function PopupImportante() {
                 className="w-full"
               />
 
-              <p className="text-[12px]   leading-snug">
+              <p className="text-[12px] leading-snug">
                 Erick está creando una nueva generación de barberos profesionales. Esto no es solo un curso de cortes… Es el primer paso del nuevo sistema educativo para aprender la técnica que lo hizo viral, mejorar tus resultados rápido y empezar a construir tu nombre propio en la barbería.
               </p>
 
-              <p className="text-[12px]   font-semibold text-yellow-300 leading-snug">
+              <p className="text-[12px] font-semibold text-yellow-300 leading-snug">
                 Hablá ahora mismo con un representante de Erick para inscribirte y asegurar tu acceso.
               </p>
 

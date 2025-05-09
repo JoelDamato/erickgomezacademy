@@ -122,7 +122,7 @@ bannersToShow.push(...otherCourses);
     <>
       <div className="relative h-full w-screen flex flex-col items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black  bg-center" >
         <Navbar />
-      {/*   <PopupImportante />  */}
+       <PopupImportante />  
         <FormOnboarding />  
 
         <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow z-50 flex items-center gap-2 font-bold text-sm">
