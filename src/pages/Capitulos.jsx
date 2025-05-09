@@ -221,7 +221,7 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
     const capituloSiguiente = `${moduleName}-${nextIndex + 1}`;
   
     try {
-      // 1. Marcar capítulo actual como finalizado
+      // Marcar capítulo actual como finalizado
       await fetch(`${API_BASE_URL}/api/progreso`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -233,7 +233,7 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
         }),
       });
   
-      // 2. Marcar capítulo siguiente como iniciado
+      // Marcar siguiente como iniciado
       await fetch(`${API_BASE_URL}/api/progreso`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -245,12 +245,17 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
         }),
       });
   
-      // 3. Navegar al siguiente capítulo
+      // 🧹 Limpiar claves relacionadas al video
+      localStorage.removeItem("lastChapter");
+      // Agregá más si guardás por ejemplo `video_tiempo` o `progreso_video_capituloX`
+  
+      // Navegar
       navigate(`/cursos/${cursoId}/${moduleName}/${nextIndex + 1}`);
     } catch (error) {
       console.error("Error al actualizar progreso:", error);
     }
   };
+  
   
 
   const goToPreviousChapter = () => {
