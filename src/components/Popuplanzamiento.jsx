@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function PopupImportante() {
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
-  const target = 14;
+  const target = 32;
 
   useEffect(() => {
     if (progress < target) {

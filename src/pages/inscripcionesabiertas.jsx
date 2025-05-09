@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function InscripcionesAbiertas() {
-  const [progress] = useState(14);
+  const [progress] = useState(32);
 
   return (
     <div className="pt-20 min-h-screen flex flex-col items-center justify-start px-4 bg-[url('https://i.ibb.co/6JRvGQ0M/Fondosinega2.png')] bg-cover bg-center text-white">
