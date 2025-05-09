@@ -9,7 +9,7 @@ const API_BASE_URL =
 export default function PopupImportante() {
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
-  const target = 67;
+  const target = 92;
 
   // Ocultar si el usuario ya tiene Master Fade 3.0
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function PopupImportante() {
             {/* Barra de Progreso */}
             <div className="relative h-4 bg-zinc-800 rounded-full overflow-hidden border border-zinc-600 shadow-inner mb-3">
               <div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 to-yellow-600 transition-all duration-200 ease-out"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-red-600 transition-all duration-200 ease-out"
                 style={{ width: `${progress}%` }}
               />
               <span className="absolute inset-0 flex items-center justify-center text-[10px] text-white font-bold">
