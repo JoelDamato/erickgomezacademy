@@ -69,6 +69,33 @@ export default function UsuariosMasterFade() {
     }).length;
   }
 
+  useEffect(() => {
+    const cargarDisparos = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/disparos`);
+        const disparosDesdeDB = res.data;
+  
+        const estructura = {};
+        disparosDesdeDB.forEach(item => {
+          estructura[item.userEmail] = {
+            etapa: item.etapa,
+            disparo2h: item.disparo2h || false,
+            disparo12h: item.disparo12h || false,
+            disparo24h: item.disparo24h || false,
+            disparo1semana: item.disparo1semana || false,
+          };
+        });
+  
+        setDisparos(estructura);
+      } catch (err) {
+        console.error("❌ Error al obtener disparos:", err);
+      }
+    };
+  
+    cargarDisparos();
+  }, []);
+  
+
   const filtrarUsuarios = () => {
     return usuarios.filter(user => {
       const tieneCurso = user.cursos?.includes("Master Fade 3.0");
@@ -102,13 +129,21 @@ export default function UsuariosMasterFade() {
     usuarios.forEach(user => {
       if (!user.cursos?.includes("Master Fade 3.0")) return;
   
-      nuevosDisparos[user.email] = {
-        etapa: tab,
-        disparo2h: false,
-        disparo12h: false,
-        disparo24h: false,
-        disparo1semana: false
-      };
+      const prev = disparos[user.email];
+  
+      // Si ya tiene disparos guardados Y es para la misma etapa actual, se mantienen
+      if (prev && prev.etapa === tab) {
+        nuevosDisparos[user.email] = prev;
+      } else {
+        // Si no hay o es otra etapa, se resetea
+        nuevosDisparos[user.email] = {
+          etapa: tab,
+          disparo2h: false,
+          disparo12h: false,
+          disparo24h: false,
+          disparo1semana: false,
+        };
+      }
     });
   
     setDisparos(nuevosDisparos);
@@ -200,14 +235,29 @@ export default function UsuariosMasterFade() {
       <input
         type="checkbox"
         checked={disparos[user.email]?.[key] || false}
-        onChange={() => {
+        onChange={async () => {
+          const nuevoValor = !disparos[user.email]?.[key];
+      
+          // Actualiza frontend
           setDisparos(prev => ({
             ...prev,
             [user.email]: {
               ...prev[user.email],
-              [key]: !prev[user.email]?.[key]
+              [key]: nuevoValor
             }
           }));
+      
+          // Guarda en backend
+          try {
+            await axios.post(`${API_BASE_URL}/api/disparos`, {
+              userEmail: user.email,
+              etapa: tab,
+              key,
+              value: nuevoValor,
+            });
+          } catch (err) {
+            console.error("❌ Error al guardar disparo:", err);
+          }
         }}
       />
       {key.replace('disparo', 'Disparo ').replace('1semana', '1 semana').replace('h', ' hs')}
