@@ -31,6 +31,18 @@ export default function UsuariosMasterFade() {
     return getProgreso(user).filter(c => c.estado === "completado").map(c => c.capituloId);
   }
 
+  const calcularEtiquetaTiempo = (fecha) => {
+    if (!fecha) return null;
+    const ahora = new Date();
+    const diferenciaHoras = (ahora - new Date(fecha)) / (1000 * 60 * 60);
+
+    if (diferenciaHoras > 168) return '🕒 +1 semana';
+    if (diferenciaHoras > 24) return '⏰ +24hs';
+    if (diferenciaHoras > 12) return '⏰ +12hs';
+    if (diferenciaHoras > 2) return '⏰ +2hs';
+    return null;
+  }
+
   const getConteoPorTab = (tabId) => {
     return usuarios.filter(user => {
       const tieneCurso = user.cursos?.includes("Master Fade 3.0");
@@ -123,41 +135,46 @@ export default function UsuariosMasterFade() {
         {usuariosFiltrados.length === 0 ? (
           <p className="text-gray-400 col-span-full">No se encontraron usuarios.</p>
         ) : (
-          usuariosFiltrados.map((user, index) => (
-            <div key={index} className="bg-zinc-800 p-3 rounded-lg shadow flex flex-col items-center text-center text-sm">
-              <img
-                src={user.imagenPerfil}
-                alt={`Foto de ${user.nombre}`}
-                className="w-16 h-16 rounded-full object-cover mb-2 border border-gray-500"
-              />
-              <h3 className="font-semibold">{user.nombre}</h3>
-              <p className="text-gray-400">{user.email}</p>
-              <p>📞 {user.telefono || 'Sin teléfono'}</p>
-              <p>🎓 Nivel: {user.nivel}</p>
-              <p>📌 CSM: {user.Csm || 'Sin asignar'}</p>
-              <p>📝 Formulario: {user.completoForm ? '✅' : '❌'}</p>
-              {user.fechaFormCompletado && (
-                <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleString()}</p>
-              )}
-              {user.fechaAsignacionMasterFade30 && (
-                <p className="text-xs text-gray-400">💸 Fecha de compra: {new Date(user.fechaAsignacionMasterFade30).toLocaleString()}</p>
-              )}
-
-              <details className="mt-2 w-full text-left text-xs">
-                <summary className="cursor-pointer text-teal-400">Ver progreso</summary>
-                <div className="mt-1">
-                  <p className="font-semibold">Master Fade 3.0</p>
-                  <ul className="list-disc ml-4 text-gray-300">
-                    {getProgreso(user).map((cap, j) => (
-                      <li key={j}>
-                        {cap.capituloId} – {cap.estado} {cap.fechaInicio && `📆 ${new Date(cap.fechaInicio).toLocaleDateString()}`}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </details>
-            </div>
-          ))
+          usuariosFiltrados.map((user, index) => {
+            const etiqueta = tab === 'form' ? calcularEtiquetaTiempo(user.fechaAsignacionMasterFade30) : null;
+            return (
+              <div key={index} className="bg-zinc-800 p-3 rounded-lg shadow flex flex-col items-center text-center text-sm">
+                <img
+                  src={user.imagenPerfil}
+                  alt={`Foto de ${user.nombre}`}
+                  className="w-16 h-16 rounded-full object-cover mb-2 border border-gray-500"
+                />
+                <h3 className="font-semibold">{user.nombre}</h3>
+                <p className="text-gray-400">{user.email}</p>
+                <p>📞 {user.telefono || 'Sin teléfono'}</p>
+                <p>🎓 Nivel: {user.nivel}</p>
+                <p>📌 CSM: {user.Csm || 'Sin asignar'}</p>
+                <p>📝 Formulario: {user.completoForm ? '✅' : '❌'}</p>
+                {user.fechaFormCompletado && (
+                  <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleDateString()}</p>
+                )}
+                {user.fechaAsignacionMasterFade30 && (
+                  <p className="text-xs text-gray-400">💸 Fecha de compra: {new Date(user.fechaAsignacionMasterFade30).toLocaleString()}</p>
+                )}
+                {etiqueta && (
+                  <p className="text-xs text-yellow-300 font-semibold">{etiqueta}</p>
+                )}
+                <details className="mt-2 w-full text-left text-xs">
+                  <summary className="cursor-pointer text-teal-400">Ver progreso</summary>
+                  <div className="mt-1">
+                    <p className="font-semibold">Master Fade 3.0</p>
+                    <ul className="list-disc ml-4 text-gray-300">
+                      {getProgreso(user).map((cap, j) => (
+                        <li key={j}>
+                          {cap.capituloId} – {cap.estado} {cap.fechaInicio && `📆 ${new Date(cap.fechaInicio).toLocaleDateString()}`}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </details>
+              </div>
+            )
+          })
         )}
       </div>
     </div>
