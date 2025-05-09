@@ -128,31 +128,30 @@ export default function UsuariosMasterFade() {
   };
 
   useEffect(() => {
-    const nuevosDisparos = {};
-    usuarios.forEach(user => {
-      if (!user.cursos?.includes("Master Fade 3.0")) return;
+    setDisparos((prev) => {
+      const nuevosDisparos = { ...prev };
   
-      const prev = disparos[user.email];
+      usuarios.forEach((user) => {
+        if (!user.cursos?.includes("Master Fade 3.0")) return;
   
-      // Si ya tiene disparos guardados Y es para la misma etapa actual, se mantienen
-      if (prev && prev.etapa === tab) {
-        nuevosDisparos[user.email] = prev;
-      } else {
-        // Si no hay o es otra etapa, se resetea
-        nuevosDisparos[user.email] = {
-          etapa: tab,
-          disparo2h: false,
-          disparo12h: false,
-          disparo24h: false,
-          disparo1semana: false,
-        };
-      }
+        const prevUsuario = prev[user.email];
+  
+        // Solo inicializar si no existe
+        if (!prevUsuario) {
+          nuevosDisparos[user.email] = {
+            etapa: tab,
+            disparo2h: false,
+            disparo12h: false,
+            disparo24h: false,
+            disparo1semana: false,
+          };
+        }
+      });
+  
+      return nuevosDisparos;
     });
-  
-    setDisparos(nuevosDisparos);
   }, [tab, usuarios]);
   
-
   const usuariosFiltrados = filtrarUsuarios().filter(user => {
     if (!filtroDisparo) return true;
     return disparos[user.email]?.[filtroDisparo] === false;
@@ -267,7 +266,13 @@ export default function UsuariosMasterFade() {
         checked={disparos[user.email]?.[key] || false}
         onChange={async () => {
           const nuevoValor = !disparos[user.email]?.[key];
-      
+       // 🟨 Log de lo que vas a enviar al backend:
+  console.log("📤 Enviando a backend:", {
+    userEmail: user.email,
+    etapa: tab,
+    key,
+    value: nuevoValor,
+  });
           // Actualiza frontend
           setDisparos(prev => ({
             ...prev,
