@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function InscripcionesAbiertas() {
-  const [progress] = useState(67);
+  const [progress] = useState(92);
 
   return (
     <div className="pt-20 min-h-screen flex flex-col items-center justify-start px-4 bg-[url('https://i.ibb.co/6JRvGQ0M/Fondosinega2.png')] bg-cover bg-center text-white">
@@ -9,7 +9,7 @@ function InscripcionesAbiertas() {
       <div className="w-full max-w-md mb-6">
         <div className="relative h-5 bg-zinc-800 rounded-full overflow-hidden border border-zinc-600 shadow-inner">
           <div
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 to-yellow-600 transition-all duration-200 ease-out"
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-red-600 transition-all duration-200 ease-out"
             style={{ width: `${progress}%` }}
           />
           <span className="absolute inset-0 flex items-center justify-center text-sm text-white font-bold">
