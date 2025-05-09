@@ -34,11 +34,12 @@ export default function Success() {
       }
 
       const password = generateReadablePassword();
+      const normalizedEmail = email.toLowerCase();
 
       try {
         const response = await axios.post(`${API_BASE_URL}/api/create/registerauto`, {
           nombre,
-          email,
+          email: normalizedEmail,
           password,
           cursos: ["Master Fade 3.0"],
           rol: "user",
