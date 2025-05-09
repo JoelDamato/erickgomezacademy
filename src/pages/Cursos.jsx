@@ -23,6 +23,42 @@ function Cursos() {
   const sanitizeTitle = (title) =>
     title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\.\-]/g, '');
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
+  
+    if (!token || !email) return;
+  
+    const checkAcceso = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/search/users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ email }),
+        });
+  
+        if (!res.ok) throw new Error('Error al obtener usuario');
+  
+        const userData = await res.json();
+        const cursosUsuario = userData.cursos?.map(c => c.toLowerCase().replace(/\s+/g, '-')) || [];
+  
+        if (!cursosUsuario.includes(cursoId)) {
+          console.warn('🚫 Curso no asignado. Redirigiendo...');
+          navigate('/Dashboard');
+        }
+      } catch (err) {
+        console.error('❌ Error al validar acceso al curso:', err);
+        navigate('/Dashboard');
+      }
+    };
+  
+    checkAcceso();
+  }, [cursoId, navigate]);
+  
+
   const groupChaptersByModule = (chapters) => {
     return chapters.reduce((acc, chapter) => {
       const { module } = chapter;

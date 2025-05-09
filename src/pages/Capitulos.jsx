@@ -250,7 +250,7 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
       // Agregá más si guardás por ejemplo `video_tiempo` o `progreso_video_capituloX`
   
       // Navegar
-      navigate(`/cursos/${cursoId}/${moduleName}/${nextIndex + 1}`);
+      window.location.href = `/cursos/${cursoId}/${moduleName}/${nextIndex + 1}`;
     } catch (error) {
       console.error("Error al actualizar progreso:", error);
     }
