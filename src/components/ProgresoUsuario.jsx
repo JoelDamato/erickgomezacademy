@@ -11,6 +11,8 @@ export default function UsuariosMasterFade() {
   const [busqueda, setBusqueda] = useState('');
   const [tab, setTab] = useState('form');
   const [disparos, setDisparos] = useState({});
+  const [filtroDisparo, setFiltroDisparo] = useState('');
+
 
 
   useEffect(() => {
@@ -95,6 +97,7 @@ export default function UsuariosMasterFade() {
     cargarDisparos();
   }, []);
   
+  
 
   const filtrarUsuarios = () => {
     return usuarios.filter(user => {
@@ -150,7 +153,11 @@ export default function UsuariosMasterFade() {
   }, [tab, usuarios]);
   
 
-  const usuariosFiltrados = filtrarUsuarios();
+  const usuariosFiltrados = filtrarUsuarios().filter(user => {
+    if (!filtroDisparo) return true;
+    return disparos[user.email]?.[filtroDisparo] === false;
+  });
+  
 
   const tabs = [
     { id: 'form', label: 'Pendiente de Formulario' },
@@ -177,6 +184,29 @@ export default function UsuariosMasterFade() {
           </button>
         ))}
       </div>
+
+      {usuariosFiltrados.length > 0 && (
+  <div className="flex gap-2 mb-4 flex-wrap">
+    {["disparo2h", "disparo12h", "disparo24h", "disparo1semana"].map(key => (
+      <button
+        key={key}
+        onClick={() => setFiltroDisparo(prev => prev === key ? '' : key)}
+        className={`px-2 py-1 text-sm rounded ${
+          filtroDisparo === key ? 'bg-red-400 text-black font-bold' : 'bg-zinc-700 text-white'
+        }`}
+      >
+        Pendiente {key.replace('disparo', '').replace('1semana', '1 semana').replace('h', ' hs')}
+      </button>
+    ))}
+    <button
+      onClick={() => setFiltroDisparo('')}
+      className={`px-2 py-1 text-sm rounded ${filtroDisparo === '' ? 'bg-green-600 text-black font-bold' : 'bg-zinc-700 text-white'}`}
+    >
+      Mostrar todos
+    </button>
+  </div>
+)}
+
 
       <input
         type="text"
