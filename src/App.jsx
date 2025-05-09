@@ -30,6 +30,7 @@ import Pdf from'./components/2pdf.jsx';
 import Herramientas from './pages/Herramients.jsx';
 import VideoBarberos from './pages/Ultimomomento.jsx';
 import Csm from './pages/Csm.jsx';
+import InscripcionesAbiertas from './pages/inscripcionesabiertas.jsx';
 
 function App() {
   return (
@@ -57,7 +58,7 @@ function App() {
         <Route path="/preguntas" element={<Preguntas/>} />
         <Route path="/pdf2" element={<Pdf/>} />
         <Route path="/ultimomomento" element={<VideoBarberos />} />
-
+        <Route path="/inscripcionesabiertas" element={<InscripcionesAbiertas />} />
 
 
         {/* PRIVADAS */}

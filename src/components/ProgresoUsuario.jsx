@@ -151,7 +151,7 @@ export default function UsuariosMasterFade() {
                 <p>📌 CSM: {user.Csm || 'Sin asignar'}</p>
                 <p>📝 Formulario: {user.completoForm ? '✅' : '❌'}</p>
                 {user.fechaFormCompletado && (
-                  <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleDateString()}</p>
+                  <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleString()}</p>
                 )}
                 {user.fechaAsignacionMasterFade30 && (
                   <p className="text-xs text-gray-400">💸 Fecha de compra: {new Date(user.fechaAsignacionMasterFade30).toLocaleString()}</p>
@@ -166,7 +166,7 @@ export default function UsuariosMasterFade() {
                     <ul className="list-disc ml-4 text-gray-300">
                       {getProgreso(user).map((cap, j) => (
                         <li key={j}>
-                          {cap.capituloId} – {cap.estado} {cap.fechaInicio && `📆 ${new Date(cap.fechaInicio).toLocaleDateString()}`}
+                          {cap.capituloId} – {cap.estado} {cap.fechaInicio && `📆 ${new Date(cap.fechaInicio).toLocaleString()}`}
                         </li>
                       ))}
                     </ul>
