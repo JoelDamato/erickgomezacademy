@@ -54,13 +54,26 @@ function Cursos() {
       try {
         const res = await fetch(`${API_BASE_URL}/api/progresoget?email=${email}`);
         const data = await res.json();
-
+        
+  
+        
+        const filtrados = data.filter(p => sanitizeTitle(p.cursoId) === cursoId);
+        
+        console.log("📦 Progresos recibidos:", {
+          delCursoActual: filtrados,
+        });
+        
+        
         const progresoMap = {};
         data
-          .filter(p => p.email === email)
-          .forEach(p => {
-            progresoMap[p.capituloId] = p.estado;
-          });
+        .filter(p => 
+          p.email === email &&
+          sanitizeTitle(p.cursoId) === cursoId // 👈 Esto es lo importante
+        )
+        .forEach(p => {
+          progresoMap[p.capituloId] = p.estado;
+        });
+      
         setProgreso(progresoMap);
       } catch (err) {
         console.error('Error al traer progreso:', err);
@@ -215,7 +228,7 @@ function Cursos() {
 
                       <div className="aspect-video rounded-lg flex items-center justify-center bg-zinc-800 overflow-hidden mb-3">
                         {chapter.image ? (
-                          <img src={chapter.image} alt={chapter.title} className="w-full h-full object-cover rounded-lg" />
+                          <img src={chapter.image} alt={chapter.title} className="w-full h-full  rounded-lg" />
                         ) : (
                           <span className="text-white text-6xl font-extrabold animate-pulse drop-shadow-2xl">
                             {chapterIndex + 1}

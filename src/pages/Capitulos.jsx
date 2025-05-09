@@ -405,38 +405,67 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
         )}
 
         <div className="flex justify-between w-full mt-6">
-          <button
-            onClick={goToPreviousChapter}
-            className="bg-black text-white py-2 px-4 rounded-lg"
-          >
-            Anterior
-          </button>
-          {parseInt(chapterId, 10) === currentModuleChapters.length && (
+        {parseInt(chapterId, 10) === 1 ? (
   <button
-    onClick={async () => {
-      const email = localStorage.getItem("email");
-      const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
-      try {
-        await fetch(`${API_BASE_URL}/api/progreso`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            cursoId,
-            capituloId: capituloActual,
-            accion: "completado",
-          }),
-        });
-      } catch (error) {
-        console.error("Error al marcar como completado:", error);
-      }
-
-      navigate(`/cursos/${cursoId}`);
-    }}
+    onClick={() => navigate(`/cursos/${cursoId}`)}
     className="bg-black text-white py-2 px-4 rounded-lg"
   >
-    Regresar
+    Volver
   </button>
+) : (
+  <button
+    onClick={goToPreviousChapter}
+    className="bg-black text-white py-2 px-4 rounded-lg"
+  >
+    Anterior
+  </button>
+)}
+
+          {parseInt(chapterId, 10) === currentModuleChapters.length && (
+  <button
+  onClick={async () => {
+    const email = localStorage.getItem("email");
+    const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
+    try {
+      console.log("📤 Enviando progreso: completado", {
+        email,
+        cursoId,
+        capituloId: capituloActual,
+        accion: "finalizado",
+      });
+
+      await fetch(`${API_BASE_URL}/api/progreso`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          cursoId,
+          capituloId: capituloActual,
+          accion: "finalizado",
+        }),
+      });
+    } catch (error) {
+      console.error("Error al marcar como completado:", error);
+    }
+
+    navigate(`/cursos/${cursoId}`);
+  }}
+  disabled={!(videoFinalizado || capituloYaCompletado)}
+  className={`py-2 px-4 border-2 border-white rounded-lg transition-all ${
+    videoFinalizado || capituloYaCompletado
+      ? "bg-green-500 text-white hover:bg-green-700"
+      : "bg-black text-white cursor-not-allowed opacity-60"
+  }`}
+>
+  Finalizar
+
+  {!(videoFinalizado || capituloYaCompletado) && (
+    <div className="text-white mt-4 text-sm">
+      ⏱ Reproducido: {formatSecondsToMinutes(tiempoReproducido)} / {formatSecondsToMinutes(duracionEstimativa)}
+    </div>
+  )}
+</button>
+
 )}
 
 
