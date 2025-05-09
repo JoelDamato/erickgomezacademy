@@ -474,6 +474,57 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
 )}
 
 
+{parseInt(chapterId, 10) === currentModuleChapters.length && (
+  <button
+  onClick={async () => {
+    const email = localStorage.getItem("email");
+    const capituloActual = `${moduleName}-${parseInt(chapterId, 10)}`;
+    try {
+      console.log("📤 Enviando progreso: completado", {
+        email,
+        cursoId,
+        capituloId: capituloActual,
+        accion: "finalizado",
+      });
+
+      await fetch(`${API_BASE_URL}/api/progreso`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          cursoId,
+          capituloId: capituloActual,
+          accion: "finalizado",
+        }),
+      });
+    } catch (error) {
+      console.error("Error al marcar como completado:", error);
+    }
+
+    navigate(`/cursos/${cursoId}`);
+  }}
+  disabled={!(videoFinalizado || capituloYaCompletado)}
+  className={`py-2 px-4  rounded-lg transition-all ${
+    videoFinalizado || capituloYaCompletado
+      ? "bg-green-500 text-white hover:bg-green-700"
+      : "bg-black text-white cursor-not-allowed "
+  }`}
+>
+{parseInt(chapterId, 10) === currentModuleChapters.length && cursoId === "master-fade-3.0" ? (
+  <a
+    href="https://wa.me/59891640623?text=Hola,%20quiero%20realizar%20la%20prueba%20para%20graduarme%20en%20el%20Master%20Fade%203.0"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black font-bold py-3 px-5 rounded-xl text-sm transition duration-300"
+  >
+    Realizar Evaluación
+  </a>
+) : null}
+</button>
+
+)}
+
+
       
 
 

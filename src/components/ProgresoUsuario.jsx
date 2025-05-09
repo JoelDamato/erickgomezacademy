@@ -10,6 +10,8 @@ export default function UsuariosMasterFade() {
   const [usuarios, setUsuarios] = useState([]);
   const [busqueda, setBusqueda] = useState('');
   const [tab, setTab] = useState('form');
+  const [disparos, setDisparos] = useState({});
+
 
   useEffect(() => {
     axios.get(`${API_BASE_URL}/api/search/usuarios`)
@@ -95,6 +97,24 @@ export default function UsuariosMasterFade() {
     });
   };
 
+  useEffect(() => {
+    const nuevosDisparos = {};
+    usuarios.forEach(user => {
+      if (!user.cursos?.includes("Master Fade 3.0")) return;
+  
+      nuevosDisparos[user.email] = {
+        etapa: tab,
+        disparo2h: false,
+        disparo12h: false,
+        disparo24h: false,
+        disparo1semana: false
+      };
+    });
+  
+    setDisparos(nuevosDisparos);
+  }, [tab, usuarios]);
+  
+
   const usuariosFiltrados = filtrarUsuarios();
 
   const tabs = [
@@ -148,7 +168,6 @@ export default function UsuariosMasterFade() {
                 <p className="text-gray-400">{user.email}</p>
                 <p>📞 {user.telefono || 'Sin teléfono'}</p>
                 <p>🎓 Nivel: {user.nivel}</p>
-                <p>📌 CSM: {user.Csm || 'Sin asignar'}</p>
                 <p>📝 Formulario: {user.completoForm ? '✅' : '❌'}</p>
                 {user.fechaFormCompletado && (
                   <p className="text-xs text-gray-400">📅 Formulario: {new Date(user.fechaFormCompletado).toLocaleString()}</p>
@@ -171,7 +190,31 @@ export default function UsuariosMasterFade() {
                       ))}
                     </ul>
                   </div>
+                  
                 </details>
+
+                <div className="mt-2 text-left text-xs w-full">
+  <p className="font-semibold text-yellow-400">Disparos</p>
+  {["disparo2h", "disparo12h", "disparo24h", "disparo1semana"].map(key => (
+    <label key={key} className="flex items-center gap-2 mt-1">
+      <input
+        type="checkbox"
+        checked={disparos[user.email]?.[key] || false}
+        onChange={() => {
+          setDisparos(prev => ({
+            ...prev,
+            [user.email]: {
+              ...prev[user.email],
+              [key]: !prev[user.email]?.[key]
+            }
+          }));
+        }}
+      />
+      {key.replace('disparo', 'Disparo ').replace('1semana', '1 semana').replace('h', ' hs')}
+    </label>
+  ))}
+</div>
+
               </div>
             )
           })
