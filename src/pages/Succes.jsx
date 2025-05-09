@@ -34,7 +34,6 @@ export default function Success() {
       }
 
       const password = generateReadablePassword();
-      setPasswordGenerada(password);
 
       try {
         const response = await axios.post(`${API_BASE_URL}/api/create/registerauto`, {
@@ -49,7 +48,8 @@ export default function Success() {
         setMensaje("✅ ¡Listo!");
         setMensajeDelServidor(serverMsg);
 
-        if (serverMsg.includes("creado") || serverMsg.includes("correo enviado")) {
+        if (serverMsg.includes("Usuario creado") || serverMsg.includes("creado exitosamente")) {
+          setPasswordGenerada(password);
           setMostrarCredenciales(true);
           setMostrarMensajeServidor(false);
         } else {
@@ -72,7 +72,6 @@ export default function Success() {
     crearUsuario();
   }, [email, nombre]);
 
-  // ⏱ Este timeout es el que controla cuándo ocultar el spinner
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -90,29 +89,26 @@ export default function Success() {
         backgroundPosition: "center",
       }}
     >
-<div className="absolute top-0 w-full flex justify-center">
-  <img
-    src="/erickgomez.png"
-    alt="Erick Gomez Academy"
-    className="w-[180px] drop-shadow-lg mt-4"
-  />
-</div>
+      <div className="absolute top-0 w-full flex justify-center">
+        <img
+          src="/erickgomez.png"
+          alt="Erick Gomez Academy"
+          className="w-[180px] drop-shadow-lg mt-4"
+        />
+      </div>
 
-<div className="bg-black/70 flex flex-col items-center backdrop-blur-sm p-8 rounded-xl max-w-lg w-full text-center mt-32">
- <h2 className="text-xl">
-
+      <div className="bg-black/70 flex flex-col items-center backdrop-blur-sm p-8 rounded-xl max-w-lg w-full text-center mt-32">
+        <h2 className="text-xl">
           🎉 ¡Felicitaciones! Ya tenés acceso al curso <strong>Master Fade 3.0</strong>.
         </h2>
         {mostrarCredenciales && (
-              <>
-                <p className="text-sm text-sm mt-2 text-red-400">
-                  Importante: Sacale captura de pantalla y guarda tu contraseña que luego no va a estar disponible
-                </p>
-              </>
-            )}
-<img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" />
+          <p className="text-sm text-sm mt-2 text-red-400">
+            Importante: Sacale captura de pantalla y guarda tu contraseña que luego no va a estar disponible
+          </p>
+        )}
+        <img src="https://i.ibb.co/bR6KXLbb/Master-Fade-3-0.png" className="w-40 h-40 my-3" alt="" />
         {loading ? (
-            <div className="flex flex-col items-center justify-center mt-6">
+          <div className="flex flex-col items-center justify-center mt-6">
             <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-yellow-400 mb-4"></div>
             <p className="text-yellow-300">⏳ Estamos configurando tu cuenta, por favor esperá un momento...</p>
           </div>

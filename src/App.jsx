@@ -29,7 +29,7 @@ import Preguntas from'./pages/Preguntas.jsx';
 import Pdf from'./components/2pdf.jsx';
 import Herramientas from './pages/Herramients.jsx';
 import VideoBarberos from './pages/Ultimomomento.jsx';
-
+import Csm from './pages/Csm.jsx';
 
 function App() {
   return (
@@ -70,6 +70,7 @@ function App() {
         <Route path="/landing" element={<PrivateRoute><EjemploLanding /></PrivateRoute>} />
         <Route path="/homee" element={<PrivateRoute><HM /></PrivateRoute>} />
         <Route path="/Metricas" element={<PrivateRoute><Metricas /></PrivateRoute>} />
+        <Route path="/csm" element={<PrivateRoute><Csm/></PrivateRoute>} />
         <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
         <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
 

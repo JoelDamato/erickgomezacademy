@@ -144,9 +144,14 @@ function Navbar() {
                 Panel de Control
               </button>
             )}
+              {user?.rol === "admin" && (
+              <button onClick={() => handleNavigation("/metricas")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
+                Metricas
+              </button>
+            )}
             {user?.rol === "admin" && (
-              <button onClick={() => handleNavigation("/Metricas")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
-                Métricas
+              <button onClick={() => handleNavigation("/Csm")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
+                Csm
               </button>
             )}
             <button onClick={handleLogout} className="text-white text-lg hover:bg-red-800/20 flex items-center gap-2 border-b border-white pb-4">
