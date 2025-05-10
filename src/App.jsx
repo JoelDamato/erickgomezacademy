@@ -38,6 +38,7 @@ function App() {
       <Routes>
         {/* PÚBLICAS */}
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/Cursosonline2" element={<CursosonlineRefactor />} />
         <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
         <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
