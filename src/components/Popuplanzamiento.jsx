@@ -7,11 +7,13 @@ const API_BASE_URL =
     : 'http://localhost:5000';
 
 export default function PopupImportante() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
-  const target = 92;
+  const target = 97;
 
-  // Ocultar si el usuario ya tiene Master Fade 3.0
+  const LAST_POPUP_KEY = "lastPopupShown";
+  const HOURS_DELAY = 5;
+
   useEffect(() => {
     const checkCursos = async () => {
       const email = localStorage.getItem("email");
@@ -30,9 +32,16 @@ export default function PopupImportante() {
         });
 
         const data = await res.json();
+        const hasCurso = data?.cursos?.includes("Master Fade 3.0");
 
-        if (data?.cursos?.includes("Master Fade 3.0")) {
-          setVisible(false);
+        if (!hasCurso) {
+          const lastShown = localStorage.getItem(LAST_POPUP_KEY);
+          const now = Date.now();
+
+          if (!lastShown || now - parseInt(lastShown) > HOURS_DELAY * 60 * 60 * 1000) {
+            setVisible(true);
+            localStorage.setItem(LAST_POPUP_KEY, now.toString());
+          }
         }
       } catch (err) {
         console.error("❌ Error al consultar cursos:", err);
@@ -73,10 +82,9 @@ export default function PopupImportante() {
             exit={{ opacity: 0, scale: 0.85 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
-            {/* Barra de Progreso */}
             <div className="relative h-4 bg-zinc-800 rounded-full overflow-hidden border border-zinc-600 shadow-inner mb-3">
               <div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-red-600 transition-all duration-200 ease-out"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-red-800 transition-all duration-200 ease-out"
                 style={{ width: `${progress}%` }}
               />
               <span className="absolute inset-0 flex items-center justify-center text-[10px] text-white font-bold">
@@ -84,7 +92,6 @@ export default function PopupImportante() {
               </span>
             </div>
 
-            {/* Contenido */}
             <div className="bg-zinc-800 rounded-xl border border-zinc-700 shadow-md p-3 text-gray-300 text-center space-y-2 overflow-hidden">
               <h3 className="text-sm font-bold text-white leading-snug">
                 ¡ATENCIÓN! Accedé al nuevo Sistema Educativo…
