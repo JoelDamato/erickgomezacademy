@@ -37,9 +37,8 @@ function App() {
     <Router>
       <Routes>
         {/* PÚBLICAS */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/Cursosonline2" element={<CursosonlineRefactor />} />
-        <Route path="/Login" element={<Login />} />
         <Route path="/instagram" element={<><CursosonlineRefactor/></>} />
         <Route path="/biografia" element={<><CursosonlineRefactor/></>} />
         <Route path="/setter" element={<><CursosonlineRefactor/></>} />
