@@ -11,13 +11,15 @@ export default function PopupImportante() {
   const [progress, setProgress] = useState(0);
   const target = 97;
 
-  const LAST_POPUP_KEY = "lastPopupShown";
+  const LAST_POPUP_KEY = 'lastPopupShown';
+  const POPUP_COUNT_KEY = 'popupCount';
   const HOURS_DELAY = 5;
+  const MAX_VIEWS = 3;
 
   useEffect(() => {
     const checkCursos = async () => {
-      const email = localStorage.getItem("email");
-      const token = localStorage.getItem("token");
+      const email = localStorage.getItem('email');
+      const token = localStorage.getItem('token');
 
       if (!email || !token) return;
 
@@ -32,19 +34,21 @@ export default function PopupImportante() {
         });
 
         const data = await res.json();
-        const hasCurso = data?.cursos?.includes("Master Fade 3.0");
+        const hasCurso = data?.cursos?.includes('Master Fade 3.0');
 
         if (!hasCurso) {
           const lastShown = localStorage.getItem(LAST_POPUP_KEY);
+          const viewCount = parseInt(localStorage.getItem(POPUP_COUNT_KEY) || '0', 10);
           const now = Date.now();
 
-          if (!lastShown || now - parseInt(lastShown) > HOURS_DELAY * 60 * 60 * 1000) {
+          if ((!lastShown || now - parseInt(lastShown) > HOURS_DELAY * 60 * 60 * 1000) && viewCount < MAX_VIEWS) {
             setVisible(true);
             localStorage.setItem(LAST_POPUP_KEY, now.toString());
+            localStorage.setItem(POPUP_COUNT_KEY, (viewCount + 1).toString());
           }
         }
       } catch (err) {
-        console.error("❌ Error al consultar cursos:", err);
+        console.error('❌ Error al consultar cursos:', err);
       }
     };
 
@@ -64,7 +68,7 @@ export default function PopupImportante() {
       }, 15);
       return () => clearInterval(interval);
     }
-  }, [progress, target]);
+  }, [progress]);
 
   return (
     <AnimatePresence>
@@ -92,22 +96,24 @@ export default function PopupImportante() {
               </span>
             </div>
 
-            <div className="bg-zinc-800 rounded-xl border border-zinc-700 shadow-md p-3 text-gray-300 text-center space-y-2 overflow-hidden">
-              <h3 className="text-sm font-bold text-white leading-snug">
-                ¡ATENCIÓN! Accedé al nuevo Sistema Educativo…
+            <div className="bg-zinc-800 rounded-xl border border-zinc-700 shadow-md p-4 text-gray-300 text-center space-y-2 overflow-hidden">
+              <h3 className="text-base md:text-lg font-extrabold text-white leading-snug">
+                ¡ATENCIÓN! Accede al nuevo Sistema Educativo…
               </h3>
 
               <img
                 src="https://i.ibb.co/JjcQVCsL/MOKUP.png"
                 alt="Master Fade 3.0"
-                className="w-full"
+                className="w-full rounded"
               />
 
-              <p className="text-[12px] leading-snug">
-                Erick está creando una nueva generación de barberos profesionales. Esto no es solo un curso de cortes… Es el primer paso del nuevo sistema educativo para aprender la técnica que lo hizo viral, mejorar tus resultados rápido y empezar a construir tu nombre propio en la barbería.
+              <p className="text-[13px] leading-snug mt-2">
+                Erick está creando una nueva generación de barberos profesionales. Esto no es solo un curso de cortes…
+                <br /> Es el primer paso del nuevo sistema educativo para aprender la técnica que lo hizo viral,
+                mejorar tus resultados rápido y empezar a construir tu nombre propio en la barbería y en las redes.
               </p>
 
-              <p className="text-[12px] font-semibold text-yellow-300 leading-snug">
+              <p className="text-[13px] font-semibold text-yellow-300 leading-snug">
                 Hablá ahora mismo con un representante de Erick para inscribirte y asegurar tu acceso.
               </p>
 
@@ -117,11 +123,11 @@ export default function PopupImportante() {
                 rel="noopener noreferrer"
                 className="pt-1 inline-block bg-green-500 hover:bg-green-400 text-black text-sm font-bold py-2 px-4 rounded-lg transition duration-200"
               >
-                QUIERO SER PARTE DEL NUEVO MASTER FADE 3.0
+                QUIERO INSCRIBIRME AL NIVEL 1: MASTER FADE 3.0
               </a>
 
               <p className="text-[10px] md:text-xs text-gray-400 leading-tight">
-                💬 Al presionar el botón serás redirigido a WhatsApp para hablar con un representante oficial de Erick Gómez Academy.
+                💬 Al presionar el botón serás redirigido a WhatsApp para hablar con un representante oficial de Erick Gómez Academy. Te ayudaremos personalmente desde cualquier parte del mundo.
               </p>
 
               <button
