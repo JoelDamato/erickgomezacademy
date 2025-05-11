@@ -31,6 +31,7 @@ import Herramientas from './pages/Herramients.jsx';
 import VideoBarberos from './pages/Ultimomomento.jsx';
 import Csm from './pages/Csm.jsx';
 import InscripcionesAbiertas from './pages/inscripcionesabiertas.jsx';
+import MisCursos from './pages/Miscursos.jsx';
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
         <Route path="/csm" element={<PrivateRoute><Csm/></PrivateRoute>} />
         <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
         <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
+        <Route path="/miscursos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
 
         {/* 404 */}
         <Route path="*" element={<Error404 />} />

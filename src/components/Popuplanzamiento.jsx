@@ -113,7 +113,7 @@ export default function PopupImportante() {
                 mejorar tus resultados rápido y empezar a construir tu nombre propio en la barbería y en las redes.
               </p>
 
-              <p className="text-[13px] font-semibold text-yellow-300 leading-snug">
+              <p className="text-[13px] font-semibold  leading-snug">
                 Hablá ahora mismo con un representante de Erick para inscribirte y asegurar tu acceso.
               </p>
 

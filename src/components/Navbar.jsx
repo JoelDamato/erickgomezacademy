@@ -2,6 +2,7 @@ import { Menu, X, CircleUserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import MisCursos from "../pages/Miscursos";
 
 function Navbar() {
   const location = useLocation();
@@ -9,6 +10,7 @@ function Navbar() {
   const Dashboard = location.pathname === "/Dashboard";
   const PanelControl = location.pathname === "/PanelControl";
   const Preguntas = location.pathname === "/Preguntas";
+  const Miscursos = location.pathname === "/miscursos";
 
   const [user, setUser] = useState(null);
   const [opacity, setOpacity] = useState(0);
@@ -129,6 +131,12 @@ function Navbar() {
                 Dashboard
               </button>
             )}
+         {!Miscursos && (
+              <button onClick={() => handleNavigation("/miscursos")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
+                Mis Cursos
+              </button>
+            )}
+
             {!Preguntas && (
               <button onClick={() => handleNavigation("/Preguntas")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
                 Preguntas Frecuentes

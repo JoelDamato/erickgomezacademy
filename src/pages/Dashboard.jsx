@@ -123,11 +123,23 @@ bannersToShow.push(...otherCourses);
       <div className="relative h-full w-screen flex flex-col items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black  bg-center" >
         <Navbar />
        <PopupImportante />  
-        <FormOnboarding />  
+  
+       {user?.cursos?.length > 0 && (
+  <a
+    href={whatsappLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow z-50 flex items-center gap-2 font-bold text-sm"
+  >
+    <img
+      src="https://i.ibb.co/xKKJDBCS/d62368f7-f3e3-48ce-84cd-04a00024000e.png"
+      alt="Soporte"
+      className="w-6 h-6 rounded-lg"
+    />
+    Soporte
+  </a>
+)}
 
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow z-50 flex items-center gap-2 font-bold text-sm">
-          <img src="https://i.ibb.co/xKKJDBCS/d62368f7-f3e3-48ce-84cd-04a00024000e.png" alt="Soporte" className="w-6 h-6 rounded-lg" /> Soporte
-        </a>
 
         {/* Carrusel solo si hay cursos con banner */}
         {coursesWithBanner.length > 0 && (
@@ -201,9 +213,29 @@ bannersToShow.push(...otherCourses);
 
         {/* Tarjetas estilo Max */}
         <div className="w-full px-4 mt-10 ">
-        <h1 className="text-4xl mb-8 text-center p-2 md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
-            Mis Cursos
-          </h1>
+        {user?.cursos?.length > 0 ? (
+  <h1 className="text-4xl mb-8 text-center p-2 md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
+    Mis Cursos
+  </h1>
+) : (
+  <div className="text-center mt-10">
+    <h1 className="text-3xl mb-6 font-bold text-white">Aún no tienes ningún entrenamiento desbloqueado!
+    </h1>
+    <button
+      onClick={() =>
+        window.open(
+          `https://wa.me/${phoneNumber}?text=${encodeURIComponent("Hola, quiero empezar mi entrenamiento.")}`,
+          '_blank'
+        )
+      }
+      className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-full shadow transition-all"
+    >
+      Quiero inscribirme a la Academia
+    </button>
+  </div>
+)}
+
+
           <div className="flex justify-center">
             <div className="flex overflow-x-auto gap-4 no-scrollbar">
               {courses.filter(c => hasCourse(c.courseTitle)).map((course, index) => (
