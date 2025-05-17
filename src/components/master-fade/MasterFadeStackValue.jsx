@@ -55,7 +55,7 @@ const OfertaMasterFade = () => {
         {/* Precio */}
         <div className="w-full mb-2">
           <img
-            src="https://i.ibb.co/LdX4n1NP/Precio-5s.webp"
+            src="https://i.ibb.co/6c0hB483/47-usd-precio.png"
             alt="Precio oferta"
             className="w-full h-auto"
             loading="lazy"

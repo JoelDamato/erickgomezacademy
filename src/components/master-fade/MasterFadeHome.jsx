@@ -64,9 +64,10 @@ function MasterFadeHome() {
               />
             </div>
 
-            <div className="absolute top-[53%] left-[49%] transform -translate-x-1/2 -translate-y-1/2 w-[79%] h-[85%]">
+            <div className="absolute top-[60%] left-[49%] transform -translate-x-1/2 -translate-y-1/2 w-[79%] h-[95%]">
+
               <iframe
-                src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=6943273f-ec26-4591-a9ab-17714c19515f"
+            src="https://player-vz-7cd4a4ef-9e2.tv.pandavideo.com/embed/?v=6c178e6b-0000-4c6f-a65d-64d62d95341a"
                 title="Master Fade Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
