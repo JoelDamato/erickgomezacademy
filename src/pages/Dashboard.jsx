@@ -123,6 +123,7 @@ bannersToShow.push(...otherCourses);
       <div className="relative h-full w-screen flex flex-col items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black  bg-center" >
         <Navbar />
        <PopupImportante />  
+      < FormOnboarding/> 
   
        {user?.cursos?.length > 0 && (
   <a
