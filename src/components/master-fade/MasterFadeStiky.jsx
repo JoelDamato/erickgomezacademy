@@ -2,30 +2,20 @@
 
 import { useEffect, useState } from "react"
 
-export default function StickyBottomBanner({ onClick }) {
+export default function StickyBottomBanner() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768 // Puedes ajustar el breakpoint
+    const isMobile = window.innerWidth <= 768
 
     const handleScroll = () => {
       const triggerPoint = document.getElementById("hide-section")
       const triggerOffset = triggerPoint ? triggerPoint.offsetTop : Number.POSITIVE_INFINITY
 
       if (isMobile) {
-        // En móvil: aparece apenas scrollea
-        if (window.scrollY > 250) {
-          setIsVisible(true)
-        } else {
-          setIsVisible(false)
-        }
+        setIsVisible(window.scrollY > 250)
       } else {
-        // En desktop: lógica original
-        if (window.scrollY > window.innerHeight && window.scrollY < triggerOffset) {
-          setIsVisible(true)
-        } else {
-          setIsVisible(false)
-        }
+        setIsVisible(window.scrollY > window.innerHeight && window.scrollY < triggerOffset)
       }
     }
 
@@ -33,13 +23,29 @@ export default function StickyBottomBanner({ onClick }) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const phoneNumber = "+59891640623"
+  const getWhatsAppLink = () => {
+    const message = "Hola, quiero inscribirme al entrenamiento Nivel 1 Master Fade 3.0, me puedes ayudar?"
+    return `https://wa.me/${phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`
+  }
+
+  const handleClick = () => {
+    // 👉 Evento para el pixel de Meta
+    if (typeof fbq !== "undefined") {
+      fbq("trackCustom", "ClickStickyWhatsapp")
+    }
+
+    // Abrir WhatsApp en nueva pestaña
+    window.open(getWhatsAppLink(), "_blank")
+  }
+
   if (!isVisible) return null
 
   return (
     <div className="z-[99999] pointer-events-auto fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white p-4 shadow-lg w-full max-w-md text-center">
       <p className="text-lg pb-1">Inscribite vía Whatsapp Ahora</p>
       <button
-        onClick={onClick}
+        onClick={handleClick}
         className="flex justify-center items-center gap-2 bg-gradient-to-r from-black via-[#013557] to-black text-white text-md md:text-2xl font-medium py-4 px-8 rounded-lg w-full transition-all duration-300 hover:scale-105"
       >
         Quiero inscribirme al entrenamiento

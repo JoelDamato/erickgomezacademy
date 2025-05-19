@@ -1,12 +1,15 @@
+import { motion } from "framer-motion";
+
+
 function MasterFadeHome() {
   const phoneNumber = "+59891640623";
   const getWhatsAppLink = () => {
-    const message = "Hola, tengo dudas sobre el curso Master Fade. ¿Podrías darme más información?";
+    const message = "Hola, quiero inscribirme al entrenamiento Nivel 1 Master Fade 3.0, me puedes ayudar?";
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
   return (
-    <main className="flex flex-col items-center bg-black text-white overflow-hidden">
+    <main className="flex flex-col items-center bg-black text-white overflow-hidden mb-2">
       <div className="relative w-full">
         <div className="absolute inset-0 z-0">
           <img
@@ -77,26 +80,33 @@ function MasterFadeHome() {
             </div>
           </div>
 
-          <div className="w-full max-w-md mb-4 relative">
-            <img
-              src="https://i.ibb.co/h1msk0zq/Boto-n-1s.png"
-              alt="Boton dorado"
-              className="w-full h-auto"
-              loading="lazy"
-              width="600"
-              height="120"
-            />
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <p className="font-bebas uppercase text-xl sm:text-xl text-shadow-bebas">
-                  QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
-                </p>
-                <span className="font-opensans font-bold text-[60%] mt-[-5px] text-shadow-open">
-                  La técnica a tijera que genera autoridad, seguidores y más clientes
-                </span>
-              </div>
-            </a>
-          </div>
+<motion.a
+  href={getWhatsAppLink()}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => {
+    if (typeof fbq !== "undefined") {
+      fbq("trackCustom", "ClickHeroWhatsapp");
+    }
+  }}
+  className="block w-full max-w-md mx-auto mt-5"
+  animate={{ scale: [1, 1.05, 1] }}
+  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+>
+  <div className="flex flex-col items-center justify-center gap-1 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 text-black text-center py-4 px-6 rounded-xl shadow-xl hover:scale-105 hover:brightness-110 transition-all duration-300">
+    <p className="font-bebas text-white uppercase text-xl md:text-2xl leading-tight text-shadow-bebas">
+      QUIERO DOMINAR Y ACELERAR MI TÉCNICA DE FADE
+    </p>
+    <span className="font-opensans text-white font-bold text-[55%] md:text-sm mt-[-2px] text-shadow-bebas">
+      La técnica a tijera que genera autoridad, seguidores y más clientes
+    </span>
+  </div>
+</motion.a>
+
+
+
+     
+
         </div>
       </div>
     </main>

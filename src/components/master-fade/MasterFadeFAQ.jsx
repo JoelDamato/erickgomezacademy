@@ -1,9 +1,11 @@
 import Carrusel from "./components/Carrusel";
+import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 
 const phoneNumber = "+59891640623"; // Tu número de WhatsApp
 
 const getWhatsAppLink = () => {
-  const message = "Hola, tengo dudas sobre el curso Master Fade. ¿Podrías darme más información?";
+  const message = "Hola, tengo dudas y necesito ayuda, vengo de la página del entrenamiento Master Fade 3.0";
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 };
 
@@ -37,15 +39,28 @@ export default function MasterFadeFAQ() {
 
             <h2 className="text-xl font-bold mb-1 text-center">¿TIENES ALGUNA DUDA?</h2>
 
-            <div className="w-full max-w-lg px-4 mb-12">
-              <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
-                <img
-                  src="https://i.ibb.co/zVG3JfV1/Boton-wsp-s9.webp"
-                  alt="Habla con alguien de mi equipo vía WhatsApp"
-                  className="w-full h-auto"
-                />
-              </a>
-            </div>
+<motion.a
+  href={getWhatsAppLink()}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => {
+    if (typeof fbq !== "undefined") {
+      fbq("trackCustom", "ClickWhatsAppMasterFade");
+    }
+  }}
+  className="block w-full max-w-lg px-4 mb-12 mx-auto"
+  animate={{ scale: [1, 1.05, 1] }}
+  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+>
+  <div className="flex items-center justify-center gap-3 bg-gradient-to-r from-blue-950 via-blue-500 to-blue-950 text-white text-center py-4 px-6 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:brightness-125">
+    <FaWhatsapp className="text-2xl md:text-3xl text-white" />
+    <p className="font-bebas uppercase text-lg md:text-2xl leading-tight text-shadow-bebas">
+      ¡Hablá con alguien de mi equipo!
+    </p>
+  </div>
+</motion.a>
+
+
           </div>
         </div>
       </div>
