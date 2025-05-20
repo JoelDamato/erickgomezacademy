@@ -41,6 +41,26 @@ body {
 .font-opensans {
   font-family: "Open Sans", sans-serif;
 } 
+@keyframes typing-final {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.animate-typing-final {
+  animation: typing-final 3s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+  width: fit-content;
+}
+
 
 .bg-azul-profundo {
   background-color: var(--azul-profundo);

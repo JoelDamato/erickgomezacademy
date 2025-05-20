@@ -81,8 +81,28 @@ function Home() {
   return (
 <div className="w-screen flex flex-col min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black">
 
-      {/* Logo */}
-      <img src="/erickgomez.png" alt="Logo" className="w-full sm:w-1/4 " />
+       <img src="/erickgomez.png" alt="Logo" className="w-[280px] sm:w-[150px]" />
+
+{/* Frase destacada debajo del logo */}
+<h1 className="text-white text-center font-bebas text-xl sm:text-3xl leading-snug px-4">
+  Bienvenido a la plataforma donde los barberos
+  <br />
+  <span className="text-white tracking-wide">dejan de cortar por cortar…</span>
+</h1>
+
+<div className="text-center font-bebas text-2xl sm:text-3xl mt-1 leading-tight px-4">
+  <p className="inline-block bg-gradient-to-r from-zinc-200 via-white to-zinc-500 text-transparent bg-clip-text whitespace-nowrap overflow-hidden border-r-2 border-white animate-typing-final">
+    Y empiezan a construir su nombre.
+  </p>
+</div>
+
+
+
+<p className="text-gray-400 text-sm sm:text-base text-center mt-3 mb-6 px-6 max-w-md font-open">
+  Entrá, explorá y descubrí el nuevo sistema educativo de <strong className="text-white">Erick Gómez Academy</strong>.
+</p>
+
+
     
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-full shadow z-50 flex items-center gap-2 font-bold text-sm">
           <img src="https://i.ibb.co/xKKJDBCS/d62368f7-f3e3-48ce-84cd-04a00024000e.png" alt="Soporte" className="w-6 h-6 rounded-lg" /> Soporte
