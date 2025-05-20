@@ -83,7 +83,7 @@ function MisCursos() {
       <Navbar />
       <div className="relative w-full md:h-[30vh] h-[50vh] overflow-hidden">
   <img
-    src="https://i.ibb.co/fGZCrFh/FONDO-BARBER.jpg"
+    src="https://i.ibb.co/nKtSnvH/Fondo-plataforma-sin-logo.png"
     alt="Fondo Barbería"
     className="absolute top-0 left-0 w-full h-full object-cover"
   />
