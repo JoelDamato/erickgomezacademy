@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar"
 import axios from "axios"
 import ProgresoUsuario from "../components/ProgresoUsuario"
 import Searchusers from "../components/Searchusers"
+import API_BASE_URL from "../api_base";
+
 
 const Csm = () => {
   const [usuarios, setUsuarios] = useState([])
@@ -12,9 +14,6 @@ const Csm = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const API_BASE_URL = process.env.NODE_ENV === "production"
-    ? "https://back-cursos.onrender.com"
-    : "http://localhost:5000"
 
   useEffect(() => {
     const fetchUsuarios = async () => {

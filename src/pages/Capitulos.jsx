@@ -6,13 +6,10 @@ import Navbar from "../components/Navbar";
 import useUserStore from "../store/users"; // Importar el store de Zustand
 import ReactPlayer from 'react-player';
 import screenfull from 'screenfull';
+import API_BASE_URL from "../api_base";
 
 
 function Capitulos() {
-  const API_BASE_URL = process.env.NODE_ENV === "production"
-    ? "https://back-cursos.onrender.com"
-    : "http://localhost:5000";
-
   const { cursoId, moduleName, chapterId } = useParams();
   const navigate = useNavigate();
   const commentsEndRef = useRef(null);

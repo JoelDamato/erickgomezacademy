@@ -1,11 +1,8 @@
 // components/ProgresoUsuario.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from "../api_base";
 
-const API_BASE_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'https://back-cursos.onrender.com'
-    : 'http://localhost:5000';
 
 export default function ProgresoUsuario({ email }) {
   const [cursoEnProgreso, setCursoEnProgreso] = useState(null);
