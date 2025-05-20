@@ -2,6 +2,7 @@ import "../App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../api_base";
 
 function Home() {
   const [nombre, setNombre] = useState("");
@@ -14,12 +15,6 @@ function Home() {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://back-cursos.onrender.com"
-      : "http://localhost:5000";
-
-  // const API_BASE_URL = 'https://back-cursos.onrender.com'
 
   const handleSubmit = async (e) => {
     e.preventDefault();

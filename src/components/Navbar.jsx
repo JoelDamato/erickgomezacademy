@@ -2,6 +2,8 @@ import { Menu, X, CircleUserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../api_base";
+
 import MisCursos from "../pages/Miscursos";
 
 function Navbar() {
@@ -19,10 +21,6 @@ function Navbar() {
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://back-cursos.onrender.com"
-      : "http://localhost:5000";
 
   useEffect(() => {
     if (token && email) {

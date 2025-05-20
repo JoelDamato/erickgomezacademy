@@ -8,6 +8,7 @@ import { Users, BookOpen, UserCheck, Clock, Ticket, Search } from "lucide-react"
 import axios from "axios"
 import Navbar from "../components/Navbar"
 import SeguimientoCurso from "../components/ProgresoUsuario"
+import API_BASE_URL from "../api_base";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#FF69B4", "#4BC0C0", "#36A2EB"]
 
@@ -22,9 +23,6 @@ const Metricas = () => {
   const [paginaCurso2a5, setPaginaCurso2a5] = useState(0)
   const [paginaCurso6, setPaginaCurso6] = useState(0)
 
-  const API_BASE_URL = process.env.NODE_ENV === "production"
-    ? "https://back-cursos.onrender.com"
-    : "http://localhost:5000"
 
   useEffect(() => {
     const fetchData = async () => {

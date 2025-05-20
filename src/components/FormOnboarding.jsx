@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_BASE_URL from "../api_base";
 
 const FormOnboarding = () => {
   const [step, setStep] = useState(1);
@@ -28,10 +29,6 @@ const FormOnboarding = () => {
     esfuerzoExtra: ""
   });
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://back-cursos.onrender.com"
-      : "http://localhost:5000";
 
   const nombre = localStorage.getItem("nombre") || "";
   const email = localStorage.getItem("email") || "";

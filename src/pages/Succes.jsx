@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../api_base";
 
 export default function Success() {
   const [searchParams] = useSearchParams();
@@ -14,10 +15,6 @@ export default function Success() {
   const email = searchParams.get("email");
   const nombre = searchParams.get("nombre");
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://back-cursos.onrender.com"
-      : "http://localhost:5000";
 
   const generateReadablePassword = () => {
     const palabras = ["barber", "fade", "corte", "peine", "tijera", "clipper"];
