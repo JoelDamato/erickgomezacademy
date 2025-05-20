@@ -144,7 +144,7 @@ function MisCursos() {
                   }
                   className="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 rounded-full transition"
                 >
-                  Ir al curso
+                  Ver entrenamiento
                 </button>
               </div>
             ))}
