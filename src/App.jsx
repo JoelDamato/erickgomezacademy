@@ -75,7 +75,7 @@ function App() {
         <Route path="/csm" element={<PrivateRoute><Csm/></PrivateRoute>} />
         <Route path="/colorimetria" element={<PrivateRoute><Colorimetria /></PrivateRoute>} />
         <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
-        <Route path="/miscursos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
+        <Route path="/misentrenamientos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
 
         {/* 404 */}
         <Route path="*" element={<Error404 />} />

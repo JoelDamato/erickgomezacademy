@@ -53,8 +53,8 @@ const handleScroll = () => {
   if (!isVisible) return null
 
   return (
-    <div className="z-[99999] pointer-events-auto fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white p-2 shadow-lg w-full max-w-md text-center">
-      <p className="text-lg pb-1">Inscribite vía Whatsapp Ahora</p>
+    <div className="z-[99999] pointer-events-auto fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white  shadow-lg w-full max-w-md text-center">
+      <p className="text-lg p-2">Inscribite vía Whatsapp Ahora</p>
       <button
         onClick={handleClick}
         className="flex justify-center items-center gap-2 bg-gradient-to-r from-black via-[#013557] to-black text-white text-md md:text-2xl font-medium py-4 px-8 rounded-lg w-full transition-all duration-300 hover:scale-105"
@@ -76,7 +76,7 @@ const handleScroll = () => {
           />
         </svg>
       </button>
-      <p className="text-sm mt-1">
+      <p className="text-sm mt-1 pb-5">
         Serás atendido por mi equipo y te ayudarán a inscribirte sin importar de qué país seas
       </p>
     </div>
