@@ -133,7 +133,7 @@ function Navbar() {
             )}
          {!Miscursos && (
               <button onClick={() => handleNavigation("/miscursos")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
-                Mis Cursos
+                Mis Entrenamientos
               </button>
             )}
 

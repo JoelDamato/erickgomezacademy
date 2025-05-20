@@ -95,7 +95,7 @@ function MisCursos() {
   <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
 
     <h1 className="text-4xl md:text-5xl font-bold -mt-6 bg-clip-text text-transparent bg-gradient-to-b from-gray-300 to-gray-100 drop-shadow-lg tracking-wide">
-      Mis Cursos
+      Mis Entrenamientos
     </h1>
   </div>
 </div>
@@ -152,7 +152,7 @@ function MisCursos() {
         ) : (
           <div className="text-center mt-20">
             <p className="text-xl text-gray-300">
-              Aún no tenés cursos asignados.
+              Aún no tenés un entrenamiento asignados.
             </p>
           </div>
         )}

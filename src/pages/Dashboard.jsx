@@ -216,7 +216,7 @@ bannersToShow.push(...otherCourses);
         <div className="w-full px-4 mt-10 ">
         {user?.cursos?.length > 0 ? (
   <h1 className="text-4xl mb-8 text-center p-2 md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-gray-700 to-gray-200 drop-shadow-lg tracking-wide">
-    Mis Cursos
+    Entrenamiento
   </h1>
 ) : (
   <div className="text-center mt-10">

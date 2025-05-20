@@ -42,7 +42,7 @@ export default function StickyBottomBanner() {
   if (!isVisible) return null
 
   return (
-    <div className="z-[99999] pointer-events-auto fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white  shadow-lg w-full max-w-md text-center">
+    <div className="z-[99999] pointer-events-auto fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white p-2 shadow-lg w-full max-w-md text-center">
       <p className="text-lg pb-1">Inscribite vía Whatsapp Ahora</p>
       <button
         onClick={handleClick}
