@@ -8,16 +8,27 @@ export default function StickyBottomBanner() {
   useEffect(() => {
     const isMobile = window.innerWidth <= 768
 
-    const handleScroll = () => {
-      const triggerPoint = document.getElementById("hide-section")
-      const triggerOffset = triggerPoint ? triggerPoint.offsetTop : Number.POSITIVE_INFINITY
+const handleScroll = () => {
+  const isMobile = window.innerWidth <= 768;
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
 
-      if (isMobile) {
-        setIsVisible(window.scrollY > 250)
-      } else {
-        setIsVisible(window.scrollY > window.innerHeight && window.scrollY < triggerOffset)
-      }
-    }
+  const triggerPoint = document.getElementById("hide-section");
+  const triggerOffset = triggerPoint ? triggerPoint.offsetTop : Number.POSITIVE_INFINITY;
+
+  const isNearBottom = scrollPosition >= pageHeight - window.innerHeight;
+
+  if (isMobile) {
+    setIsVisible(window.scrollY > 250 && !isNearBottom);
+  } else {
+    setIsVisible(
+      window.scrollY > window.innerHeight &&
+      window.scrollY < triggerOffset &&
+      !isNearBottom
+    );
+  }
+};
+
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
