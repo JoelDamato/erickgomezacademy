@@ -82,7 +82,7 @@ function Navbar() {
             </button>
             {user?.imagenPerfil ? (
               <img
-                src={user.imagenPerfil}
+                src={`${API_BASE_URL}${user.imagenPerfil}`}
                 alt="Foto"
                 className="w-8 h-8 rounded-full object-cover border border-white cursor-pointer"
                 onClick={() => handleNavigation("/Perfil")}

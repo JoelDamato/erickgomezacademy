@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users';
+import API_BASE_URL from '../api_base';
 
 function Cursos() {
-  const API_BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://back-cursos.onrender.com'
-    : 'http://localhost:5000';
+
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();

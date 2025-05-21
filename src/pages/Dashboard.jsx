@@ -5,7 +5,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users';
 import FormOnboarding from '../components/FormOnboarding';
-
+import API_BASE_URL from '../api_base';
 
 function Dashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,10 +23,6 @@ function Dashboard() {
   const showProfile = useUserStore((state) => state.showProfile);
   const setShowProfile = useUserStore((state) => state.setShowProfile);
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
-      ? 'https://back-cursos.onrender.com'
-      : 'http://localhost:5000';
 
   useEffect(() => {
     const token = localStorage.getItem('token');

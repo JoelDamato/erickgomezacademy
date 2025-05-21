@@ -6,7 +6,7 @@ import Modal from '../components/Modal'; // Importar el componente Modal
 import useUserStore from '../store/users';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import LanzamientoMasterFade from '../components/LanzamientoMF';
-
+import API_BASE_URL from '../api_base';
 
 function PanelControl() {
   const [nombre, setNombre] = useState('');
@@ -22,10 +22,7 @@ function PanelControl() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [createdUser,setCreatedUser] = useState('');
   const [responseMessage, setResponseMessage] = useState("");
-  const [responseColor, setResponseColor] = useState("");
-
-
-  
+  const [responseColor, setResponseColor] = useState("")
   
   const navigate = useNavigate();
 
@@ -35,9 +32,7 @@ function PanelControl() {
   const showProfile = useUserStore((state) => state.showProfile);
   const setShowProfile = useUserStore((state) => state.setShowProfile);
 
-  const API_BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://back-cursos.onrender.com'
-    : 'http://localhost:5000';
+
 
     const generateRandomPassword = (length = 12) => {
       const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
