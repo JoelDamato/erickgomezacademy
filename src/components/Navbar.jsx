@@ -59,6 +59,7 @@ function Navbar() {
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+console.log(user);
 
   return (
     <nav
@@ -82,7 +83,7 @@ function Navbar() {
             </button>
             {user?.imagenPerfil ? (
               <img
-                src={`${API_BASE_URL}${user.imagenPerfil}`}
+                src={user.imagenPerfil}
                 alt="Foto"
                 className="w-8 h-8 rounded-full object-cover border border-white cursor-pointer"
                 onClick={() => handleNavigation("/Perfil")}
@@ -105,7 +106,7 @@ function Navbar() {
         {token ? (
           user?.imagenPerfil ? (
             <img
-              src={user.imagenPerfil}
+              src={user?.imagenPerfil}
               alt="Foto"
               className="w-8 h-8 rounded-full object-cover border border-white cursor-pointer"
               onClick={() => handleNavigation("/Perfil")}
