@@ -11,7 +11,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-       <Toaster position="bottom-left" />
+       <Toaster position="bottom-left" toastOptions={{
+    duration: 5000,
+  }} />
     <Footer />
   </StrictMode>,
 )
