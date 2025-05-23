@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import API_BASE_URL from "../api_base";
+import { toast } from 'react-hot-toast';
+
 const IMGUR_CLIENT_ID = "10e0fdcabc2197b";
 
 function Perfil() {
@@ -80,7 +82,7 @@ function Perfil() {
     formData.append("imagen", imagenArchivo); // El backend debe aceptar el campo "imagen"
 
     try {
-      await axios.put(
+      const res = await axios.put(
         `${API_BASE_URL}/api/update/user/imagen-perfil`,
         formData,
         {
@@ -96,6 +98,9 @@ function Perfil() {
       setUser({ ...user, imagenPerfil: imageUrl });
       setSuccessImgMsg("Imagen actualizada correctamente");
       setShowImageModal(false);
+      toast.success(res.data.message || "Imagen actualizada correctamente", {
+  duration: 9000,
+});
     } catch (err) {
       console.error("Error al actualizar imagen:", err);
       setSuccessImgMsg("Error al actualizar imagen");
