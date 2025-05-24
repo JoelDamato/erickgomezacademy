@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import useUserStore from "../store/users"; // Importar el store de Zustand
 import ReactPlayer from 'react-player';
 import screenfull from 'screenfull';
+import { motion } from "framer-motion";
 
 
 function Capitulos() {
@@ -20,7 +21,7 @@ function Capitulos() {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userName, setUserName] = useState(localStorage.getItem("nombre") || "Anónimo");
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
@@ -351,6 +352,20 @@ console.log("✅ ¿Está completado?:", !!progresoActual);
 </a>
 
 ) : ""}
+
+{currentChapter.wp && (
+  <motion.a
+    href={currentChapter.wp}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-gradient-to-r from-black via-blue-700 to-black text-white px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-xl shadow-lg font-semibold flex items-center justify-center space-x-2 m-2"
+    animate={{ scale: [1, 1.05, 1] }}
+    transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+  >
+    <span>🎓 INGRESA AL GRUPO VIP DE ALUMNOS</span>
+  </motion.a>
+)}
+
 
 
 </div>
