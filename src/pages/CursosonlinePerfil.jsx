@@ -2,8 +2,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { X } from "lucide-react"
-
-const API_BASE_URL = import.meta.env.PROD ? "https://back-cursos.onrender.com" : "http://localhost:5000"
+import API_BASE_URL from "../api_base";
 
 export default function BarberAcademy() {
   const [isModalOpen, setIsModalOpen] = useState(false)

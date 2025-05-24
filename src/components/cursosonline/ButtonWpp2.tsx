@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import API_BASE_URL from "../../api_base";
 
 interface ButtonWppProps {
   inx: number;
@@ -19,10 +20,6 @@ export default function ButtonWpp2({ inx, width = "80%" }: ButtonWppProps) {
     "Focus",
   ];
 
-  // 🔁 URL del backend según entorno
-  const API_BASE_URL = import.meta.env.PROD
-  ? "https://back-cursos.onrender.com"
-  : "http://localhost:5000";
 
 
   const getWhatsAppLink = (inx: number) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { Search } from "lucide-react"
+import API_BASE_URL from "../api_base";
 
 const UsuariosPorCursos = () => {
   const [usuarios, setUsuarios] = useState([])
@@ -10,11 +11,7 @@ const UsuariosPorCursos = () => {
   const [paginaCurso6, setPaginaCurso6] = useState(0)
   const itemsPorPagina = 25
 
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://back-cursos.onrender.com"
-      : "http://localhost:5000"
-
+  
   useEffect(() => {
     axios.get(`${API_BASE_URL}/api/search/usuarios`)
       .then(res => {
