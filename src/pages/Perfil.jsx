@@ -5,12 +5,16 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import API_BASE_URL from "../api_base";
 import { toast } from 'react-hot-toast';
-
+import { useSelector, useDispatch } from "react-redux";
+import { setUserData } from "../store/userSlice"; //esto es para actualizar el usuario en el store
 
 const IMGUR_CLIENT_ID = "10e0fdcabc2197b";
 
 function Perfil() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const user = useSelector((state) => state.user.user);
+const dispatch = useDispatch();
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -42,9 +46,10 @@ function Perfil() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      .then((res) => setUser(res.data))
+      // .then((res) => setUser(res.data))
+      .then((res) => dispatch(setUserData(res.data)))
       .catch((err) => console.error("Error al obtener usuario:", err));
-  }, []);
+  }, [dispatch ]);
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -99,7 +104,8 @@ function Perfil() {
 
       // Suponiendo que el backend devuelve la URL de la imagen actualizada:
       const imageUrl = URL.createObjectURL(imagenArchivo);
-      setUser({ ...user, imagenPerfil: imageUrl });
+      // setUser({ ...user, imagenPerfil: imageUrl });
+      dispatch(setUserData({ ...user, imagenPerfil: imageUrl }));
       setSuccessImgMsg("Imagen actualizada correctamente");
       setShowImageModal(false);
       toast.success(res.data.message || "Imagen actualizada correctamente", {
