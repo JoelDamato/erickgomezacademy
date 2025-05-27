@@ -420,12 +420,28 @@ function Capitulos() {
                     className="bg-black border-1 border-white p-4 rounded-lg shadow flex items-start gap-4"
                   >
                     {/* Imagen de perfil */}
-                    <img
-                      src={comment.imagenPerfil}
-                      alt="Foto de perfil"
-                      className="w-12 h-12 rounded-full object-cover border border-white"
-                    />
-
+                    {comment.imagenPerfil ? (
+                      <img
+                        src={comment.imagenPerfil}
+                        alt="Foto de perfil"
+                        className="w-12 h-12 rounded-full object-cover border border-white"
+                      />
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-12 h-12 rounded-full border border-white bg-gray-700 p-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 14c-3.333 0-6 1.333-6 4v2h12v-2c0-2.667-2.667-4-6-4zm0-2a4 4 0 100-8 4 4 0 000 8z"
+                        />
+                      </svg>
+                    )}
                     {/* Contenido del comentario */}
                     <div className="flex-1">
                       <p className="font-bold text-lg text-white">
