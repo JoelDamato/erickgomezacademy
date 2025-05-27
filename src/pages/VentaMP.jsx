@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import API_BASE_URL from '../api_base';
 
+
 function PagoMercadoPago() {
   const [title] = useState("Master Fade 3.0");
   const [price] = useState("61000"); // ARS
@@ -8,6 +9,7 @@ function PagoMercadoPago() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   const generarLinkDePago = async () => {
     if (!nombre || !email) {
       setError("Por favor completá tu nombre y email.");

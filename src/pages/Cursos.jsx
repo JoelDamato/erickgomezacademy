@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users';
-import API_BASE_URL from '../api_base';
+import API_BASE_URL from "../api_base";
 
 function Cursos() {
-
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();

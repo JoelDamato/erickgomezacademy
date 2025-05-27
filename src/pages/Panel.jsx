@@ -6,7 +6,8 @@ import Modal from '../components/Modal'; // Importar el componente Modal
 import useUserStore from '../store/users';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import LanzamientoMasterFade from '../components/LanzamientoMF';
-import API_BASE_URL from '../api_base';
+import API_BASE_URL from "../api_base";
+
 
 function PanelControl() {
   const [nombre, setNombre] = useState('');
@@ -23,7 +24,7 @@ function PanelControl() {
   const [createdUser,setCreatedUser] = useState('');
   const [responseMessage, setResponseMessage] = useState("");
   const [responseColor, setResponseColor] = useState("")
-  
+
   const navigate = useNavigate();
 
   const user = useUserStore((state) => state.user);
@@ -31,7 +32,6 @@ function PanelControl() {
   const clearUserData = useUserStore((state) => state.clearUserData);
   const showProfile = useUserStore((state) => state.showProfile);
   const setShowProfile = useUserStore((state) => state.setShowProfile);
-
 
 
     const generateRandomPassword = (length = 12) => {

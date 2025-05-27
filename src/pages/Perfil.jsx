@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import API_BASE_URL from "../api_base";
 import { toast } from 'react-hot-toast';
+
 
 const IMGUR_CLIENT_ID = "10e0fdcabc2197b";
 
@@ -25,8 +27,10 @@ function Perfil() {
   const passwordRef = useRef(null);
   const navigate = useNavigate();
 
+
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
+
 
   useEffect(() => {
     if (!token || !email) return;

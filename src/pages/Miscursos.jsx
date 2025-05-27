@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import API_BASE_URL from '../api_base';
+import API_BASE_URL from "../api_base";
+
+
 function MisCursos() {
   const [user, setUser] = useState(null); // 🔄 ahora usamos estado local
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-
   const navigate = useNavigate();
 
   const phoneNumber = '+59891640623';
@@ -78,7 +79,7 @@ function MisCursos() {
       <Navbar />
       <div className="relative w-full md:h-[30vh] h-[50vh] overflow-hidden">
   <img
-    src="https://i.ibb.co/fGZCrFh/FONDO-BARBER.jpg"
+    src="https://i.ibb.co/nKtSnvH/Fondo-plataforma-sin-logo.png"
     alt="Fondo Barbería"
     className="absolute top-0 left-0 w-full h-full object-cover"
   />
