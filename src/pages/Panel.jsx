@@ -8,6 +8,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import LanzamientoMasterFade from '../components/LanzamientoMF';
 import API_BASE_URL from "../api_base";
 
+
 function PanelControl() {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
@@ -22,7 +23,8 @@ function PanelControl() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [createdUser,setCreatedUser] = useState('');
   const [responseMessage, setResponseMessage] = useState("");
-  const [responseColor, setResponseColor] = useState("");
+  const [responseColor, setResponseColor] = useState("")
+
   const navigate = useNavigate();
 
   const user = useUserStore((state) => state.user);

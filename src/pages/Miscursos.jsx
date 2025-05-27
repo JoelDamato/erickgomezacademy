@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import API_BASE_URL from "../api_base";
 
+
 function MisCursos() {
   const [user, setUser] = useState(null); // 🔄 ahora usamos estado local
   const [courses, setCourses] = useState([]);

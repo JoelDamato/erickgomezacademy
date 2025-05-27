@@ -5,6 +5,7 @@ import useUserStore from '../store/users';
 import API_BASE_URL from "../api_base";
 
 function Cursos() {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const user = useUserStore((state) => state.user);

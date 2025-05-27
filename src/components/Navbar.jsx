@@ -59,6 +59,7 @@ function Navbar() {
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+console.log(user);
 
   return (
     <nav
@@ -105,7 +106,7 @@ function Navbar() {
         {token ? (
           user?.imagenPerfil ? (
             <img
-              src={user.imagenPerfil}
+              src={user?.imagenPerfil}
               alt="Foto"
               className="w-8 h-8 rounded-full object-cover border border-white cursor-pointer"
               onClick={() => handleNavigation("/Perfil")}

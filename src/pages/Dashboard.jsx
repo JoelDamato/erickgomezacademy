@@ -7,6 +7,7 @@ import useUserStore from '../store/users';
 import FormOnboarding from '../components/FormOnboarding';
 import API_BASE_URL from "../api_base";
 
+
 function Dashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [courses, setCourses] = useState([]);
