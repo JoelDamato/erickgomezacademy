@@ -36,6 +36,7 @@ function Capitulos() {
   const user = useUserStore((state) => state.user);
   const clearUserData = useUserStore((state) => state.clearUserData);
   const playerRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const verificarProgreso = async () => {
@@ -494,15 +495,16 @@ function Capitulos() {
               <div className="relative w-full mb-2">
                 <textarea
                   placeholder="Escribe tu comentario..."
-                  value={selectedEmoji + newComment}
+                  value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
-                  className="w-full p-2 border rounded bg-white/40 text-black placeholder-white pr-10" // pr-10 para espacio a la derecha
+                  className="w-full p-2 border rounded bg-white/40 text-black placeholder-white pr-10"
                   rows={3}
+                  ref={textareaRef}
                 />
                 <button
                   type="button"
                   onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                  className="absolute right-2  text-2xl"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl"
                   tabIndex={-1}
                 >
                   😊
@@ -511,8 +513,22 @@ function Capitulos() {
                   <div className="absolute right-0 z-50 top-full mt-2">
                     <EmojiPicker
                       onEmojiClick={(emojiData) => {
-                        setSelectedEmoji(emojiData.emoji);
+                        // Insertar emoji en la posición actual del cursor
+                        const textarea = textareaRef.current;
+                        const start = textarea.selectionStart;
+                        const end = textarea.selectionEnd;
+                        const text = newComment;
+                        const emoji = emojiData.emoji;
+                        setNewComment(
+                          text.slice(0, start) + emoji + text.slice(end)
+                        );
                         setShowEmojiPicker(false);
+                        // Opcional: mover el cursor después del emoji
+                        setTimeout(() => {
+                          textarea.focus();
+                          textarea.selectionStart = textarea.selectionEnd =
+                            start + emoji.length;
+                        }, 0);
                       }}
                     />
                   </div>
