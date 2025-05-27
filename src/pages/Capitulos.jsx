@@ -8,6 +8,7 @@ import ReactPlayer from "react-player";
 import screenfull from "screenfull";
 import API_BASE_URL from "../api_base";
 import { motion } from "framer-motion";
+import EmojiPicker from "emoji-picker-react";
 
 function Capitulos() {
   const { cursoId, moduleName, chapterId } = useParams();
@@ -28,6 +29,9 @@ function Capitulos() {
   const [duracionEstimativa, setDuracionEstimativa] = useState(0);
   const [videoFinalizado, setVideoFinalizado] = useState(false);
   const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [selectedEmoji, setSelectedEmoji] = useState("");
+
   const email = localStorage.getItem("email");
   const user = useUserStore((state) => state.user);
   const clearUserData = useUserStore((state) => state.clearUserData);
@@ -280,6 +284,11 @@ function Capitulos() {
     }
   };
 
+  function capitalizeFirstLetter(str) {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   if (!course) {
     return <div className="text-white">Cargando curso...</div>;
   }
@@ -445,7 +454,9 @@ function Capitulos() {
                     {/* Contenido del comentario */}
                     <div className="flex-1">
                       <p className="font-bold text-lg text-white">
-                        {comment.userName || comment.userEmail}
+                        {capitalizeFirstLetter(
+                          comment.userName || comment.userEmail
+                        )}
                       </p>
                       <p className="text-white text-sm">{comment.content}</p>
                       <p className="text-sm text-gray-500">
@@ -480,19 +491,41 @@ function Capitulos() {
 
                 <div ref={commentsEndRef} />
               </div>
-
-              <textarea
-                placeholder="Escribe tu comentario..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                className="w-full p-2 border rounded mb-2 bg-white/40 text-black"
-              />
-              <button
-                onClick={handleAddComment}
-                className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-full"
-              >
-                Agregar Comentario
-              </button>
+              <div className="relative w-full mb-2">
+                <textarea
+                  placeholder="Escribe tu comentario..."
+                  value={selectedEmoji + newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  className="w-full p-2 border rounded bg-white/40 text-black placeholder-white pr-10" // pr-10 para espacio a la derecha
+                  rows={3}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  className="absolute right-2  text-2xl"
+                  tabIndex={-1}
+                >
+                  😊
+                </button>
+                {showEmojiPicker && (
+                  <div className="absolute right-0 z-50 top-full mt-2">
+                    <EmojiPicker
+                      onEmojiClick={(emojiData) => {
+                        setSelectedEmoji(emojiData.emoji);
+                        setShowEmojiPicker(false);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-center w-full items-center">
+                <button
+                  onClick={handleAddComment}
+                  className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-4/5 sm:w-1/4"
+                >
+                  Enviar comentario
+                </button>
+              </div>
             </div>
           )}
 
