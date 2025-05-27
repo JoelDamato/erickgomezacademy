@@ -33,8 +33,33 @@ import Csm from './pages/Csm.jsx';
 import InscripcionesAbiertas from './pages/inscripcionesabiertas.jsx';
 import MisCursos from './pages/Miscursos.jsx';
 import EditarPassword from './pages/Editpassword.jsx';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUserData } from "./store/userSlice";
+import axios from "axios";
+import API_BASE_URL from "./api_base";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    if (token && email) {
+      axios
+        .post(`${API_BASE_URL}/api/search/users`, { email }, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(res => {
+          dispatch(setUserData(res.data));
+        })
+        .catch(() => {
+          // Si falla, podrías limpiar el usuario
+          dispatch(setUserData(null));
+        });
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <Routes>

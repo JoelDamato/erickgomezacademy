@@ -22,7 +22,7 @@
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
-    "emoji-picker-react": "^4.12.0",
+    "emoji-picker-react": "^4.12.2",
     "framer-motion": "^12.4.10",
     "lucide-react": "^0.473.0",
     "pdf-viewer-reactjs": "^2.2.3",
