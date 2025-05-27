@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import API_BASE_URL from "../api_base";
 
 const IMGUR_CLIENT_ID = '10e0fdcabc2197b';
 
@@ -23,10 +24,6 @@ function Perfil() {
 
   const email = localStorage.getItem('email');
   const token = localStorage.getItem('token');
-
-  const API_BASE_URL = process.env.NODE_ENV === 'production'
-    ? 'https://back-cursos.onrender.com'
-    : 'http://localhost:5000';
 
   useEffect(() => {
     if (!token || !email) return;
