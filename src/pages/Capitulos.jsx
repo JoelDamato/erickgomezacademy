@@ -31,6 +31,8 @@ function Capitulos() {
   const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [isLoadingComment, setIsLoadingComment] = useState(false);
+  const [isDeletingComment, setIsDeletingComment] = useState(false); // guarda el id del comentario que se está borrando
 
   const email = localStorage.getItem("email");
   const user = useUserStore((state) => state.user);
@@ -176,8 +178,7 @@ function Capitulos() {
 
   const handleAddComment = async () => {
     if (!newComment) return;
-    console.log(user?.imagenPerfil);
-
+    setIsLoadingComment(true);
     try {
       const response = await fetch(`${API_BASE_URL}/api/comments/add`, {
         method: "POST",
@@ -200,9 +201,11 @@ function Capitulos() {
     } catch (error) {
       console.error("Error al agregar comentario:", error);
     }
+    setIsLoadingComment(false);
   };
 
   const handleDeleteComment = async (commentId) => {
+    setIsDeletingComment(commentId);
     try {
       const response = await fetch(
         `${API_BASE_URL}/api/comments/${commentId}`,
@@ -216,6 +219,7 @@ function Capitulos() {
     } catch (error) {
       console.error("Error al borrar comentario:", error);
     }
+    setIsDeletingComment(null);
   };
 
   useEffect(() => {
@@ -427,8 +431,33 @@ function Capitulos() {
                 {comments.map((comment, index) => (
                   <div
                     key={index}
-                    className="bg-black border-1 border-white p-4 rounded-lg shadow flex items-start gap-4"
+                    className="bg-black border-1 border-white p-4 rounded-lg shadow flex items-start gap-4 relative"
                   >
+                    {/* Overlay de loading si se está borrando este comentario */}
+                    {isDeletingComment === comment._id && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10 rounded-lg">
+                        <svg
+                          className="animate-spin h-8 w-8 text-white"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          />
+                        </svg>
+                      </div>
+                    )}
+
                     {/* Imagen de perfil */}
                     {comment.imagenPerfil ? (
                       <img
@@ -452,6 +481,7 @@ function Capitulos() {
                         />
                       </svg>
                     )}
+
                     {/* Contenido del comentario */}
                     <div className="flex-1">
                       <p className="font-bold text-lg text-white">
@@ -466,11 +496,13 @@ function Capitulos() {
                     </div>
 
                     {/* Botón eliminar */}
-                    {comment.userEmail === userName || rol === "admin" ? (
+                    {(comment.userEmail === userName || rol === "admin") && (
                       <button
                         onClick={() => handleDeleteComment(comment._id)}
                         className="bg-red-600 text-white py-1 px-1 rounded"
+                        disabled={!!isDeletingComment}
                       >
+                        {/* Solo el icono de tacho, sin loading */}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -486,7 +518,7 @@ function Capitulos() {
                           />
                         </svg>
                       </button>
-                    ) : null}
+                    )}
                   </div>
                 ))}
 
@@ -539,6 +571,27 @@ function Capitulos() {
                   onClick={handleAddComment}
                   className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-4/5 sm:w-1/4"
                 >
+                  {isLoadingComment ? (
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                  ) : null}
                   Enviar comentario
                 </button>
               </div>
