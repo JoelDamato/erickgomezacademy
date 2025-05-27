@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../api_base";
 
 function Home() {
+ 
+  const [mensaje, setMensaje] = useState("");
+  const [loading, setLoading] = useState(false);
   const [nombre, setNombre] = useState("");
+  const [Remail, setRemail] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -13,6 +17,8 @@ function Home() {
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [showRecoveryModal, setShowRecoveryModal] = useState(false);
+
   const navigate = useNavigate();
 
 
@@ -72,6 +78,22 @@ function Home() {
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;
+
+    const enviarCorreo = async () => {
+    if (!Remail) return setMensaje("Ingresá un email válido.");
+    setMensaje("");
+    setLoading(true);
+    try {
+const res = await axios.post(`${API_BASE_URL}/api/send-reset-password`, { email: Remail });
+
+      setMensaje(res.data.message || "Correo enviado.");
+    } catch (err) {
+      console.error(err);
+      setMensaje("Hubo un error al enviar el correo.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
 <div className="w-screen flex flex-col min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-black to-black">
@@ -232,6 +254,61 @@ function Home() {
             {isLogin ? "Crear Cuenta" : "Iniciar Sesión"}
           </span>
         </p>
+     
+     {isLogin && (
+  <p
+    className="text-sm text-blue-400 underline text-center mt-3 cursor-pointer"
+    onClick={() => setShowRecoveryModal(true)}
+  >
+    Olvide mi contraseña
+  </p>
+)}{showRecoveryModal && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+    <div className="bg-zinc-900 border border-gray-700 rounded-xl p-6 w-full max-w-md relative text-white shadow-2xl">
+      {/* Botón de cerrar */}
+      <button
+        className="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl font-bold"
+        onClick={() => setShowRecoveryModal(false)}
+      >
+        &times;
+      </button>
+
+      {/* Título */}
+      <h2 className="text-2xl font-bold mb-4 text-center">Recuperar contraseña</h2>
+
+      {/* Input de email */}
+      <input
+        type="email"
+        placeholder="Tu email"
+        value={Remail}
+        onChange={(e) => setRemail(e.target.value)}
+        className="w-full p-2 mb-4 rounded bg-gray-800 border border-gray-600 text-white"
+      />
+
+      {/* Botón de enviar */}
+      <button
+        onClick={enviarCorreo}
+        disabled={loading}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold"
+      >
+        {loading ? "Enviando..." : "Enviar link de recuperación"}
+      </button>
+
+      {/* Mensaje de éxito o error */}
+      {mensaje && (
+        <p
+          className={`mt-4 text-sm text-center ${
+            mensaje.toLowerCase().includes("error") ? "text-red-400" : "text-green-400"
+          }`}
+        >
+          {mensaje}
+        </p>
+      )}
+    </div>
+  </div>
+)}
+
+
       </div>
     </div>
   );

@@ -32,6 +32,7 @@ import VideoBarberos from './pages/Ultimomomento.jsx';
 import Csm from './pages/Csm.jsx';
 import InscripcionesAbiertas from './pages/inscripcionesabiertas.jsx';
 import MisCursos from './pages/Miscursos.jsx';
+import EditarPassword from './pages/Editpassword.jsx';
 
 function App() {
   return (
@@ -60,6 +61,8 @@ function App() {
         <Route path="/pdf2" element={<Pdf/>} />
         <Route path="/ultimomomento" element={<VideoBarberos />} />
         <Route path="/inscripcionesabiertas" element={<InscripcionesAbiertas />} />
+        <Route path="/editar-password" element={<EditarPassword />} />
+
 
 
         {/* PRIVADAS */}
