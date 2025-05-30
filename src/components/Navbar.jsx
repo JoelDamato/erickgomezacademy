@@ -12,6 +12,7 @@ function Navbar() {
   const PanelControl = location.pathname === "/PanelControl";
   const Preguntas = location.pathname === "/Preguntas";
   const Consultor = location.pathname === "/consultor";
+  const Misentrenamientos = location.pathname === "/misentrenamientos";
 
   const [user, setUser] = useState(null);
   const [opacity, setOpacity] = useState(0);
@@ -129,7 +130,7 @@ console.log(user);
                 Dashboard
               </button>
             )}
-         {!Miscursos && (
+         {!Misentrenamientos && (
               <button onClick={() => handleNavigation("/misentrenamientos")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
                 Mis Entrenamientos
               </button>
