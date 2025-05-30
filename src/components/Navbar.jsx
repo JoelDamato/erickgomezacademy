@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from "../api_base";
 
-import MisCursos from "../pages/Miscursos";
 
 function Navbar() {
   const location = useLocation();
@@ -12,7 +11,7 @@ function Navbar() {
   const Dashboard = location.pathname === "/Dashboard";
   const PanelControl = location.pathname === "/PanelControl";
   const Preguntas = location.pathname === "/Preguntas";
-  const Miscursos = location.pathname === "/miscursos";
+  const Consultor = location.pathname === "/consultor";
 
   const [user, setUser] = useState(null);
   const [opacity, setOpacity] = useState(0);
@@ -148,6 +147,11 @@ function Navbar() {
             {user?.rol === "admin" && !PanelControl && (
               <button onClick={() => handleNavigation("/PanelControl")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
                 Panel de Control
+              </button>
+            )}
+                 {user?.rol === "admin" && !Consultor && (
+              <button onClick={() => handleNavigation("/Consultor")} className="text-white text-lg hover:bg-white/30 flex items-center gap-2 border-b border-white pb-4">
+                Consultor Historial
               </button>
             )}
               {user?.rol === "admin" && (
