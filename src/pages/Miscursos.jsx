@@ -2,19 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import API_BASE_URL from "../api_base";
+
 
 function MisCursos() {
   const [user, setUser] = useState(null); // 🔄 ahora usamos estado local
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-
   const navigate = useNavigate();
-
-  const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
-      ? 'https://back-cursos.onrender.com'
-      : 'http://localhost:5000';
 
   const phoneNumber = '+59891640623';
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(

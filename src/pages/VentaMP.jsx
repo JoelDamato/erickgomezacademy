@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import API_BASE_URL from '../api_base';
+
 
 function PagoMercadoPago() {
   const [title] = useState("Master Fade 3.0");
@@ -7,11 +9,6 @@ function PagoMercadoPago() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const API_BASE_URL =
-    process.env.NODE_ENV === 'production'
-      ? 'https://back-cursos.onrender.com'
-      : 'http://localhost:5000';
 
   const generarLinkDePago = async () => {
     if (!nombre || !email) {
