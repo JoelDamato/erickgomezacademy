@@ -8,6 +8,7 @@ import ReactPlayer from "react-player";
 import screenfull from "screenfull";
 import API_BASE_URL from "../api_base";
 import { motion } from "framer-motion";
+import EmojiPicker from "emoji-picker-react";
 
 function Capitulos() {
   const { cursoId, moduleName, chapterId } = useParams();
@@ -28,10 +29,16 @@ function Capitulos() {
   const [duracionEstimativa, setDuracionEstimativa] = useState(0);
   const [videoFinalizado, setVideoFinalizado] = useState(false);
   const [capituloYaCompletado, setCapituloYaCompletado] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [isLoadingComment, setIsLoadingComment] = useState(false);
+  const [isDeletingComment, setIsDeletingComment] = useState(false); // guarda el id del comentario que se está borrando
+
   const email = localStorage.getItem("email");
   const user = useUserStore((state) => state.user);
   const clearUserData = useUserStore((state) => state.clearUserData);
   const playerRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const verificarProgreso = async () => {
@@ -171,8 +178,7 @@ function Capitulos() {
 
   const handleAddComment = async () => {
     if (!newComment) return;
-    console.log(user?.imagenPerfil);
-
+    setIsLoadingComment(true);
     try {
       const response = await fetch(`${API_BASE_URL}/api/comments/add`, {
         method: "POST",
@@ -195,9 +201,11 @@ function Capitulos() {
     } catch (error) {
       console.error("Error al agregar comentario:", error);
     }
+    setIsLoadingComment(false);
   };
 
   const handleDeleteComment = async (commentId) => {
+    setIsDeletingComment(commentId);
     try {
       const response = await fetch(
         `${API_BASE_URL}/api/comments/${commentId}`,
@@ -211,6 +219,7 @@ function Capitulos() {
     } catch (error) {
       console.error("Error al borrar comentario:", error);
     }
+    setIsDeletingComment(null);
   };
 
   useEffect(() => {
@@ -279,6 +288,11 @@ function Capitulos() {
       navigate(`/${cursoId}`);
     }
   };
+
+  function capitalizeFirstLetter(str) {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   if (!course) {
     return <div className="text-white">Cargando curso...</div>;
@@ -417,8 +431,33 @@ function Capitulos() {
                 {comments.map((comment, index) => (
                   <div
                     key={index}
-                    className="bg-black border-1 border-white p-4 rounded-lg shadow flex items-start gap-4"
+                    className="bg-black border-1 border-white p-4 rounded-lg shadow flex items-start gap-4 relative"
                   >
+                    {/* Overlay de loading si se está borrando este comentario */}
+                    {isDeletingComment === comment._id && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10 rounded-lg">
+                        <svg
+                          className="animate-spin h-8 w-8 text-white"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          />
+                        </svg>
+                      </div>
+                    )}
+
                     {/* Imagen de perfil */}
                     {comment.imagenPerfil ? (
                       <img
@@ -442,10 +481,13 @@ function Capitulos() {
                         />
                       </svg>
                     )}
+
                     {/* Contenido del comentario */}
                     <div className="flex-1">
                       <p className="font-bold text-lg text-white">
-                        {comment.userName || comment.userEmail}
+                        {capitalizeFirstLetter(
+                          comment.userName || comment.userEmail
+                        )}
                       </p>
                       <p className="text-white text-sm">{comment.content}</p>
                       <p className="text-sm text-gray-500">
@@ -454,11 +496,13 @@ function Capitulos() {
                     </div>
 
                     {/* Botón eliminar */}
-                    {comment.userEmail === userName || rol === "admin" ? (
+                    {(comment.userEmail === userName || rol === "admin") && (
                       <button
                         onClick={() => handleDeleteComment(comment._id)}
                         className="bg-red-600 text-white py-1 px-1 rounded"
+                        disabled={!!isDeletingComment}
                       >
+                        {/* Solo el icono de tacho, sin loading */}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -474,25 +518,83 @@ function Capitulos() {
                           />
                         </svg>
                       </button>
-                    ) : null}
+                    )}
                   </div>
                 ))}
 
                 <div ref={commentsEndRef} />
               </div>
-
-              <textarea
-                placeholder="Escribe tu comentario..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                className="w-full p-2 border rounded mb-2 bg-white/40 text-black"
-              />
-              <button
-                onClick={handleAddComment}
-                className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-full"
-              >
-                Agregar Comentario
-              </button>
+              <div className="relative w-full mb-2">
+                <textarea
+                  placeholder="Escribe tu comentario..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  className="w-full p-2 border rounded bg-white/40 text-black placeholder-white pr-10"
+                  rows={3}
+                  ref={textareaRef}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-2xl"
+                  tabIndex={-1}
+                >
+                  😊
+                </button>
+                {showEmojiPicker && (
+                  <div className="absolute right-0 z-50 top-full mt-2">
+                    <EmojiPicker
+                      onEmojiClick={(emojiData) => {
+                        // Insertar emoji en la posición actual del cursor
+                        const textarea = textareaRef.current;
+                        const start = textarea.selectionStart;
+                        const end = textarea.selectionEnd;
+                        const text = newComment;
+                        const emoji = emojiData.emoji;
+                        setNewComment(
+                          text.slice(0, start) + emoji + text.slice(end)
+                        );
+                        setShowEmojiPicker(false);
+                        // Opcional: mover el cursor después del emoji
+                        setTimeout(() => {
+                          textarea.focus();
+                          textarea.selectionStart = textarea.selectionEnd =
+                            start + emoji.length;
+                        }, 0);
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-center w-full items-center">
+                <button
+                  onClick={handleAddComment}
+                  className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-4/5 sm:w-1/4"
+                >
+                  {isLoadingComment ? (
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      />
+                    </svg>
+                  ) : null}
+                  Enviar comentario
+                </button>
+              </div>
             </div>
           )}
 
