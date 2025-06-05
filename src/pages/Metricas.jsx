@@ -9,6 +9,7 @@ import axios from "axios"
 import Navbar from "../components/Navbar"
 import SeguimientoCurso from "../components/ProgresoUsuario"
 import API_BASE_URL from "../api_base";
+import Spinner from "../components/Spinner"
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#FF69B4", "#4BC0C0", "#36A2EB"]
 
@@ -123,7 +124,9 @@ const Metricas = () => {
     )
   }
 
-  if (loading) return <div className="flex justify-center items-center h-screen text-black"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>
+  if (loading) return <div className="flex justify-center items-center h-screen text-black">
+    <Spinner />
+    </div>
   if (error) return <div className="flex justify-center items-center h-screen text-black"><div className="bg-red-100 p-4 rounded-lg text-red-700">{error}</div></div>
 
   return (

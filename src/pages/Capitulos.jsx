@@ -9,6 +9,7 @@ import screenfull from "screenfull";
 import API_BASE_URL from "../api_base";
 import { motion } from "framer-motion";
 import EmojiPicker from "emoji-picker-react";
+import Spinner from "../components/Spinner";
 
 function Capitulos() {
   const { cursoId, moduleName, chapterId } = useParams();
@@ -295,7 +296,7 @@ function Capitulos() {
   }
 
   if (!course) {
-    return <div className="text-white">Cargando curso...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-black"><Spinner /></div>;
   }
 
   if (currentModuleChapters.length === 0) {
@@ -436,25 +437,7 @@ function Capitulos() {
                     {/* Overlay de loading si se está borrando este comentario */}
                     {isDeletingComment === comment._id && (
                       <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10 rounded-lg">
-                        <svg
-                          className="animate-spin h-8 w-8 text-white"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            fill="none"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                          />
-                        </svg>
+                          <Spinner />
                       </div>
                     )}
 
@@ -572,27 +555,9 @@ function Capitulos() {
                   className="bg-gradient-to-r from-black to-white/20 text-white py-2 px-4 rounded-lg w-4/5 sm:w-1/4"
                 >
                   {isLoadingComment ? (
-                    <svg
-                      className="animate-spin h-5 w-5 mr-2 text-white"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        fill="none"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                      />
-                    </svg>
-                  ) : null}
-                  Enviar comentario
+                    <Spinner />
+                  ) : "Enviar comentario"}
+                  
                 </button>
               </div>
             </div>
