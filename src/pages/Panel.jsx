@@ -366,7 +366,7 @@ function PanelControl() {
       )}
       {/* Sección para crear usuario */}
       {activeSection === "crear" && (
-        <div className="flex  justify-center  bg-gray-100 w-screen">
+        <div className="flex  justify-center  bg-gray-100 w-screen pb-5">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-[60%]">
             <form
               className="flex flex-col w-full items-center gap-5"
@@ -503,7 +503,7 @@ function PanelControl() {
 
       {/* Sección para editar usuario */}
       {activeSection === "editar" && (
-        <div className="flex  justify-center  bg-gray-100 w-screen">
+        <div className="flex  justify-center  bg-gray-100 w-screen pb-5">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-[60%]">
             <form
               className="flex flex-col w-full items-center gap-5"
@@ -616,7 +616,7 @@ function PanelControl() {
       )}
 
       {activeSection === "cambiarContraseña" && (
-        <div className="flex  justify-center  bg-gray-100 w-screen">
+        <div className="flex  justify-center  bg-gray-100 w-screen pb-5">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-[60%]">
             <form
               className="flex flex-col w-full items-center gap-5"
@@ -701,7 +701,7 @@ function PanelControl() {
       )}
 
       {activeSection === "eliminar" && (
-        <div className="flex  justify-center  bg-gray-100 w-screen">
+        <div className="flex  justify-center  bg-gray-100 w-screen pb-5">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80 sm:w-[60%]">
             <p className="text-black text-sm mb-4 text-left">
               Introduce el email del usuario que deseas eliminar
