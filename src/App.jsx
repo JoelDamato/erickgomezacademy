@@ -34,6 +34,7 @@ import InscripcionesAbiertas from './pages/inscripcionesabiertas.jsx';
 import MisCursos from './pages/Miscursos.jsx';
 import EditarPassword from './pages/Editpassword.jsx';
 import Consultor from './pages/Consultor.jsx';
+import VentaStripe from './pages/VentaStripe.jsx';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path="/ultimomomento" element={<VideoBarberos />} />
         <Route path="/inscripcionesabiertas" element={<InscripcionesAbiertas />} />
         <Route path="/editar-password" element={<EditarPassword />} />
+        <Route path="/venta-stripe" element={<PrivateRoute><VentaStripe/></PrivateRoute>} />
 
 
 
@@ -81,6 +83,7 @@ function App() {
         <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
         <Route path="/misentrenamientos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
         <Route path="/consultor" element={<PrivateRoute><Consultor/></PrivateRoute>} />
+  
         {/* 404 */}
         <Route path="*" element={<Error404 />} />
       </Routes>

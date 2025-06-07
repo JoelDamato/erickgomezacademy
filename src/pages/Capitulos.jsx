@@ -20,7 +20,7 @@ function Capitulos() {
   const [userName, setUserName] = useState(
     localStorage.getItem("nombre") || "Anónimo"
   );
-  const [showComments, setShowComments] = useState(true);
+  const [showComments, setShowComments] = useState(false);
   const [course, setCourse] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem("rol") || "");
