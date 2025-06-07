@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import API_BASE_URL from "../api_base";
+import Spinner from '../components/Spinner';
 
 
 function MisCursos() {
@@ -60,7 +61,7 @@ function MisCursos() {
   if (isLoading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-black text-white">
-        Cargando cursos...
+        <Spinner />
       </div>
     );
   }

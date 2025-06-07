@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import useUserStore from '../store/users';
 import API_BASE_URL from "../api_base";
+import Spinner from '../components/Spinner';
 
 function Cursos() {
 
@@ -176,7 +177,7 @@ function Cursos() {
   };
 
   if (!course) {
-    return <div className="text-white p-10">Cargando curso...</div>;
+    return <div className="text-white p-10"><Spinner /></div>;
   }
 
   return (

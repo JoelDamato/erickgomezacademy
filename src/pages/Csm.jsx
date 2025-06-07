@@ -6,6 +6,7 @@ import axios from "axios"
 import ProgresoUsuario from "../components/ProgresoUsuario"
 import Searchusers from "../components/Searchusers"
 import API_BASE_URL from "../api_base";
+import Spinner from "../components/Spinner"
 
 
 const Csm = () => {
@@ -33,7 +34,7 @@ const Csm = () => {
     .filter(u => `${u.nombre} ${u.email}`.toLowerCase().includes(busqueda.toLowerCase()))
     .filter(u => u.Csm && u.Csm !== "")
 
-  if (loading) return <div className="text-center text-black p-10">Cargando...</div>
+  if (loading) return <div className="text-center text-black p-10"><Spinner/></div>
   if (error) return <div className="text-center text-red-600 p-10">{error}</div>
 
   return (
