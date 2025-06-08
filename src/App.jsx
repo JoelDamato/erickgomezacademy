@@ -60,7 +60,6 @@ function App() {
         <Route path="/pasarelamp" element={<VentaMP />} />
         <Route path="/success" element={<Success />} />
         <Route path="/preguntas" element={<Preguntas/>} />
-        <Route path="/pdf2" element={<Pdf/>} />
         <Route path="/ultimomomento" element={<VideoBarberos />} />
         <Route path="/inscripcionesabiertas" element={<InscripcionesAbiertas />} />
         <Route path="/editar-password" element={<EditarPassword />} />
@@ -83,6 +82,7 @@ function App() {
         <Route path="/kitbarberia" element={<PrivateRoute><Herramientas/></PrivateRoute>} />
         <Route path="/misentrenamientos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
         <Route path="/consultor" element={<PrivateRoute><Consultor/></PrivateRoute>} />
+        <Route path="/pdf2" element={<Pdf/>} />
   
         {/* 404 */}
         <Route path="*" element={<Error404 />} />
