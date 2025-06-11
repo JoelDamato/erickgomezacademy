@@ -63,7 +63,7 @@ function App() {
         <Route path="/ultimomomento" element={<VideoBarberos />} />
         <Route path="/inscripcionesabiertas" element={<InscripcionesAbiertas />} />
         <Route path="/editar-password" element={<EditarPassword />} />
-        <Route path="/venta-stripe" element={<PrivateRoute><VentaStripe/></PrivateRoute>} />
+        <Route path="/venta-stripe" element={<VentaStripe/>} />
 
 
 
@@ -83,7 +83,7 @@ function App() {
         <Route path="/misentrenamientos" element={<PrivateRoute><MisCursos/></PrivateRoute>} />
         <Route path="/consultor" element={<PrivateRoute><Consultor/></PrivateRoute>} />
         <Route path="/pdf2" element={<Pdf/>} />
-  
+
         {/* 404 */}
         <Route path="*" element={<Error404 />} />
       </Routes>
