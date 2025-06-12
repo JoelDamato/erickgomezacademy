@@ -43,7 +43,7 @@ const handleScroll = () => {
   const handleClick = () => {
     // 👉 Evento para el pixel de Meta
     if (typeof fbq !== "undefined") {
-      fbq("trackCustom", "ClickStickyWhatsapp")
+      fbq("trackCustom", "[CTA] [Sticky] [Wspp] [MF3.0]")
     }
 
     // Abrir WhatsApp en nueva pestaña

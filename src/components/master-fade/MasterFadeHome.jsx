@@ -86,7 +86,7 @@ function MasterFadeHome() {
   rel="noopener noreferrer"
   onClick={() => {
     if (typeof fbq !== "undefined") {
-      fbq("trackCustom", "ClickHeroWhatsapp");
+      fbq("trackCustom", "[CTA] [VSL] [Wspp] [MF3.0]");
     }
   }}
   className="block w-full max-w-md mx-auto mt-5"

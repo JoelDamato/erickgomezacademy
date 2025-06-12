@@ -45,7 +45,7 @@ export default function MasterFadeFAQ() {
   rel="noopener noreferrer"
   onClick={() => {
     if (typeof fbq !== "undefined") {
-      fbq("trackCustom", "ClickWhatsAppMasterFade");
+      fbq("trackCustom", "[CTA] [Dudas] [Wspp] [MF3.0]");
     }
   }}
   className="block w-full max-w-lg px-4 mb-12 mx-auto"
