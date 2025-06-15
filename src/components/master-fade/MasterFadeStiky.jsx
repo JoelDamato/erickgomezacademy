@@ -36,7 +36,7 @@ const handleScroll = () => {
 
   const phoneNumber = "+59891640623"
   const getWhatsAppLink = () => {
-    const message = "Hola, ya completé el formulario, me interesa lo que vi del nuevo sistema eduactivo. ¿Cómo hago para empezar antes de que se cierren las inscripciones?"
+    const message = "Hola, ya completé el formulario, me interesa lo que vi del nuevo sistema educativo. ¿Cómo hago para empezar antes de que se cierren las inscripciones?"
     return `https://wa.me/${phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`
   }
 

@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 const phoneNumber = "+59891640623"; // Tu número de WhatsApp
 
 const getWhatsAppLink = () => {
-  const message = "Hola, ya completé el formulario, me interesa lo que vi del nuevo sistema eduactivo. ¿Cómo hago para empezar antes de que se cierren las inscripciones?";
+  const message = "Hola, ya completé el formulario, me interesa lo que vi del nuevo sistema educativo. ¿Cómo hago para empezar antes de que se cierren las inscripciones?";
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 };
 
